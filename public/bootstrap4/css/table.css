@@ -1,0 +1,58 @@
+.table td.option {
+    width: 2em;
+}
+
+.table img {
+    max-width: 100px;
+}
+
+.table img.data {
+    border: 1px solid #BBB;
+    padding: 2px;
+    float: left;
+    margin: 0 7px 0 0;
+}
+
+.table .info {
+    color: #999;
+    font-size: 0.8em;
+}
+
+.table .unlocalized a {
+    color: #777;
+}
+
+.table .unlocalized .help-block {
+    color: #AAA;
+}
+
+.table .disabled {
+    opacity: 0.8;
+}
+
+.table .form-group-order .input-group-addon {
+    background: none;
+    border: 0;
+    padding-top: 0;
+}
+
+.table .form-group-order .input-group .form-control:not(:first-child):not(:last-child) {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
+.table select.form-control:not([size]):not([multiple]) {
+    height: 2.4rem;
+}
+
+.table .form-group-order button {
+    margin-top: -8px;
+}
+
+.table .form-group-pagination label {
+    padding-top: 0.5em;
+}
+
+.table .pagination {
+    margin-top: 0;
+}

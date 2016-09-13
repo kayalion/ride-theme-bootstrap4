@@ -1,0 +1,53 @@
+{
+    "routes": [
+        {
+            "path": "/admin",
+            "controller": "ride\\theme\\bootstrap\\controller\\IndexController",
+            "action": "indexAction",
+            "id": "admin",
+            "methods": ["GET", "HEAD"]
+        },
+        {
+            "path": "/admin/content",
+            "controller": "ride\\theme\\bootstrap\\controller\\IndexController",
+            "action": "contentAction",
+            "id": "content",
+            "methods": ["GET", "HEAD"]
+        },
+        {
+            "path": "/admin/documentation",
+            "controller": "ride\\theme\\bootstrap\\controller\\IndexController",
+            "action": "documentationAction",
+            "id": "documentation",
+            "methods": ["GET", "HEAD"]
+        },
+        {
+            "path": "/admin/system",
+            "controller": "ride\\theme\\bootstrap\\controller\\IndexController",
+            "action": "systemAction",
+            "id": "system",
+            "methods": ["GET", "HEAD"]
+        },
+        {
+            "path": "/admin/system/details",
+            "controller": "ride\\web\\base\\controller\\SystemController",
+            "action": "indexAction",
+            "id": "system.details",
+            "methods": ["GET", "HEAD"]
+        },
+        {
+            "path": "/admin/system/security",
+            "controller": "ride\\theme\\bootstrap\\controller\\IndexController",
+            "action": "securityAction",
+            "id": "system.security",
+            "methods": ["GET", "HEAD"]
+        },
+        {
+            "path": "/admin/system/security/access",
+            "controller": "ride\\web\\base\\controller\\SecurityController",
+            "action": "pathAction",
+            "id": "system.security.access",
+            "methods": ["GET", "HEAD", "POST"]
+        }
+    ]
+}

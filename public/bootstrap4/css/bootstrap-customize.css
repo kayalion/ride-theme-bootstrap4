@@ -1,0 +1,45 @@
+@import url(table.css);
+
+body {
+    padding-top: 5em;
+}
+
+/* .breadcrumb { */
+    /* font-size: 0.8em; */
+/* } */
+
+form.is-submitted {
+    position: relative;
+    opacity: .5;
+}
+
+form.is-submitted:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  cursor: wait;
+  cursor: progress;
+}
+
+form.is-submitted button {
+    overflow: hidden;
+    cursor: not-allowed;
+}
+/*
+form.is-submitted button:before {
+  content: '';
+  display: block;
+  animation: move .75s linear infinite;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  z-index: 10;
+  height: 3px;
+  width: 100%;
+}
+*/
