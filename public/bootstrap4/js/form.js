@@ -17,15 +17,40 @@ rideApp.form = (function($, undefined) {
       $form.on('click', '.btn-file-delete', function(e) {
         return onFileDelete($(this), e);
       });
+      $form.on('click', '.prototype-add:not(.disabled)', function(e) {
+        return onCollectionAdd($(this), e);
+      });
+      $form.on('click', '.prototype-remove:not(.disabled)', function(e) {
+        return onCollectionRemove($(this), e);
+      });
       $form.on('click', 'button[type=submit]', function(e) {
         return onSubmit($(this), e);
       });
+      $form.on('change', '[data-toggle-dependant]', function() {
+          toggleDependantRows($(this));
+      });
+      $form.find('input[data-toggle-dependant]:checked, select[data-toggle-dependant]').each(function() {
+        toggleDependantRows($(this));
+      });
+
+      var $orderedCollection = $('[data-order=true] .collection-control-group', $form);
+      if ($orderedCollection.length != 0) {
+        $orderedCollection.sortable({
+            axis: "y",
+            cursor: "move",
+            handle: ".order-handle",
+            items: "> .collection-control",
+            select: false,
+            scroll: true
+        });
+      }
 
       if (hasParsley) {
         $form.parsley()
           .on('form:error', function() {
             handleValidation(this.$element);
-          }).on('field:success', function() {
+          })
+          .on('field:success', function() {
             handleValidation(this.$element.parents('form'), true);
           });
       }
@@ -56,6 +81,33 @@ rideApp.form = (function($, undefined) {
     if (confirm($anchor.data('message'))) {
       $anchor.closest('.form-group').find('input[type=hidden]').val('');
       $anchor.parent('div').remove();
+    }
+  };
+
+  var onCollectionAdd = function($anchor, e) {
+    e.preventDefault();
+
+    var parent = $anchor.closest('.collection-controls');
+
+    var index = parent.attr('data-index');
+    if (!index) {
+        index = $('.collection-control', parent).length;
+    }
+
+    var prototype = parent.attr('data-prototype');
+    prototype = prototype.replace(/%prototype%/g, 'prototype-' + index);
+
+    $('.collection-control-group', parent).first().append(prototype);
+
+    index++;
+    parent.attr('data-index', index);
+  };
+
+  var onCollectionRemove = function($anchor, e) {
+    e.preventDefault();
+
+    if (confirm($anchor.attr('data-message-confirm'))) {
+        $anchor.closest('.collection-control').remove();
     }
   };
 
@@ -124,8 +176,26 @@ rideApp.form = (function($, undefined) {
     });
   };
 
+  var toggleDependantRows = function($input) {
+    var $parent = $input.parents('form');
+    var $styleClass = $input.data('toggle-dependant');
+    var $group = $parent.find('[name^="' + $input.attr('name') + '"]');
+    var value = null;
+
+    if ($group.prop('tagName') == 'SELECT') {
+        value = $group.val();
+    } else {
+        value = $input.filter(':checked').length ? $input.val() : null;
+    }
+
+    $('.' + $styleClass, $parent).parents('.form-group').hide();
+    $('.' + $styleClass + '-' + value, $parent).parents('.form-group').show();
+  };
+
   return {
     initialize: _initialize,
+    onCollectionAdd: onCollectionAdd,
+    onCollectionRemove: onCollectionRemove,
     onFileDelete: onFileDelete,
     onSubmit: onSubmit,
     cancelSubmit: cancelSubmit
@@ -136,5 +206,3 @@ rideApp.form = (function($, undefined) {
 $(document).ready(function() {
   rideApp.form.initialize();
 });
-
-

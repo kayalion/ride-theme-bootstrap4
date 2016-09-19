@@ -103,6 +103,7 @@
 {/block}
 
 {block name="scripts" append}
+    {script src="bootstrap4/js/tabs.js"}
     {script src="bootstrap4/js/parsley.js"}
     {script src="bootstrap4/js/form.js"}
     {script src="bootstrap4/js/modules/security.js"}

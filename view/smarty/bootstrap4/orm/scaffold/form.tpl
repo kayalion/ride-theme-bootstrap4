@@ -18,6 +18,18 @@
         <a class="breadcrumb-item" href="{url id="system.orm.scaffold.index" parameters=["model" => $meta->getName(), "locale" => $locale]}">
             {$title}
         </a>
+    {elseif $meta->getName() == 'ImageStyle' || $meta->getName() == 'ImageTransformation'}
+        <a class="breadcrumb-item" href="{url id="system"}">
+            {translate key="title.system"}
+        </a>
+        {if $meta->getName() == 'ImageTransformation'}
+        <a class="breadcrumb-item" href="{url id="system.orm.scaffold.index" parameters=["model" => "ImageStyle", "locale" => $locale]}">
+            {translate key="title.image.styles"}
+        </a>
+        {/if}
+        <a class="breadcrumb-item" href="{url id="system.orm.scaffold.index" parameters=["model" => $meta->getName(), "locale" => $locale]}">
+            {$title}
+        </a>
     {else}
         <a class="breadcrumb-item" href="{url id="system"}">
             {translate key="title.system"}

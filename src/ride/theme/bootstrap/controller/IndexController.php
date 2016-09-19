@@ -7,23 +7,27 @@ use ride\web\base\controller\AbstractController;
 class IndexController extends AbstractController {
 
     public function indexAction() {
-        $this->setTemplateView('base/dashboard.admin');
+        $this->setTemplateView('base/dashboard/admin');
     }
 
     public function securityAction() {
-        $this->setTemplateView('base/dashboard.security');
+        $this->setTemplateView('base/dashboard/security');
     }
 
     public function systemAction() {
-        $this->setTemplateView('base/dashboard.system');
+        $this->setTemplateView('base/dashboard/system');
     }
 
     public function documentationAction() {
-        $this->setTemplateView('base/dashboard.documentation');
+        $this->setTemplateView('base/dashboard/documentation');
+    }
+
+    public function toolsAction() {
+        $this->setTemplateView('base/dashboard/tools');
     }
 
     public function contentAction() {
-        $this->setTemplateView('base/dashboard.content');
+        $this->setTemplateView('base/dashboard/content');
     }
 
 }

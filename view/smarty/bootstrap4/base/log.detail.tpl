@@ -196,3 +196,7 @@
     {/if}
     </div>
 {/block}
+
+{block name="scripts" append}
+    {script src="bootstrap4/js/tabs.js"}
+{/block}

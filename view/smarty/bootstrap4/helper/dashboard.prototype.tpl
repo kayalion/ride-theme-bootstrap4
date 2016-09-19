@@ -1,9 +1,13 @@
 {function name="dashboardMenu" items=null title=null referer=null icons=null defaultIcon='cube'}
 {$defaultIcons = [
     "api" => "code",
+    "assets.image.styles" => "file-image-o",
+    "assets.overview" => "image",
     "manual" => "book",
+    "orm.events" => "calendar",
     "taxonomy.vocabulary.list" => "tags",
     "system.cache" => "gears",
+    "system.calendar" => "calendar-check-o",
     "system.details" => "info-circle",
     "system.dependencies" => "code-fork",
     "system.exception" => "exclamation-triangle",
@@ -14,14 +18,15 @@
     "system.preferences" => "wrench",
     "system.routes" => "sitemap",
     "system.security.access" => "lock",
-    "system.security.user" => "users"
+    "system.security.user" => "users",
+    "varnish" => "flash"
 ]}
 {if $icons === null}
     {$icons = $defaultIcons}
 {/if}
 {if $title}
     {$id = \ride\library\StringHelper::safeString($title)}
-    <h2 class="m-b-2 h3">
+    <h2 class="m-b-2">
         <a data-toggle="collapse" href="#{$id}" aria-expanded="true" aria-controls="dashboard{$id}">
             {$title}
         </a>
@@ -38,9 +43,16 @@
         {$index = 0}
     {/if}
 
-    {$id = $item->getRouteId()}
+    {$isOrm = false}
     {$label = $item->getLabel()}
     {$url = $item->getUrl()}
+
+    {$id = $item->getRouteId()}
+    {if $id == 'system.orm.scaffold.index'}
+        {$safeLabel = \ride\library\StringHelper::safeString($label)}
+        {$id = "orm.`$safeLabel`"}
+        {$isOrm = true}
+    {/if}
     <div class="media col-md-4 m-b-2">
         <a class="media-left text-xs-center" href="{$item->getUrl()}{$referer}" style="min-width: 4em;">
             <span class="fa fa-3x fa-{if isset($icons[$id])}{$icons[$id]}{else}{$defaultIcon}{/if}"></span>
@@ -52,19 +64,14 @@
                 </a>
             </h3>
 
-            {if $id == 'system.orm.scaffold.index'}
-                {$label = \ride\library\StringHelper::safeString($label)}
-                {translate key="dashboard.orm.`$label`.description"}
+            {translate key="dashboard.`$id`.description"}
 
-                <div class="m-t-1">
-                    <a href="{$url}/add{$referer}">
-                        {translate key="button.entry.add"}
-                    </a>
-                </div>
+            <div class="m-t-1">
+            {if $isOrm}
+                <a href="{$url}/add{$referer}">
+                    {translate key="button.entry.add"}
+                </a>
             {else}
-                {translate key="dashboard.`$id`.description"}
-
-                <div class="m-t-1">
                 {if $id == 'system.security.user'}
                     <a href="{url id="system.security.user.add"}{$referer}">
                         {translate key="button.user.add"}
@@ -85,8 +92,8 @@
                     {/foreach}
                     </ul>
                 {/if}
-                </div>
             {/if}
+            </div>
         </div>
     </div>
 

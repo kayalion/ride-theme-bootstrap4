@@ -34,10 +34,32 @@ rideApp.common = (function($, undefined) {
     return string;
   };
 
+  var notifySuccess = function(message) {
+    $.bootstrapGrowl(message, {
+        type: 'success',
+        offset: {from: 'bottom', amount: 20},
+        align: 'center',
+        width: 'auto',
+        delay: 5000
+    });
+  };
+
+  var notifyError = function(message) {
+    $.bootstrapGrowl(message, {
+      type: 'error',
+      offset: {from: 'bottom', amount: 20},
+      align: 'center',
+      width: 'auto',
+      delay: 5000
+    });
+  };
+
   return {
     getLanguage: getLanguage,
     escapeHtml: escapeHtml,
-    unescapeHtml: unescapeHtml
+    unescapeHtml: unescapeHtml,
+    notifySuccess: notifySuccess,
+    notifyError: notifyError
   };
 })(jQuery);
 

@@ -44,23 +44,22 @@
     <form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
         <ul class="nav nav-tabs m-b-2">
             <li class="nav-item">
-                <a class="nav-link active" href="#details" data-toggle="tab">
-                    {translate key="title.details"}
+                <a class="nav-link active" href="#credentials" data-toggle="tab">
+                    {translate key="title.credentials"}
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#credentials" data-toggle="tab">
-                    {translate key="title.credentials"}
-                </a>
-            <li class="nav-item">
-                <a class="nav-link" href="#security" data-toggle="tab">
-                    {translate key="title.security"}
+                <a class="nav-link" href="#details" data-toggle="tab">
+                    {translate key="title.details"}
                 </a>
             </li>
         </ul>
 
         <div class="tab-content">
-        <div id="security" class="tab-pane">
+
+        <div id="credentials" class="tab-pane active">
+            {call formRow form=$form row="username"}
+            {call formRow form=$form row="password"}
             {call formRow form=$form row="active"}
             {if $form->hasRow('superuser')}
                 {call formRow form=$form row="superuser"}
@@ -70,12 +69,7 @@
             {/if}
         </div>
 
-        <div id="credentials" class="tab-pane">
-            {call formRow form=$form row="username"}
-            {call formRow form=$form row="password"}
-        </div>
-
-        <div id="details" class="tab-pane active">
+        <div id="details" class="tab-pane">
             {call formRows form=$form}
         </div>
         </div>
@@ -85,6 +79,7 @@
 {/block}
 
 {block name="scripts" append}
+    {script src="bootstrap4/js/tabs.js"}
     {script src="bootstrap4/js/parsley.js"}
     {script src="bootstrap4/js/form.js"}
 {/block}

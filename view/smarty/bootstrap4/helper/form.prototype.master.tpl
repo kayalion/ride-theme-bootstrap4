@@ -54,11 +54,11 @@
         {elseif $type == 'collection'}
             {$errors = $form->getValidationErrors($row->getName())}
 
-            <div class="form-group row-{$row->getName()|replace:'[':''|replace:']':''}{if $row->isRequired()} required{/if}{if $row->isDisabled()} disabled{/if}{if $row->isReadOnly()} readonly{/if} clearfix{if $errors} has-error{/if}{if $class} {$class}{/if}"{if $row->getOption('order')} data-order="true"{/if}>
+            <div class="form-group row-{$row->getName()|replace:'[':''|replace:']':''}{if $row->isRequired()} required{/if}{if $row->isDisabled()} disabled{/if}{if $row->isReadOnly()} readonly{/if} clearfix{if $errors} has-danger{/if}{if $class} {$class}{/if}"{if $row->getOption('order')} data-order="true"{/if}>
                 <label>{$row->getLabel()}</label>
 
                 {call formCollectionPrototype assign="prototype" form=$form row=$row part='%prototype%'}
-                <div class="col-md-10 collection-controls" data-prototype="{$prototype|escape:"html"|trim|replace:"\n":''}">
+                <div class="collection-controls" data-prototype="{$prototype|escape:"html"|trim|replace:"\n":''}">
                     {call formWidgetCollection form=$form row=$row part=$part}
 
                     {if $errors}
@@ -71,7 +71,7 @@
 
                     {$description = $row->getDescription()}
                     {if $description}
-                    <span class="help-block">{$description}</span>
+                    <span class="form-text text-muted">{$description}</span>
                     {/if}
                 </div>
             </div>
@@ -475,7 +475,14 @@
         {/if}
 
         {$isDisabled = $row->isDisabled()}
+
         {$attributes = $widget->getAttributes()}
+        {if isset($attributes.class)}
+            {$attributes.class = "`$attributes.class` form-check-input"}
+        {else}
+            {$attributes.class = 'form-check-input'}
+        {/if}
+
         {$value = $widget->getValue()}
         {$options = $widget->getOptions()}
         {if $part !== null}
@@ -495,8 +502,8 @@
         {else}
             {if is_array($options)}
                 {foreach $options as $option => $label}
-                    <div class="{$type}{if $isDisabled} disabled{/if}">
-                        <label>
+                    <div class="form-check {if $isDisabled} disabled{/if}">
+                        <label class="form-check-label">
                             <input type="{$type}"
                                    name="{$widget->getName()}{if $part !== null}[{$part}]{elseif $type == 'checkbox'}[]{/if}"
                                    value="{$option}"
@@ -513,8 +520,8 @@
                     </div>
                 {/foreach}
             {else}
-                <div class="checkbox{if $isDisabled} disabled{/if}">
-                    <label{if isset($attributes.disabled)} class="text-muted"{/if}>
+                <div class="form-check {if $isDisabled} disabled{/if}">
+                    <label class="form-check-label">
                         <input type="checkbox" name="{$widget->getName()}" value="1"{if $value} checked="checked"{/if}
                             {foreach $attributes as $name => $attribute}
                                 {$name}="{$attribute|escape}"
@@ -635,7 +642,10 @@
     </div>
 
     {if !$row->getOption('disable_add')}
-    <a href="#" class="btn btn-default prototype-add{if $row->isDisabled() || $row->isReadOnly()} disabled{/if}"><i class="glyphicon glyphicon-plus"></i> {translate key="button.add"}</a>
+    <a href="#" class="btn btn-secondary prototype-add{if $row->isDisabled() || $row->isReadOnly()} disabled{/if}">
+        <span class="fa fa-plus"></span>
+        {translate key="button.add"}
+    </a>
     {/if}
 {/function}
 
@@ -649,18 +659,17 @@
 
     <div class="collection-control clearfix">
         <div class="order-handle"></div>
-        <div class="col-md-10">
         {$widget = $row->getWidget()}
         {if $widget}
             {call formWidget form=$form row=$row part=$part type=$widget->getType()}
         {else}
             {call formRow form=$form row=$row->getRow($part)}
         {/if}
-        </div>
         {if !$row->getOption('disable_remove')}
-        <div class="col-md-2">
-            <a href="#" class="btn btn-default prototype-remove{if $row->isDisabled() || $row->isReadOnly()} disabled{/if}"><i class="glyphicon glyphicon-minus"></i> {translate key="button.remove"}</a>
-        </div>
+            <a href="#" class="btn btn-secondary prototype-remove{if $row->isDisabled() || $row->isReadOnly()} disabled{/if}" data-message-confirm="{"label.confirm.item.delete"|translate|escape}">
+                <span class="fa fa-minus"></span>
+                {translate key="button.remove"}
+            </a>
         {/if}
         <hr />
     </div>
@@ -678,7 +687,7 @@
     {/if}
 
     {if $validators}
-        {$attributes = $attributes|parsley:$validators}
+        {parsleyAttributes attributes=$attributes validators=$validators var="attributes" type=$type}
     {/if}
 
     {$value = $widget->getValue($part)}
@@ -716,7 +725,7 @@
     {/if}
 
     {if $validators}
-        {$attributes = $attributes|parsley:$validators}
+        {parsleyAttributes attributes=$attributes validators=$validators var="attributes"}
     {/if}
 
     {$value = $widget->getValue($part)}
@@ -781,9 +790,11 @@
 *}
 {function name="formActions" referer=null submit='button.save'}
     <div class="form-group">
+        <hr>
         <button type="submit" class="btn btn-primary">{$submit|translate}</button>
         {if $referer}
             <a href="{$referer}" class="btn">{'button.cancel'|translate}</a>
         {/if}
+        <hr>
     </div>
 {/function}

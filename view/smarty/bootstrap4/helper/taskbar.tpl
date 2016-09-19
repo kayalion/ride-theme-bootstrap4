@@ -44,23 +44,23 @@
     </li>
 {/function}
 
-<nav class="navbar navbar-fixed-top {* navbar-full navbar-fixed-top *} navbar-dark bg-primary">
+<nav class="navbar navbar-fixed-top navbar-full navbar-dark bg-inverse">
 <div class="container">
     <button class="navbar-toggler nav hidden-sm-up pull-xs-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-controls="collapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
         &#9776;
     </button>
-    {block name="taskbar_title"}
-        <a class="navbar-brand" href="{$app.url.base}">
-            {$title}
-        </a>
-    {/block}
+{block name="taskbar_title"}
+    <a class="navbar-brand" href="{$app.url.base}">
+        {$title}
+    </a>
+{/block}
     <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
         <ul class="nav navbar-nav">
-        {block name="taskbar_applications"}
-            {if $applicationsMenu->hasItems()}
-                {call taskbarMenuItems items=$applicationsMenu->getItems() itemClass="nav-item" anchorClass="nav-link"}
-            {/if}
-        {/block}
+    {block name="taskbar_applications"}
+        {if $applicationsMenu->hasItems()}
+            {call taskbarMenuItems items=$applicationsMenu->getItems() itemClass="nav-item" anchorClass="nav-link"}
+        {/if}
+    {/block}
         </ul>
         <ul class="nav navbar-nav pull-xs-right">
             {block name="taskbar_panels"}{/block}

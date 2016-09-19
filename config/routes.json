@@ -15,6 +15,13 @@
             "methods": ["GET", "HEAD"]
         },
         {
+            "path": "/admin/tools",
+            "controller": "ride\\theme\\bootstrap\\controller\\IndexController",
+            "action": "toolsAction",
+            "id": "tools",
+            "methods": ["GET", "HEAD"]
+        },
+        {
             "path": "/admin/documentation",
             "controller": "ride\\theme\\bootstrap\\controller\\IndexController",
             "action": "documentationAction",

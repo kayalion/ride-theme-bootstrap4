@@ -1,5 +1,7 @@
 {extends file="base/index"}
 
+{block name="head_title" prepend}{$title} | {/block}
+
 {block name="taskbar_panels" append}
     {if $localizeUrl}
         {call taskbarPanelLocales url=$localizeUrl locale=$locale locales=$locales}
@@ -15,9 +17,9 @@
             {translate key="title.content"}
         </a>
         <a class="breadcrumb-item" href="{url id="system.orm.scaffold.index" parameters=["model" => $meta->getName(), "locale" => $locale]}">
-            {$title}
+            {translate key=$meta->getOption('scaffold.title')}
         </a>
-        <a class="breadcrumb-item" href="{url id="system.orm.scaffold.action" parameters=["model" => $meta->getName(), "locale" => $locale, "id" => $entry->getId(), "action" => "detail"]}">
+        <a class="breadcrumb-item" href="{url id="calendar.event.detail" parameters=["locale" => $locale, "id" => $entry->getId()]}">
             {$entry->getName()}
         </a>
     </nav>
@@ -28,10 +30,6 @@
 {/block}
 
 {block name="content" append}
-
-    <h2 class="m-b-2">
-        {translate key="title.details"}
-    </h2>
     <div class="btn-group m-b-2">
         <a href="{$editUrl}" class="btn btn-secondary">
             {translate key="button.event.edit"}
@@ -51,7 +49,8 @@
     <h2 class="m-b-2">
         {translate key="title.performances"}
     </h2>
-    {$tableActions = [(string) $addPerformanceUrl => "button.performance.add"|translate]}
+    {$referer = $app.url.request|escape}
+    {$tableActions = ["`$addPerformanceUrl`?referer=`$referer`" => "button.performance.add"|translate]}
 
     {include file="helper/table" table=$table tableForm=$form tableActions = $tableActions}
 {/block}

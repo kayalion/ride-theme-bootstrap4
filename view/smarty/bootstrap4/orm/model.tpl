@@ -81,6 +81,7 @@
         <p>{"label.index.none"|translate}</p>
     {/if}
 
+    {$options = $modelTable->getOptions()}
     <h2 class="m-b-2">
         {"label.options"|translate}
     </h2>
@@ -92,7 +93,6 @@
             </tr>
         </thead>
         <tbody>
-            {$options = $modelTable->getOptions()}
             {foreach $options as $name => $value}
                 <tr>
                     <td>{$name}</td>

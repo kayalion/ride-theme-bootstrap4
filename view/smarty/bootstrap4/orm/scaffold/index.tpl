@@ -13,14 +13,26 @@
         <a class="breadcrumb-item" href="{url id="admin"}">
             {translate key="title.admin.home"}
         </a>
-{if $meta->getOption('scaffold.expose')}
+    {if $meta->getOption('scaffold.expose')}
         <a class="breadcrumb-item" href="{url id="content"}">
             {translate key="title.content"}
         </a>
         <a class="breadcrumb-item" href="{url id="system.orm.scaffold.index" parameters=["model" => $meta->getName(), "locale" => $locale]}">
             {$title}
         </a>
-{else}
+    {elseif $meta->getName() == 'ImageStyle' || $meta->getName() == 'ImageTransformation'}
+        <a class="breadcrumb-item" href="{url id="system"}">
+            {translate key="title.system"}
+        </a>
+        {if $meta->getName() == 'ImageTransformation'}
+        <a class="breadcrumb-item" href="{url id="system.orm.scaffold.index" parameters=["model" => "ImageStyle", "locale" => $locale]}">
+            {translate key="title.image.styles"}
+        </a>
+        {/if}
+        <a class="breadcrumb-item" href="{url id="system.orm.scaffold.index" parameters=["model" => $meta->getName(), "locale" => $locale]}">
+            {$title}
+        </a>
+    {else}
         <a class="breadcrumb-item" href="{url id="system"}">
             {translate key="title.system"}
         </a>
@@ -33,7 +45,7 @@
         <a class="breadcrumb-item" href="{url id="system.orm.scaffold.index" parameters=["model" => $meta->getName(), "locale" => $locale]}">
             {translate key="button.scaffold"}
         </a>
-{/if}
+    {/if}
     </nav>
 
     <div class="page-header m-b-1">

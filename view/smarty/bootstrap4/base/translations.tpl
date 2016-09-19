@@ -4,6 +4,9 @@
 
 {block name="taskbar_panels" append}
     {url id="system.translations.locale" parameters=["locale" => "%locale%"] var="url"}
+    {if $query}
+        {$url = "`$url`?query=`$query|escape`"}
+    {/if}
     {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
 {/block}
 
@@ -57,7 +60,14 @@
         </div>
     </div>
 
-<form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form">
+<form id="{$form->getId()}"
+      action="{$app.url.request}"
+      method="POST"
+      role="form"
+      data-message-success-save="{"success.translation.saved"|translate|escape}"
+      data-message-success-delete="{"success.translation.deleted"|translate|escape}"
+      data-message-error-save="{"error.translation.saved"|translate|escape}"
+      data-message-error-delete="{"error.translation.deleted"|translate|escape}">
     <table class="table table-striped table-bordered table-hover">
         <thead>
             <tr>
@@ -108,5 +118,6 @@
 {block name="scripts" append}
     {script src="bootstrap4/js/parsley.js"}
     {script src="bootstrap4/js/form.js"}
+    {script src="bootstrap4/js/jquery-bootstrap-growl.js"}
     {script src="bootstrap4/js/modules/system-translations.js"}
 {/block}

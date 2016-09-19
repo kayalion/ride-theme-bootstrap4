@@ -106,6 +106,10 @@ rideApp.systemParameters = (function($, undefined) {
         $('.parameter-value', $currentRow).addClass('text-success').html(rideApp.common.escapeHtml(value));
 
         $currentFormRow.after($currentRow);
+
+        rideApp.common.notifySuccess($form.data('message-success-save').replace('%parameter%', parameter));
+      } else {
+        rideApp.common.notifySuccess($form.data('message-success-delete').replace('%parameter%', parameter));
       }
 
       $currentFormRow.remove();
@@ -113,7 +117,11 @@ rideApp.systemParameters = (function($, undefined) {
       $currentRow = null;
       $currentFormRow = null;
     }).fail(function() {
-      alert('Could not save the parameter');
+      if (value != '') {
+        rideApp.common.notifyError($form.data('message-error-save').replace('%parameter%', parameter));
+      } else {
+        rideApp.common.notifyError($form.data('message-error-delete').replace('%parameter%', parameter));
+      }
     }).always(function() {
       rideApp.form.cancelSubmit($form);
     });

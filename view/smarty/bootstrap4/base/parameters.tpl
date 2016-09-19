@@ -45,7 +45,14 @@
         </div>
     </div>
 
-<form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form">
+<form id="{$form->getId()}"
+      action="{$app.url.request}"
+      method="POST"
+      role="form"
+      data-message-success-save="{"success.parameter.saved"|translate|escape}"
+      data-message-success-delete="{"success.parameter.deleted"|translate|escape}"
+      data-message-error-save="{"error.parameter.saved"|translate|escape}"
+      data-message-error-delete="{"error.parameter.deleted"|translate|escape}">
     <table class="table table-striped table-bordered table-hover">
         <thead>
             <tr>
@@ -95,5 +102,6 @@
 {block name="scripts" append}
     {script src="bootstrap4/js/parsley.js"}
     {script src="bootstrap4/js/form.js"}
+    {script src="bootstrap4/js/jquery-bootstrap-growl.js"}
     {script src="bootstrap4/js/modules/system-parameters.js"}
 {/block}

@@ -4,6 +4,10 @@ body {
     padding-top: 5em;
 }
 
+.form-group-pagination label {
+    padding-top: 0.5em;
+}
+
 /* .breadcrumb { */
     /* font-size: 0.8em; */
 /* } */

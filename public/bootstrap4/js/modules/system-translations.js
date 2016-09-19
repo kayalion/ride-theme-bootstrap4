@@ -108,6 +108,9 @@ rideApp.systemTranslations = (function($, undefined) {
         $('.translation-value', $currentRow).addClass('text-success').html(rideApp.common.escapeHtml(translation));
 
         $currentFormRow.after($currentRow);
+        rideApp.common.notifySuccess($form.data('message-success-save').replace('%key%', key));
+      } else {
+        rideApp.common.notifySuccess($form.data('message-success-delete').replace('%key%', key));
       }
 
       $currentFormRow.remove();
@@ -115,7 +118,11 @@ rideApp.systemTranslations = (function($, undefined) {
       $currentRow = null;
       $currentFormRow = null;
     }).fail(function() {
-      alert('Could not save the translation');
+      if (value != '') {
+        rideApp.common.notifyError($form.data('message-error-save').replace('%key%', key));
+      } else {
+        rideApp.common.notifyError($form.data('message-error-delete').replace('%key%', key));
+      }
     }).always(function() {
       rideApp.form.cancelSubmit($form);
     });
