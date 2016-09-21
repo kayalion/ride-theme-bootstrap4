@@ -89,6 +89,7 @@
     "success.parameter.deleted": "Parameter %parameter% has been deleted",
     "success.translation.deleted": "Translation %key% has been deleted",
 
+    "title.access-control": "Access Control",
     "title.admin.home": "Administration",
     "title.credentials": "Credentials",
     "title.exception": "Something went wrong",
@@ -97,6 +98,7 @@
     "title.permission.add": "Add a new permission",
     "title.roles": "Roles",
     "title.role.add": "Add a new role",
+    "title.security": "Security",
     "title.settings": "Settings",
     "title.system.details": "System details",
     "title.terms.vocabulary": "Terms of '%vocabulary%'",

@@ -35,3 +35,8 @@
         {call formActions referer=$referer}
     </form>
 {/block}
+
+{block name="scripts" append}
+    {script src="bootstrap4/js/parsley.js"}
+    {script src="bootstrap4/js/form.js"}
+{/block}

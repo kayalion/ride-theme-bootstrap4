@@ -136,9 +136,74 @@
         },
         {
             "class": "ride\\web\\base\\menu\\MenuItem",
-            "extends": "system.security.access",
+            "id": "system.security",
+            "calls": [
+                {
+                    "method": "setTranslation",
+                    "arguments": [
+                        {
+                            "name": "key",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "title.access-control"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setRoute",
+                    "arguments": [
+                        {
+                            "name": "id",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "system.security"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setId",
+                    "arguments": [
+                        {
+                            "name": "id",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "system.security.access"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setWeight",
+                    "arguments": [
+                        {
+                            "name": "weight",
+                            "type": "scalar",
+                            "properties": {
+                                "value": 80
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "class": "ride\\web\\base\\menu\\MenuItem",
             "id": "system.security.access",
             "calls": [
+                {
+                    "method": "setTranslation",
+                    "arguments": [
+                        {
+                            "name": "key",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "title.access-control"
+                            }
+                        }
+                    ]
+                },
                 {
                     "method": "setRoute",
                     "arguments": [
@@ -294,6 +359,74 @@
         },
         {
             "class": "ride\\web\\base\\menu\\Menu",
+            "id": "security",
+            "calls": [
+                {
+                    "method": "setId",
+                    "arguments": [
+                        {
+                            "name": "id",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "security.menu"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setTranslation",
+                    "arguments": [
+                        {
+                            "name": "key",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "title.security"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setWeight",
+                    "arguments": [
+                        {
+                            "name": "weight",
+                            "type": "scalar",
+                            "properties": {
+                                "value": -75
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "addMenuItem",
+                    "arguments": [
+                        {
+                            "name": "menuItem",
+                            "type": "dependency",
+                            "properties": {
+                                "interface": "ride\\web\\base\\menu\\MenuItem",
+                                "id": "system.security.access"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "addMenuItem",
+                    "arguments": [
+                        {
+                            "name": "menuItem",
+                            "type": "dependency",
+                            "properties": {
+                                "interface": "ride\\web\\base\\menu\\MenuItem",
+                                "id": "system.security.users"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "class": "ride\\web\\base\\menu\\Menu",
             "extends": "system",
             "id": "system",
             "calls": [
@@ -345,6 +478,50 @@
                             "properties": {
                                 "interface": "ride\\web\\base\\menu\\MenuItem",
                                 "id": "system.dependencies"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "removeItem",
+                    "arguments": [
+                        {
+                            "name": "item",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "system.security.access"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "removeItem",
+                    "arguments": [
+                        {
+                            "name": "item",
+                            "type": "scalar",
+                            "properties": {
+                                "value": "system.security.user"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "class": "ride\\web\\base\\menu\\Menu",
+            "extends": "settings",
+            "id": "settings",
+            "calls": [
+                {
+                    "method": "addMenu",
+                    "arguments": [
+                        {
+                            "name": "menu",
+                            "type": "dependency",
+                            "properties": {
+                                "interface": "ride\\web\\base\\menu\\Menu",
+                                "id": "security"
                             }
                         }
                     ]
