@@ -27,7 +27,7 @@
     {styles}
 {/block}
     </head>
-    <body{block name="body_attributes"}{/block}>
+    <body{block name="body_attributes"}{if isset($app.taskbar)} class="taskbar"{/if}{/block}>
 {block name="body"}
     {block name="taskbar"}
         {if isset($app.taskbar)}

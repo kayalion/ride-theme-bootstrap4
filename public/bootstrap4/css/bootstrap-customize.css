@@ -1,49 +1,49 @@
 @import url(table.css);
+@import url(form.css);
 
-body {
+body.taskbar {
     padding-top: 5em;
 }
 
-.form-group-pagination label {
-    padding-top: 0.5em;
+.btn-xs, .btn-group-xs > .btn {
+  padding: 0.1rem 0.2rem;
+  font-size: 0.65rem;
+  border-radius: 0.2rem;
 }
 
-/* .breadcrumb { */
-    /* font-size: 0.8em; */
-/* } */
+.breadcrumb {
+    margin: 0 0 0.5em -1em;
+    background-color: transparent;
+    font-size: 0.8em;
+}
 
-form.is-submitted {
+.is-loading {
     position: relative;
     opacity: .5;
 }
 
-form.is-submitted:before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  cursor: wait;
-  cursor: progress;
+.is-loading:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    cursor: progress;
 }
 
-form.is-submitted button {
-    overflow: hidden;
-    cursor: not-allowed;
+.loading {
+    display: none;
 }
-/*
-form.is-submitted button:before {
-  content: '';
-  display: block;
-  animation: move .75s linear infinite;
+
+.is-loading .loading {
   position: absolute;
-  top: 0;
-  left: -100%;
-  z-index: 10;
-  height: 3px;
-  width: 100%;
+  z-index: 2;
+  top: 45%;
+  right: 0;
+  left: 50%;
+  display: block;
+  width: auto;
 }
-*/

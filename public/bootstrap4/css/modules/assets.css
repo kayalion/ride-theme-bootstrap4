@@ -1,73 +1,90 @@
-.table .preview {
+.table .image {
     width: 70px;
 }
 
-.table td.preview {
+.table td.image {
     text-align: center;
 }
 
-/*.actions .btn-group,
-.form-filter select,
-.form-filter input {
-    display: inline;
-    width: auto;
+@media (max-width: 767px) {
+  .dropzone {
+    display: none;
+  }
 }
 
-.actions {
-    margin-bottom: 20px;
+.dropzone {
+  min-height: 3em;
+  border: 1px dashed #c0c0c0;
+  padding: 0.5em;
 }
 
-.actions .btn-group {
+.dropzone .dz-default {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0.2em;
+    color: #c0c0c0;
+}
+
+.dropzone.dz-drag-hover {
+    border-style: solid;
+}
+
+.dropzone.dz-clickable {
+    cursor: pointer;
+}
+
+.dropzone.dz-drag-hover .dz-default {
+    color: #eceeef;
+}
+
+.order-handle {
+    cursor: move;
+}
+
+.asset-item {
+    opacity: 1;
+}
+
+.asset-item.disabled {
+    opacity: 0.5;
+}
+
+.assets-grid .asset-item {
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    margin: 0 0 1em 1em;
+    padding: 1em;
+    width: 10.7em;
+    height: 10em;
     float: left;
-    margin-right: 20px;
 }
 
-.form-order {
-    margin-left: 25px;
+.assets-grid .asset-item:hover {
+    border: 1px solid #adadad;
+    background-color: #e6e6e6;
 }
 
-.form-limit {
-    float: right;
+.assets-grid .asset-item label {
+    display: inline;
+    cursor: pointer;
 }
 
-.assets-list .asset-actions {
-    padding-left: 15px;
+.assets-grid .asset-item.disabled label {
+    cursor: not-allowed;
 }
 
-.assets-grid .asset-actions {
-    padding-left: 18px;
+.assets-grid .asset-item .image {
+    height: 7em;
 }
 
-.assets .asset-actions input {
-    margin-right: 12px;
+.assets-grid .asset-item .image img {
+    max-width: 6em;
+    max-height: 6em;
 }
 
-.assets-grid [data-type=folder] .image {
-    padding-top: 11%;
-    padding-bottom: 11%;
+.assets-grid .asset-item .name {
+    background-color: #e6e6e6;
+    min-height: 2em;
+    margin: -0.1em -1em 0 -1em;
+    padding: 0.2em 1em 0 1em;
 }
-
-.assets-grid .order-item {
-    /* margin: 5px; */
-/*    margin-bottom: 25px;
-}
-
-.assets-grid .order-handle {
-    margin-left: 18px;
-    padding-left: 15px;
-    background-position: 2px 2px;
-}
-
-.assets-grid .name {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    height: 50px;
-    min-height: 50px;
-    overflow: hidden;
-    padding: 7px 15px 5px 53px;
-}
-*/

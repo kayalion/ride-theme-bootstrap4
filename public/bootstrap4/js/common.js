@@ -20,6 +20,10 @@ rideApp.common = (function($, undefined) {
     return currentLocale.slice(0, 2);
   };
 
+  var escapeId = function(string) {
+    return "#" + String(string).replace(/(:|\.|\[|\]|\%|\<|\>|,)/g, "\\$1" );
+  };
+
   var escapeHtml = function(string) {
     return String(string).replace(/[&<>"'\/]/g, function (s) {
       return entityMap[s];
@@ -57,6 +61,7 @@ rideApp.common = (function($, undefined) {
   return {
     getLanguage: getLanguage,
     escapeHtml: escapeHtml,
+    escapeId: escapeId,
     unescapeHtml: unescapeHtml,
     notifySuccess: notifySuccess,
     notifyError: notifyError

@@ -2385,13 +2385,19 @@ window.Parsley.on('field:validated', function(e) {
       .addClass('form-control-success')
       .closest('.form-group')
         .removeClass('has-danger')
-        .addClass('has-success');
+        .addClass('has-success')
+        .find('.selectize-control')
+          .removeClass('form-control-danger')
+          .addClass('form-control-success');
   } else {
     this.$element
       .removeClass('form-control-success')
       .addClass('form-control-danger')
       .closest('.form-group')
         .removeClass('has-success')
-        .addClass('has-danger');
+        .addClass('has-danger')
+        .find('.selectize-control')
+          .removeClass('form-control-success')
+          .addClass('form-control-danger');
   }
 });

@@ -18,6 +18,32 @@
 
 {block name="content_title" append}
     <div class="page-header m-b-2">
+        <nav class="breadcrumb">
+        {if !$embed}
+            <a class="breadcrumb-item" href="{url id="admin"}">
+                {translate key="title.admin.home"}
+            </a>
+            <a class="breadcrumb-item" href="{url id="content"}">
+                {translate key="title.content"}
+            </a>
+        {/if}
+            <a class="breadcrumb-item" href="{url id="assets.overview.locale" parameters=["locale" => $locale]}?embed={$embed}">
+                {translate key="title.assets"}
+            </a>
+            {foreach $breadcrumbs as $id => $name}
+                <a class="breadcrumb-item" href="{url id="assets.folder.overview" parameters=["locale" => $locale, "folder" => $id]}?embed={$embed}">
+                    {$name}
+                </a>
+            {/foreach}
+            <a class="breadcrumb-item" href="{$app.url.request}">
+            {if $asset->getId()}
+                {$asset->getName()}
+            {else}
+                {translate key="button.add.asset"}
+            {/if}
+            </a>
+        </nav>
+    {if !$embed}
         <h1>
             {translate key="title.assets"}
             <small class="text-muted">
@@ -28,6 +54,7 @@
         {/if}
             </small>
         </h1>
+    {/if}
     </div>
 {/block}
 
@@ -75,8 +102,15 @@
 
                 {if $media}
                     <iframe width="560" height="315" src="{$media->getEmbedUrl()}" frameborder="0" allowfullscreen></iframe>
+                {elseif $asset->isAudio()}
+                     <audio controls>
+                          <source src="{url id="assets.value" parameters=["asset" => $asset->getId()]}" type="{$asset->getMime()}">
+                    </audio>
                 {else}
-                    <img class="img-responsive" src="{image src=$asset->getImage()}" />
+                    {$image = $asset->getImage()}
+                    {if $image}
+                        <img class="img-fluid" src="{image src=$asset->getImage()}" />
+                    {/if}
                 {/if}
             </div>
 

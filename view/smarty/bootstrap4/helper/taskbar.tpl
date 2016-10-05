@@ -72,7 +72,7 @@
                     {/if}
                     {if $app.user}
                         {if $app.user->getImage()}
-                           <img class="img-responsive" src="{image src=$app.user->getImage() transformation="crop" width=18 height=18}" />
+                           <img src="{image src=$app.user->getImage() transformation="crop" width=18 height=18}" />
                         {/if}
                         {$app.user->getDisplayName()}
                     {else}

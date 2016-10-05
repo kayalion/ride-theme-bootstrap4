@@ -37,6 +37,9 @@
 {$index = 0}
 <div class="row">
 {foreach $items as $item}
+    {if is_string($item)}
+        {continue}
+    {/if}
     {if $index == 3}
     </div>
     <div class="row">

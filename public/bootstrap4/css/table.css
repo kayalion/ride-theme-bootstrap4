@@ -1,5 +1,6 @@
-.table td.option {
+.table .option {
     width: 2em;
+    text-align: center;
 }
 
 .table img {
@@ -41,10 +42,6 @@
 
 .table select.form-control:not([size]):not([multiple]) {
     height: 2.4rem;
-}
-
-.table .form-group-order button {
-    margin-top: -8px;
 }
 
 .table .pagination {

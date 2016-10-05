@@ -9,10 +9,6 @@
     Renders the rows of the form
 *}
 {function name="formRows" rows=null form=null rowClass=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if !$rows && $form}
         {$rows = $form->getRows()}
     {/if}
@@ -30,10 +26,6 @@
     Renders a simple row of the form
 *}
 {function name="formRow" form=null row=null part=null class=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -55,7 +47,12 @@
             {$errors = $form->getValidationErrors($row->getName())}
 
             <div class="form-group row-{$row->getName()|replace:'[':''|replace:']':''}{if $row->isRequired()} required{/if}{if $row->isDisabled()} disabled{/if}{if $row->isReadOnly()} readonly{/if} clearfix{if $errors} has-danger{/if}{if $class} {$class}{/if}"{if $row->getOption('order')} data-order="true"{/if}>
-                <label>{$row->getLabel()}</label>
+                <label>
+                    {$row->getLabel()}
+                    {if $row->getOption('localized')}
+                        &nbsp;<span class="fa fa-language text-muted" title="{translate key="label.field.localized"}"></span>
+                    {/if}
+                </label>
 
                 {call formCollectionPrototype assign="prototype" form=$form row=$row part='%prototype%'}
                 <div class="collection-controls" data-prototype="{$prototype|escape:"html"|trim|replace:"\n":''}">
@@ -94,7 +91,12 @@
             {/if}
 
             <div class="form-group row-{$rowName|replace:'[':''|replace:']':''}{if $row->isRequired()} required{/if}{if $row->isDisabled()} disabled{/if}{if $row->isReadOnly()} readonly{/if} clearfix{if $errors} has-danger{/if}{if $class} {$class}{/if}">
-                <label for="{$widget->getId()}">{if $type != 'button'}{$row->getLabel()}{/if}</label>
+                <label class="d-block" for="{$widget->getId()}">
+                    {if $type != 'button'}{$row->getLabel()}{/if}
+                    {if $row->getOption('localized')}
+                        &nbsp;<span class="fa fa-language text-muted" title="{translate key="label.field.localized"}"></span>
+                    {/if}
+                </label>
                 {call formWidget form=$form row=$row part=$part errors=$errors}
 
                 {if $errors}
@@ -134,10 +136,6 @@
     Renders the errors of a single widget of the form
 *}
 {function name="formWidgetErrors" form=null row=null part=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -177,10 +175,6 @@
     Renders a single control of the form
 *}
 {function name="formWidget" form=null row=null part=null type=null errors=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -205,10 +199,6 @@
 {/function}
 
 {function name="formWidgetHidden" form=null row=null part=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -226,10 +216,6 @@
 {/function}
 
 {function name="formWidgetLabel" form=null row=null part=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -253,10 +239,6 @@
 {/function}
 
 {function name="formWidgetButton" form=null row=null part=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -286,10 +268,6 @@
 {/function}
 
 {function name="formWidgetNumber" form=null row=null part=null errors=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -335,10 +313,6 @@
 {/function}
 
 {function name="formPrototypeInput" type=null form=null row=null part=null errors=null omitValue=false}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -350,10 +324,6 @@
 {/function}
 
 {function name="formPrototypeTextarea" form=null row=null part=null errors=$errors}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -365,10 +335,6 @@
 {/function}
 
 {function name="formPrototypeFile" form=null row=null part=null errors=$errors preview=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -380,32 +346,54 @@
 {/function}
 
 {function name="formWidgetAssets" form=null row=null part=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
 
     {$widget = $row->getWidget()}
     {if $widget}
-        {$attributes = $widget->getAttributes()}
-        {if isset($attributes.class)}
-            {$attributes.class = "`$attributes.class` form__assets-input"}
-        {else}
-            {$attributes.class = 'form__assets-input'}
+        {$tmpAttributes = $widget->getAttributes()}
+        {$validators = $row->getValidators()}
+        {if $validators}
+            {parsleyAttributes type="assets" attributes=$tmpAttributes validators=$validators var="tmpAttributes"}
         {/if}
 
-        <div class="form__assets" data-field="{$attributes.id}"{if $widget->isMultiple()} data-max="999"{else} data-max="1"{/if}>
-            {$assets = $widget->getAssets()}
-            {foreach $assets as $asset}
-                <div class="form__asset" data-id="{$asset->getId()}">
-                    <img src="{image src=$asset->getThumbnail() transformation="crop" width=100 height=100}" width="100" height="100">
-                    <a href="#" class="form__remove-asset">&times;</a>
-                </div>
-            {/foreach}
-            <a href="#modalAssetsAdd-{$widget->getName()}" class="form__add-assets btn btn-default"><i class="glyphicon glyphicon-plus"></i> {'button.add'|translate}</a>
+        {if $widget->isMultiple()}
+            {$maximum = 999}
+        {else}
+            {$maximum = 1}
+        {/if}
+
+        {$attributes = []}
+        {foreach $tmpAttributes as $attributeName => $attributeValue}
+            {if $attributeName == 'minlength'}
+                {continue}
+            {/if}
+            {if $attributeName == 'maxlength'}
+                {$maximum = $attributeValue}
+                {continue}
+            {/if}
+            {$attributes.$attributeName = $attributeValue}
+        {/foreach}
+
+        <div>
+            <div class="form-assets clearfix" data-field="{$attributes.id}" data-max="{$maximum}">
+                {$assets = $widget->getAssets()}
+                {foreach $assets as $asset}
+                    <div class="form-assets-asset" data-id="{$asset->getId()}">
+                        <img class="img-rounded" src="{image src=$asset->getThumbnail() default="bootstrap4/img/asset-`$asset->getType()`.png" transformation="crop" width=100 height=100}" alt="{$asset->getName()|escape}" title="{$asset->getName()|escape}">
+                        <a href="#" class="btn btn-secondary btn-xs form-assets-remove" title="{translate key="button.asset.remove"}">
+                            <span class="fa fa-remove"></span>
+                        </a>
+                    </div>
+                {/foreach}
+            </div>
+            <div class="clearfix">
+                <button class="btn btn-secondary pull-sm-left m-b-1 m-r-2 form-assets-add">
+                    <i class="fa fa-image"></i>
+                    {'button.browse'|translate}
+                </button>
+            </div>
         </div>
 
         {$value = $widget->getValue($part)}
@@ -422,32 +410,38 @@
             {$locale = $app.locale}
          {/if}
 
-        <div class="modal modal--large fade" id="modalAssetsAdd-{$widget->getName()}" tabindex="-1" role="dialog" aria-labelledby="myModalAssetsAdd" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade" id="modal-assets-{$widget->getName()}" tabindex="-1" role="dialog" aria-labelledby="modal-assets-{$widget->getName()}" aria-hidden="true">
+            <div class="modal-dialog modal-assets">
                 <div class="modal-content">
-                    <div class="modal-body">
+                    <div class="modal-body is-loading">
                         {if $widget->getFolderId()}
                             {url id="assets.folder.overview" parameters=["folder" => $widget->getFolderId(), "locale" => $locale] var="assetsUrl"}
                         {else}
                             {url id="assets.overview.locale" parameters=["locale" => $locale] var="assetsUrl"}
                         {/if}
-                        <iframe data-src="{$assetsUrl}?embed=1" frameborder="0" width="100%" height="500"></iframe>
+                        <div class="loading">
+                            <span class="fa fa-spinner fa-pulse fa-2x"></span>
+                        </div>
+                        <iframe id="{$attributes.id}-iframe" data-src="{$assetsUrl}?embed=1" frameborder="0" width="100%" height="500"></iframe>
                     </div>
                     <div class="modal-footer">
-                        <div class="grid">
-                            <div class="grid--bp-xsm__9">
-                                <div class="form__assets form__assets--sml" data-field="{$attributes.id}"{if $widget->isMultiple()} data-max="999"{else} data-max="1"{/if}>
-                                    {$assets = $widget->getAssets()}
-                                    {foreach $assets as $asset}
-                                        <div class="form__asset" data-id="{$asset->getId()}">
-                                            <img src="{image src=$asset->getThumbnail() transformation="crop" width=40 height=40}" width="40" height="40">
-                                            <a href="#" class="form__remove-asset">&times;</a>
-                                        </div>
-                                    {/foreach}
+                        <div class="row">
+                            <div class="col-xs-7 col-md-8">
+                                <div class="form-assets clearfix" data-field="{$attributes.id}" data-max="{$maximum}">
                                 </div>
+                                {if $maximum != 999}
+                                <small class="text-muted pull-left m-r-2">
+                                    {translate n=$maximum key="label.assets.maximum"}
+                                </small>
+                                {/if}
                             </div>
-                            <div class="grid--bp-xsm__3 text--right">
-                                <button type="button" class="btn btn--default" data-dismiss="modal">{translate key="button.done"}</button>
+                            <div class="col-xs-5 col-md-4 pull-xs-right">
+                                <button type="button" class="btn btn-primary form-assets-done">
+                                    {translate key="button.select"}
+                                </button>
+                                <button type="button" class="btn btn-link" data-dismiss="modal">
+                                    {translate key="button.cancel"}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -458,10 +452,6 @@
 {/function}
 
 {function name="formWidgetOption" form=null row=null part=null showLabel=true}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -538,10 +528,6 @@
 {/function}
 
 {function name="formWidgetSelect" form=null row=null part=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -555,8 +541,22 @@
             {$attributes.class = 'form-control'}
         {/if}
 
-        {if !$widget->isMultiple()}
+        {$value = $widget->getValue()}
+        {$options = $widget->getOptions()}
+
+        {if $widget->isMultiple() || $options|@count > 25}
+            {$attributes.class = "`$attributes.class` form-selectize"}
+        {else}
             {$attributes.class = "`$attributes.class` custom-select"}
+        {/if}
+
+        {$validators = $row->getValidators()}
+        {if $validators}
+            {parsleyAttributes type="collection" attributes=$attributes validators=$validators var="attributes"}
+        {/if}
+
+        {if $row->getOption('order')}
+            {$attributes['data-order'] = 'true'}
         {/if}
 
         {$value = $widget->getValue()}
@@ -567,17 +567,35 @@
                {$name}="{$attribute|escape}"
            {/foreach}
          >
-         {foreach $widget->getOptions() as $option => $label}
-            {if is_array($label)}
-            <optgroup label="{$option|escape}">
-            {foreach $label as $o => $l}
-                <option value="{$o|escape}"{if (!is_array($value) && strcmp($o, $value) == 0) || (is_array($value) && isset($value[$o]))} selected="selected"{/if}>{$l}</option>
-            {/foreach}
-            </optgroup>
-            {else}
-            <option value="{$option|escape}"{if (!is_array($value) && strcmp($option, $value) == 0) || (is_array($value) && isset($value[$option]))} selected="selected"{/if}>{$label}</option>
+
+
+        {* Print selected items first *}
+        {if !is_array($value) && isset($value)}
+            {if !is_object($value) && isset($options.$value)}
+                <option value="{$value|escape}" selected="selected">{$options[$value]}</option>
             {/if}
-         {/foreach}
+        {else}
+            {foreach $value as $option}
+                {if $option|array_key_exists:$options}
+                    <option value="{$option|escape}" selected="selected">{$options[$option]}</option>
+                {/if}
+            {/foreach}
+        {/if}
+
+        {* Print other items *}
+        {foreach $options as $option => $label}
+            {if !isset($value) || (!is_array($value) && !strcmp($option, $value) == 0) || (is_array($value) && !isset($value[$option]))}
+                {if is_array($label)}
+                    <optgroup label="{$option|escape}">
+                        {foreach $label as $o => $l}
+                            <option value="{$o|escape}"{if (!is_array($value) && strcmp($o, $value) == 0) || (is_array($value) && isset($value[$o]))} selected="selected"{/if}>{$l}</option>
+                        {/foreach}
+                    </optgroup>
+                {else}
+                    <option value="{$option|escape}">{$label}</option>
+                {/if}
+            {/if}
+        {/foreach}
          </select>
     {/if}
 {/function}
@@ -586,10 +604,6 @@
     Renders a component control of the form
 *}
 {function name="formWidgetComponent" form=null row=null class=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
@@ -609,15 +623,16 @@
     Renders a collection control of the form
 *}
 {function name="formWidgetCollection" form=null row=null}
-    {if !$form && isset($block_form)}
-        {$form = $block_form}
-    {/if}
-
     {$attributes = $row->getOption('attributes')}
     {if isset($attributes.class)}
         {$attributes.class = "`$attributes.class` collection-control-group"}
     {else}
         {$attributes.class = 'collection-control-group'}
+    {/if}
+
+    {$validators = $row->getValidators()}
+    {if $validators}
+        {parsleyAttributes type="collection" attributes=$attributes validators=$validators var="attributes"}
     {/if}
 
     <div
@@ -657,22 +672,36 @@
         {$row = $form->getRow($row)}
     {/if}
 
-    <div class="collection-control clearfix">
-        <div class="order-handle"></div>
+    {if $row}
+    <div class="collection-control clearfix card">
+        <div class="card-header">
+        <div class="row">
+            <div class="col-xs-6">
+        {if $row->getOption('order')}
+                <span class="fa fa-arrows-v text-muted order-handle"></span>
+        {/if}
+            </div>
+            <div class="col-xs-6">
+            {if !$row->getOption('disable_remove')}
+                <a href="#" title="{translate key="button.remove"}" class="btn btn-secondary btn-sm pull-right prototype-remove{if $row->isDisabled() || $row->isReadOnly()} disabled{/if}">
+                    <span class="fa fa-remove"></span>
+                </a>
+            {/if}
+            </div>
+        </div>
+       </div>
+        <div class="card-block">
         {$widget = $row->getWidget()}
         {if $widget}
             {call formWidget form=$form row=$row part=$part type=$widget->getType()}
         {else}
             {call formRow form=$form row=$row->getRow($part)}
         {/if}
-        {if !$row->getOption('disable_remove')}
-            <a href="#" class="btn btn-secondary prototype-remove{if $row->isDisabled() || $row->isReadOnly()} disabled{/if}" data-message-confirm="{"label.confirm.item.delete"|translate|escape}">
-                <span class="fa fa-minus"></span>
-                {translate key="button.remove"}
-            </a>
-        {/if}
-        <hr />
+        </div>
     </div>
+    {else}
+        <span class="error">No row provided</span>
+    {/if}
 {/function}
 
 {function name="formInput" type=null widget=null part=null validators=null errors=null omitValue=false}
@@ -791,6 +820,10 @@
 {function name="formActions" referer=null submit='button.save'}
     <div class="form-group">
         <hr>
+        <div class="loading">
+            <span class="fa fa-spinner fa-pulse fa-2x"></span>
+        </div>
+
         <button type="submit" class="btn btn-primary">{$submit|translate}</button>
         {if $referer}
             <a href="{$referer}" class="btn">{'button.cancel'|translate}</a>

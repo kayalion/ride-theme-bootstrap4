@@ -1,0 +1,92 @@
+
+.form-group-pagination label {
+    padding-top: 0.5em;
+}
+
+.form-inline .pull-xs-right select,
+.form-inline .pull-xs-right .input-group-addon, .input-group-btn {
+    width: auto;
+}
+
+/* .collection-control { */
+    /* margin-left: 2em; */
+/* } */
+
+.collection-control .order-handle {
+    /* margin-left: -3.3em; */
+    /* padding: 0.5em 0.8em; */
+    /* background-color: #FFF; */
+    /* border: 1px solid #ccc; */
+    /* border-width: 1px 0px 1px 1px; */
+    /* border-radius: 0.3rem; */
+    cursor: move;
+}
+
+form.is-loading button {
+    overflow: hidden;
+    cursor: not-allowed;
+}
+
+.form-assets-asset {
+    float: left;
+    cursor: move;
+    margin: 0 1em 1em 0;
+    position: relative;
+}
+
+.form-assets-asset img {
+    border: 1px solid #ccc;
+    padding: 3px;
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.form-assets-asset:hover img {
+    opacity: .5;
+}
+.form-assets-asset:hover .form-assets-remove {
+    /* opacity: 1; */
+}
+
+.form-assets-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  /* color: #a94442; */
+  /* line-height: 1; */
+  /* text-decoration: none; */
+  /* opacity: 0; */
+  /* transition: opacity 250ms; */
+}
+
+.form-assets-remove:hover {
+  /* color: #bd4147; */
+}
+
+.modal-assets {
+    width: 95%;
+}
+
+@media (min-width: 544px) {
+  .modal-assets {
+    max-width: 576px;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal-assets {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-assets {
+    max-width: 940px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal-assets {
+    max-width: 1140px;
+  }
+}

@@ -1,4 +1,7 @@
 {
+    "button.asset.remove" : "Remove this asset",
+    "button.assets.order" : "Order assets",
+    "button.browse" : "Browse...",
     "button.entry.add" : "Add a new entry",
     "button.entry.edit" : "Edit this entry",
     "button.event.edit" : "Edit this event",
@@ -10,6 +13,7 @@
     "button.permission.add" : "Add a new permission",
     "button.roles.manage" : "Manage roles",
     "button.role.add" : "Add a new role",
+    "button.select" : "Select",
     "button.submit.report" : "Send report",
     "button.term.add" : "Add a new term",
     "button.translations.manage" : "Manage translations",
@@ -57,13 +61,17 @@
     "error.translation.deleted": "Could not delete translation %key%",
     "error.translation.saved": "Could not save translation %key%",
 
+    "label.assets.maximum.1": "Maximum %n% assets",
+    "label.assets.maximum.0": "Maximum 1 asset",
     "label.cache": "Cache",
     "label.code": "Code",
     "label.confirm.file.delete": "Are you sure you want to remove this file?",
-    "label.confirm.item.delete": "Are you sure you want to remove this item?",
+    "label.confirm.item.delete": "Are you sure you want to remove the selected items?",
     "label.description": "Description",
+    "label.dropzone": "Drop your files here to upload",
     "label.exception.report.description": "An unexpected error has occured which made the server unable to fullfill your request.",
     "label.exception.report.form": "Please use the form below to inform the developers about this error. You can enter a short description of what you were doing to help track down the error (optional):",
+    "label.field.localized": "This field is localized",
     "label.forbidden.description": "If you should be able to view this page, please make sure you are authenticated with the credentials of a user who is granted to view this page.",
     "label.header": "Header",
     "label.locale": "Locale",
@@ -86,6 +94,8 @@
     "label.user": "User",
     "label.variable": "Variable",
 
+    "success.asset.ordered": "Order has been saved",
+    "success.asset.saved": "%file% has been uploaded",
     "success.parameter.deleted": "Parameter %parameter% has been deleted",
     "success.translation.deleted": "Translation %key% has been deleted",
 

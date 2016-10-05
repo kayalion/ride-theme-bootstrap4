@@ -1,5 +1,7 @@
 {extends file="base/index"}
 
+{block name="head_title" prepend}{$title} | {/block}
+
 {block name="taskbar_panels" append}
     {if $localizeUrl}
         {call taskbarPanelLocales url=$localizeUrl locale=$locale locales=$locales}
@@ -68,7 +70,7 @@
 {block name="content" append}
     {include file="helper/form.prototype"}
 
-    <form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
+    <form class="form-selectize" id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
     {if $tabs}
         <ul class="nav nav-tabs m-b-2">
         {foreach $tabs as $tabName => $tab}
@@ -96,7 +98,13 @@
     </form>
 {/block}
 
+{block name="styles" append}
+    {style src="bootstrap4/css/selectize.css" media="all"}
+{/block}
+
 {block name="scripts" append}
+    {script src="bootstrap4/js/jquery-ui.js"}
+    {script src="bootstrap4/js/selectize.js"}
     {script src="bootstrap4/js/parsley.js"}
     {script src="bootstrap4/js/form.js"}
 {/block}

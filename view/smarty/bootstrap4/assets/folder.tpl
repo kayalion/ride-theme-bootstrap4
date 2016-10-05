@@ -14,6 +14,30 @@
 
 {block name="content_title" append}
     <div class="page-header m-b-2">
+        <nav class="breadcrumb">
+        {if !$embed}
+            <a class="breadcrumb-item" href="{url id="admin"}">
+                {translate key="title.admin.home"}
+            </a>
+            <a class="breadcrumb-item" href="{url id="content"}">
+                {translate key="title.content"}
+            </a>
+        {/if}
+            <a class="breadcrumb-item" href="{url id="assets.overview.locale" parameters=["locale" => $locale]}?embed={$embed}">
+                {translate key="title.assets"}
+            </a>
+            {foreach $breadcrumbs as $id => $name}
+                <a class="breadcrumb-item" href="{url id="assets.folder.overview" parameters=["locale" => $locale, "folder" => $id]}?embed={$embed}">
+                    {$name}
+                </a>
+            {/foreach}
+            {if !$folder->getId()}
+            <a class="breadcrumb-item" href="{$app.url.request}">
+                {translate key="button.add.folder"}
+            </a>
+            {/if}
+        </nav>
+    {if !$embed}
         <h1>
             {translate key="title.assets"}
             <small>
@@ -24,6 +48,7 @@
     {/if}
             </small>
         </h1>
+    {/if}
     </div>
 {/block}
 

@@ -9,9 +9,19 @@ rideApp.table = (function($, undefined) {
       var $table = $(table);
 
       $table.find('td.action a').addClass('btn btn-secondary');
+      $table.find('td img').addClass('img-rounded');
 
-      $table.closest('form').on('click', 'button[type=submit]:not([name=applyAction])', function(e) {
-        return onApply($(this), e);
+      var $form = $table.closest('form');
+
+      $form.on('click', '.form-group-order .btn', function(e) {
+        var $element = $(this);
+
+        $('input', $element).attr('checked', 'checked');
+
+        return onApply($element, e);
+      });
+      $form.on('change', 'select:not([name=action])', function(e) {
+          onApply($(this), e);
       });
       $table.on('click', 'button[name=applyAction]', function(e) {
         return onApplyAction($(this), e);
@@ -27,7 +37,7 @@ rideApp.table = (function($, undefined) {
     var messages = $form.data('confirm-messages');
     var action = $select.children(':selected').text();
 
-    if (action == '---') {
+    if (action == '---' || $select.val() == '') {
       return false;
     }
 
@@ -36,17 +46,21 @@ rideApp.table = (function($, undefined) {
     }
 
     if (!willSubmit) {
-      $select.val('0');
+      $select.val($("option:first", $select).val());
     }
 
     return willSubmit;
   };
 
-  var onApply = function($button, e) {
-    var $form = $button.closest('form');
+  var onApply = function($element, e) {
+    var $form = $element.closest('form');
     var $select = $form.find('select[name=action]');
 
-    $select.val('0');
+    $select.val($("option:first", $select).val());
+
+    if (rideApp.form.onSubmit($element)) {
+      $form.submit();
+    }
   };
 
   return {

@@ -18,9 +18,9 @@
                     {/foreach}
                 {else}
                     {foreach $tableActions as $url => $dataAction}
-                    {if $dataAction@index < 1}
+                    {if $dataAction@index < 2}
                     <a class="btn btn-secondary" href="{$url}" >{$dataAction}</a>
-                    {elseif $dataAction@index == 1}
+                    {elseif $dataAction@index == 2}
                       <div class="btn-group" role="group">
                         <button id="btnTableActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         </button>
@@ -59,30 +59,27 @@
 
         {if $table->hasOrderMethods()}
         <div class="row">
-            <div class="col-sm-12">
-            <div class="form-group form-group-order m-b-1 pull-sm-right">
-                <div class="input-group">
-                    <span class="input-group-addon hidden-xs-down">
-                        {translate key="label.table.order"}
-                    </span>
-                    {call formWidget form=$tableForm row=$tableOrderField}
-                    <div class="input-group-btn add-on">
-                        <div class="btn-group" data-toggle="buttons">
-                          <label class="btn btn-secondary{if $table->getOrderDirection() == 'asc'} active{/if}">
-                            <input type="radio" name="order-direction" id="asc" value="asc" autocomplete="off"{if $table->getOrderDirection() == 'asc'} checked{/if}>
-                            <span class="fa fa-sort-amount-asc"></span>
-                          </label>
-                          <label class="btn btn-secondary{if $table->getOrderDirection() == 'desc'} active{/if}">
-                            <input type="radio" name="order-direction" id="desc" value="desc" autocomplete="off"{if $table->getOrderDirection() == 'desc'} checked{/if}>
-                            <span class="fa fa-sort-amount-desc"></span>
-                          </label>
-                        </div>
-                        <button type="submit" name="applyOrder" class="btn btn-secondary">
-                            {translate key="button.apply"}
-                        </button>
-                   </div>
+            <div class="col-xs-12">
+                <div class="form-group form-group-order m-b-1 pull-xs-right">
+                    <div class="input-group">
+                        <span class="input-group-addon hidden-xs-down">
+                            {translate key="label.table.order"}
+                        </span>
+                        {call formWidget form=$tableForm row=$tableOrderField}
+                        <div class="input-group-btn add-on">
+                            <div class="btn-group" data-toggle="buttons">
+                              <label class="btn btn-secondary{if $table->getOrderDirection() == 'asc'} active{/if}">
+                                <input type="radio" name="order-direction" id="asc" value="asc" autocomplete="off"{if $table->getOrderDirection() == 'asc'} checked{/if}>
+                                <span class="fa fa-sort-amount-asc"></span>
+                              </label>
+                              <label class="btn btn-secondary{if $table->getOrderDirection() == 'desc'} active{/if}">
+                                <input type="radio" name="order-direction" id="desc" value="desc" autocomplete="off"{if $table->getOrderDirection() == 'desc'} checked{/if}>
+                                <span class="fa fa-sort-amount-desc"></span>
+                              </label>
+                            </div>
+                       </div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
         {/if}
@@ -108,6 +105,10 @@
                                         {$row = $tableForm->getRow($tableActionField)}
                                         {$widget = $row->getWidget()}
                                         {$widget->setAttribute('class', 'col-xs-3')}
+                                        {$bulk = "label.actions.bulk"|translate}
+                                        {$options = $widget->getOptions()}
+                                        {$options[0] = "- `$bulk` -"}
+                                        {$widget->setOptions($options)}
 
                                         {call formWidget form=$tableForm row=$row}
                                         <div class="input-group-btn">
@@ -145,17 +146,14 @@
 
                     {if $table->getPaginationOptions()}
                     <div class="col-md-5">
-                        <button name="applyPagination" type="submit" class="btn btn-secondary pull-xs-right">
-                            {"button.apply"|translate}
-                        </button>
                         <div class="form-group form-group-pagination pull-xs-right">
                             {$row = $tableForm->getRow($tablePageRowsField)}
                             {$widget = $row->getWidget()}
-                            {$widget->setAttribute('class', 'col-xs-1')}
+                            {$widget->setAttribute('class', 'custom-select col-xs-1')}
 
                             {call formWidget form=$tableForm row=$row}
 
-                            <label class="m-l-1 m-r-1">{translate key="label.table.rows.page"}</label>
+                            <label>&nbsp;{translate key="label.table.rows.page"}</label>
                         </div>
                     </div>
                     {/if}

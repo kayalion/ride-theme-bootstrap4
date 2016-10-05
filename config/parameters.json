@@ -1,6 +1,6 @@
 {
     "template.theme": "bootstrap4",
-    "minifier.disable.css": true,
-    "minifier.disable.js": true,
+    "minifier.disable.css": false,
+    "minifier.disable.js": false,
     "template.smarty.plugin.bootstrap4": "%path%/src/ride/theme/bootstrap/smarty/plugin"
 }

@@ -35,7 +35,12 @@ function smarty_function_pagination($params, &$smarty) {
 
     $anchors = $pagination->getAnchors();
 
-    $html = '<nav><ul class="pagination">';
+    $html = '<nav';
+    if ($class) {
+        $html .= ' class="' . $class . '"';
+    }
+    $html .= '>';
+    $html .= '<ul class="pagination">';
     foreach ($anchors as $anchor) {
         $anchor->addToClass('page-link');
 

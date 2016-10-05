@@ -25,7 +25,12 @@
     </nav>
 
     <div class="page-header m-b-2">
-        <h1>{$title}</h1>
+        <h1>
+            {translate key=$meta->getOption('scaffold.title')}
+            <small class="text-muted">
+                {$title}
+            </small>
+        </h1>
     </div>
 {/block}
 
@@ -38,7 +43,7 @@
     {if $entry->getImage() || $entry->getDescription()}
     <div class="media m-b-2">
         <span class="media-left text-xs-center" " style="min-width: 4em;">
-            <img src="{image src=$entry->image transformation="crop" width=250 height=250}" class="img-responsive" />
+            <img src="{image src=$entry->image transformation="crop" width=250 height=250}" class="img-fluid" />
         </span>
         <div class="media-body">
             {$entry->getDescription()}
