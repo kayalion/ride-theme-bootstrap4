@@ -39,18 +39,18 @@ rideApp.common = (function($, undefined) {
   };
 
   var notifySuccess = function(message) {
-    $.bootstrapGrowl(message, {
-        type: 'success',
-        offset: {from: 'bottom', amount: 20},
-        align: 'center',
-        width: 'auto',
-        delay: 5000
-    });
+    notifyMessage('success', message);
   };
 
   var notifyError = function(message) {
+    notifyMessage('danger', message);
+  };
+
+  var notifyMessage = function(type, message) {
+    $document.find('.bootstrap-growl').remove();
+
     $.bootstrapGrowl(message, {
-      type: 'error',
+      type: type,
       offset: {from: 'bottom', amount: 20},
       align: 'center',
       width: 'auto',
