@@ -2,7 +2,7 @@
 @import url(form.css);
 
 body.taskbar {
-    padding-top: 5em;
+  padding-top: 5em;
 }
 
 .btn-xs, .btn-group-xs > .btn {
@@ -11,31 +11,35 @@ body.taskbar {
   border-radius: 0.2rem;
 }
 
+.btn-empty.dropdown-toggle:after {
+  margin-left: 0;
+}
+
 .breadcrumb {
-    margin: 0 0 0.5em -1em;
-    background-color: transparent;
-    font-size: 0.8em;
+  margin: 0 0 0.5em -1em;
+  background-color: transparent;
+  font-size: 0.8em;
 }
 
 .is-loading {
-    position: relative;
-    opacity: .5;
+  position: relative;
+  opacity: .5;
 }
 
 .is-loading:before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
-    cursor: progress;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  cursor: progress;
 }
 
 .loading {
-    display: none;
+  display: none;
 }
 
 .is-loading .loading {
@@ -49,7 +53,7 @@ body.taskbar {
 }
 
 .modal-full {
-    width: 95%;
+  width: 95%;
 }
 
 @media (min-width: 544px) {

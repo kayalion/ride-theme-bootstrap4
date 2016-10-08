@@ -1,49 +1,49 @@
 .table .option {
-    width: 2em;
-    text-align: center;
+  width: 2em;
+  text-align: center;
 }
 
 .table img {
-    max-width: 100px;
+  max-width: 100px;
 }
 
 .table img.data {
-    float: left;
-    margin: 0 1rem 0 0;
+  float: left;
+  margin: 0 1rem 0 0;
 }
 
 .table .info {
-    color: #999;
-    font-size: 0.8em;
+  color: #999;
+  font-size: 0.8em;
 }
 
 .table .unlocalized a {
-    color: #777;
+  color: #777;
 }
 
 .table .unlocalized .help-block {
-    color: #AAA;
+  color: #AAA;
 }
 
 .table .disabled {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .table .form-group-order .input-group-addon {
-    background: none;
-    border: 0;
-    padding-top: 0;
+  background: none;
+  border: 0;
+  padding-top: 0;
 }
 
 .table .form-group-order .input-group .form-control:not(:first-child):not(:last-child) {
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
 }
 
 .table select.form-control:not([size]):not([multiple]) {
-    height: 2.4rem;
+  height: 2.4rem;
 }
 
 .table .pagination {
-    margin-top: 0;
+  margin-top: 0;
 }

@@ -22,7 +22,7 @@
                     <a class="btn btn-secondary" href="{$url}" >{$dataAction}</a>
                     {elseif $dataAction@index == 2}
                       <div class="btn-group" role="group">
-                        <button id="btnTableActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button id="btnTableActions" type="button" class="btn btn-secondary btn-empty dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnTableActions">
                             <a class="dropdown-item" href="{$url}" >{$dataAction}</a>
