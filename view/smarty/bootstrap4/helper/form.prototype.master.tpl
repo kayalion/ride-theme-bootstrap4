@@ -411,7 +411,7 @@
          {/if}
 
         <div class="modal fade" id="modal-assets-{$widget->getName()}" tabindex="-1" role="dialog" aria-labelledby="modal-assets-{$widget->getName()}" aria-hidden="true">
-            <div class="modal-dialog modal-assets">
+            <div class="modal-dialog modal-full modal-assets">
                 <div class="modal-content">
                     <div class="modal-body is-loading">
                         {if $widget->getFolderId()}
@@ -818,7 +818,7 @@
     Renders the form actions, if a referer is passed, a cancel button will be presented
 *}
 {function name="formActions" referer=null submit='button.save'}
-    <div class="form-group">
+    <div class="form-group form-actions">
         <hr>
         <div class="loading">
             <span class="fa fa-spinner fa-pulse fa-2x"></span>
