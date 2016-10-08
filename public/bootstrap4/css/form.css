@@ -62,31 +62,3 @@ form.is-loading button {
 .form-assets-remove:hover {
   /* color: #bd4147; */
 }
-
-.modal-assets {
-    width: 95%;
-}
-
-@media (min-width: 544px) {
-  .modal-assets {
-    max-width: 576px;
-  }
-}
-
-@media (min-width: 768px) {
-  .modal-assets {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  .modal-assets {
-    max-width: 940px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .modal-assets {
-    max-width: 1140px;
-  }
-}

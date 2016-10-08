@@ -47,3 +47,31 @@ body.taskbar {
   display: block;
   width: auto;
 }
+
+.modal-full {
+    width: 95%;
+}
+
+@media (min-width: 544px) {
+  .modal-full {
+    max-width: 576px;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal-full {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-full {
+    max-width: 940px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal-full {
+    max-width: 1140px;
+  }
+}
