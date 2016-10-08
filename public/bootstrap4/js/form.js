@@ -27,10 +27,10 @@ rideApp.form = (function($, undefined) {
         return onSubmit($(this), e);
       });
       $form.on('change', '[data-toggle-dependant]', function() {
-        toggleDependantRows($(this));
+        toggleDependantRows($(this), false);
       });
-      $form.find('input[data-toggle-dependant]:checked, select[data-toggle-dependant]').each(function() {
-        toggleDependantRows($(this));
+      $form.find('input[data-toggle-dependant], select[data-toggle-dependant]').each(function() {
+        toggleDependantRows($(this), true);
       });
       $form.find('.collection-control-group').each(function() {
         handleCollectionState($(this));
@@ -215,20 +215,41 @@ rideApp.form = (function($, undefined) {
     });
   };
 
-  var toggleDependantRows = function($input) {
-    var $parent = $input.parents('form');
-    var $styleClass = $input.data('toggle-dependant');
-    var $group = $parent.find('[name^="' + $input.attr('name') + '"]');
+  var toggleDependantRows = function($input, initialize) {
+    var $form = $input.parents('form');
+    var $row = null;
+    var styleClass = $input.data('toggle-dependant');
     var value = null;
 
-    if ($group.prop('tagName') == 'SELECT') {
-        value = $group.val();
+    if (initialize) {
+      var $row = $input.parents('.form-group');
+
+      if ($row.hasClass('toggle-dependant-initialized')) {
+        return;
+      }
+
+      $row.addClass('toggle-dependant-initialized');
+    }
+
+    if ($input.prop('tagName') == 'SELECT') {
+        value = $input.val();
     } else {
+        if (initialize) {
+          $input = $row.find('[name^="' + $input.attr('name') + '"]');
+        }
+
         value = $input.filter(':checked').length ? $input.val() : null;
     }
 
-    $('.' + $styleClass, $parent).parents('.form-group').hide();
-    $('.' + $styleClass + '-' + value, $parent).parents('.form-group').show();
+    $('.' + styleClass, $form).parents('.form-group').addClass('hidden-xs-up');
+
+    if (value !== null && value.constructor === Array) {
+      for (i in value) {
+        $('.' + styleClass + '-' + value[i], $form).parents('.form-group').removeClass('hidden-xs-up');
+      }
+    } else {
+      $('.' + styleClass + '-' + value, $form).parents('.form-group').removeClass('hidden-xs-up');
+    }
   };
 
   var _selectize = function() {
