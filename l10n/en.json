@@ -94,6 +94,12 @@
     "label.user": "User",
     "label.variable": "Variable",
 
+    "permission-group.default": "General",
+    "permission-group.cms.region": "CMS regions",
+    "permission-group.cms.widget": "CMS widgets",
+    "permission-group.cms": "CMS",
+    "permission-group.taxonomy": "Taxonomy",
+
     "success.asset.ordered": "Order has been saved",
     "success.asset.saved": "%file% has been uploaded",
     "success.parameter.deleted": "Parameter %parameter% has been deleted",

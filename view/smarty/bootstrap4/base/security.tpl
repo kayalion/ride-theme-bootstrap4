@@ -61,6 +61,30 @@
 
             <div id="permissions" class="tab-pane">
             {if $roles && $permissions}
+                {$permissionGroups = [
+                    "default" => [],
+                    "cms.region" => [],
+                    "cms.widget" => [],
+                    "cms" => [],
+                    "taxonomy" => []
+                ]}
+                {$null = ksort($permissions)}
+
+                {foreach $permissions as $permissionCode => $permission}
+                    {$isAdded = false}
+                    {foreach $permissionGroups as $permissionGroup => $null}
+                        {if $permissionCode|strpos:$permissionGroup === 0}
+                            {$permissionGroups.$permissionGroup.$permissionCode = $permission}
+                            {$isAdded = true}
+                            {break}
+                        {/if}
+                    {/foreach}
+
+                    {if !$isAdded}
+                        {$permissionGroups["default"].$permissionCode = $permission}
+                    {/if}
+                {/foreach}
+
                 <p>{translate key="label.permissions.description"}</p>
                 <table class="table table-bordered table-hover table-striped">
                     <thead>
@@ -72,18 +96,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {foreach $permissions as $permission}
+                    {foreach $permissionGroups as $permissionGroup => $permissions}
+                        {if !$permissions}
+                            {continue}
+                        {/if}
+
                         <tr>
-                            <th>
-                                {translate key="permission.`$permission`"}
-                                <small class="form-text text-muted">{$permission}</small>
+                            <th colspan="{$roles|count + 1}">
+                                <h4>{translate key="permission-group.`$permissionGroup`"}</h4>
                             </th>
-                        {foreach $roles as $role}
-                            <td>
-                                {call formWidget form=$form row="role_`$role->getId()`" part=$permission->getCode()}
-                            </td>
-                        {/foreach}
                         </tr>
+
+                        {foreach $permissions as $permission}
+                            <tr>
+                                <th>
+                                    {translate key="permission.`$permission`"}
+                                    <small class="form-text text-muted">{$permission}</small>
+                                </th>
+                            {foreach $roles as $role}
+                                <td>
+                                    {call formWidget form=$form row="role_`$role->getId()`" part=$permission->getCode()}
+                                </td>
+                            {/foreach}
+                            </tr>
+                        {/foreach}
                     {/foreach}
                     </tbody>
                 </table>
