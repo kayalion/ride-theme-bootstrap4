@@ -54,14 +54,13 @@
     <h2 class="m-b-2">
         {translate key="title.performances"}
     </h2>
-    {$referer = $app.url.request|escape}
-    {$tableActions = ["`$addPerformanceUrl`?referer=`$referer`" => "button.performance.add"|translate]}
+
+    {$tableActions = ["`$addPerformanceUrl`" => "button.performance.add"|translate]}
 
     {include file="helper/table" table=$table tableForm=$form tableActions = $tableActions}
 {/block}
 
 {block name="scripts_app" append}
-    {script src="bootstrap/js/jquery-ui.js"}
-    {script src="bootstrap/js/form.js"}
-    {script src="bootstrap/js/table.js"}
+    {script src="bootstrap4/js/form.js"}
+    {script src="bootstrap4/js/table.js"}
 {/block}

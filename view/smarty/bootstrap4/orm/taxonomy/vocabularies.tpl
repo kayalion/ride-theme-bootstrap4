@@ -26,12 +26,9 @@
     {$tableActions = []}
     {$referer = $app.url.request|escape}
 
-    {url id="taxonomy.vocabulary.add" var="urlVocabularyAdd"}
-
-    {isGranted url=$urlVocabularyAdd}
-        {$urlVocabularyAdd = "`$urlVocabularyAdd`?referer=`$referer`"}
-        {$tableActions.$urlVocabularyAdd = "button.vocabulary.add"|translate}
-    {/isGranted}
+    {if $vocabularyUrl}
+        {$tableActions.$vocabularyUrl = "button.vocabulary.add"|translate}
+    {/if}
 
     {include file="helper/table" table=$table tableForm=$form tableActions=$tableActions}
 {/block}
