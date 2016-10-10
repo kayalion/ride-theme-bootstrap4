@@ -44,6 +44,10 @@
 {block name="content_body" append}
     {include file="helper/form.prototype"}
 
+    {if $folder->getDescription()}
+        <div class="m-b-2">{$folder->getDescription()}</div>
+    {/if}
+
     <form action="{url id="assets.asset.add" parameters=["locale" => $locale]}?folder={$folder->id}&view={$view}&embed={$embed}"
         class="dropzone m-b-1"
         id="asset-dropzone"
@@ -137,10 +141,6 @@
                 </div>
             </div>
         </div>
-
-    {if $folder->description}
-        <div class="description">{$folder->description}</div>
-    {/if}
 
         <div class="assets assets-{$view}">
             <div class="asset-items clearfix">

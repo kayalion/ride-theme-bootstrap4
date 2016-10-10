@@ -29,7 +29,7 @@
 
 {function name="taskbarPanelLocales" url=null locale=null locales=null}
     <li class="nav-item btn-group">
-        <a href="#" class="nav-link dropdown-toggle" id="taskbarDropdownLocales" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a href="#" class="nav-link btn btn-secondary dropdown-toggle" id="taskbarDropdownLocales" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {$locale|upper}
         </a>
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="taskbarDropdownLocales">
@@ -44,7 +44,7 @@
     </li>
 {/function}
 
-<nav class="navbar navbar-fixed-top navbar-full navbar-dark bg-inverse">
+<nav class="navbar navbar-fixed-top navbar-full navbar-dark navbar-taskbar bg-inverse">
 <div class="container">
     <button class="navbar-toggler nav hidden-sm-up pull-xs-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-controls="collapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
         &#9776;

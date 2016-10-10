@@ -1,10 +1,6 @@
 @import url(table.css);
 @import url(form.css);
 
-body.taskbar {
-  padding-top: 5em;
-}
-
 .btn-xs, .btn-group-xs > .btn {
   padding: 0.1rem 0.2rem;
   font-size: 0.65rem;
@@ -21,6 +17,51 @@ body.taskbar {
   font-size: 0.8em;
 }
 
+/* taskbar */
+body.taskbar {
+  padding-top: 5em;
+}
+
+.navbar-taskbar .btn-secondary {
+  color: rgba(255,255,255,0.5);
+  background-color: #666;
+  border-color: #666;
+  padding-left: 1em;
+  padding-right: 1em;
+  outline: 0;
+}
+
+.navbar-taskbar .btn-secondary:hover {
+  color: rgba(255,255,255,0.75);
+}
+
+.taskbar .navbar-taskbar .open > .btn-secondary,
+.taskbar .navbar-taskbar .open > .btn-secondary:focus {
+    background-color: #e6e6e6;
+    color: #373a3c;
+}
+
+.taskbar .navbar-taskbar .btn-secondary:active {
+    background-color: #adadad;
+    color: #373a3c;
+}
+
+/* sidebar */
+
+.sidebar {
+    position: relative;
+    padding: 2em;
+    background-color: #f5f5f5;
+    border-right: 1px solid #CCC;
+}
+
+.sidebar .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+/* loading */
 .is-loading {
   position: relative;
   opacity: .5;
@@ -52,6 +93,7 @@ body.taskbar {
   width: auto;
 }
 
+/* modal */
 .modal-full {
   width: 95%;
 }

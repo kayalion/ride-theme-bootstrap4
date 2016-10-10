@@ -220,7 +220,6 @@ rideApp.assets = (function($, undefined) {
     $select.val($("option:first", $select).val());
 
     if (rideApp.form.onSubmit($element)) {
-      console.log($form);
       $form.submit();
     }
   };

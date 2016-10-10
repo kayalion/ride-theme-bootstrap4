@@ -2,6 +2,7 @@
     "button.asset.remove" : "Remove this asset",
     "button.assets.order" : "Order assets",
     "button.browse" : "Browse...",
+    "button.close" : "Close",
     "button.entry.add" : "Add a new entry",
     "button.entry.edit" : "Edit this entry",
     "button.event.edit" : "Edit this event",
@@ -33,6 +34,7 @@
     "cache.control.router": "Routes",
     "cache.control.security": "Security model",
     "cache.control.translations": "Translations",
+    "cache.control.system": "System initialization",
 
     "dashboard.api.description": "Browse the API documentation of all the PHP classes which are available to your system.",
     "dashboard.assets.image.styles.description": "Setup the image styles and transformations for the asset library.",
