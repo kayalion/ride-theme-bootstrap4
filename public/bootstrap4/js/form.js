@@ -257,7 +257,7 @@ rideApp.form = (function($, undefined) {
       return;
     }
 
-    var $form = $('form.form-selectize');
+    var $form = $('form');
     var defaultSelectizeOptions = {
       highlight: false,
       plugins: ['remove_button']
@@ -274,7 +274,7 @@ rideApp.form = (function($, undefined) {
     });
 
     function initSelectize() {
-      var $selects = $form.find('select.form-selectize:visible:not(.selectized)');
+      var $selects = $form.find('.form-selectize select:visible:not(.selectized)');
 
       $selects.each(function(i, select){
         var selectizeOptions = $.extend(true, {}, defaultSelectizeOptions);
