@@ -15,6 +15,7 @@
     "button.roles.manage" : "Manage roles",
     "button.role.add" : "Add a new role",
     "button.select" : "Select",
+    "button.sidebar.sticky" : "Toggle stickyness of the sidebar",
     "button.submit.report" : "Send report",
     "button.term.add" : "Add a new term",
     "button.translations.manage" : "Manage translations",

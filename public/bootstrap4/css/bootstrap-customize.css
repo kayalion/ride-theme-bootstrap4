@@ -1,6 +1,17 @@
 @import url(table.css);
 @import url(form.css);
 
+a,
+a:active,
+a:focus,
+a:hover,
+.btn,
+.btn:active,
+.btn:focus,
+.btn:hover {
+  outline: none;
+}
+
 .btn-xs, .btn-group-xs > .btn {
   padding: 0.1rem 0.2rem;
   font-size: 0.65rem;
@@ -28,7 +39,6 @@ body.taskbar {
   border-color: #666;
   padding-left: 1em;
   padding-right: 1em;
-  outline: 0;
 }
 
 .navbar-taskbar .btn-secondary:hover {
@@ -55,10 +65,18 @@ body.taskbar {
     border-right: 1px solid #CCC;
 }
 
-.sidebar .close {
-    position: absolute;
-    top: 5px;
-    right: 10px;
+.sidebar-actions {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.sidebar-actions .btn-link {
+  color: #ccc;
+}
+
+.sidebar-actions .btn-link:hover {
+  color: #aaa;
 }
 
 /* loading */
@@ -96,6 +114,10 @@ body.taskbar {
 /* modal */
 .modal-full {
   width: 95%;
+}
+
+.modal-body {
+    overflow-y: auto;
 }
 
 @media (min-width: 544px) {

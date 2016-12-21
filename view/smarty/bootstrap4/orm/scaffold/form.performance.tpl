@@ -132,10 +132,12 @@
 {/block}
 
 {block name="styles" append}
+    {style src="bootstrap4/css/bootstrap-datepicker.css"}
     {style src="bootstrap4/css/modules/calendar.css" media="all"}
 {/block}
 
 {block name="scripts" append}
+    {script src="bootstrap4/js/bootstrap-datepicker.js"}
     {script src="bootstrap4/js/parsley.js"}
     {script src="bootstrap4/js/form.js"}
     {script src="bootstrap4/js/modules/calendar.js"}

@@ -61,11 +61,19 @@ rideApp.form = (function($, undefined) {
       handleValidation($form, true);
     });
 
+    this.datePicker();
     this.autocomplete();
     this.selectize();
     this.assets.initialize();
 
     handleSelectAll();
+  };
+
+  var convertDateFormat = function(format) {
+    return format
+      .replace('Y', 'yyyy')
+      .replace('m', 'mm')
+      .replace('d', 'dd');
   };
 
   var initializeParsley = function() {
@@ -113,6 +121,8 @@ rideApp.form = (function($, undefined) {
     $parent.trigger('collectionAdded');
 
     handleCollectionState($group);
+
+    // $group.find('.collection-control:last input').focus();
   };
 
   var onCollectionRemove = function($anchor, e) {
@@ -232,13 +242,13 @@ rideApp.form = (function($, undefined) {
     }
 
     if ($input.prop('tagName') == 'SELECT') {
-        value = $input.val();
+      value = $input.val();
     } else {
-        if (initialize) {
-          $input = $row.find('[name^="' + $input.attr('name') + '"]');
-        }
+      if (initialize) {
+        $input = $row.find('[name^="' + $input.attr('name') + '"]:checked');
+      }
 
-        value = $input.filter(':checked').length ? $input.val() : null;
+      value = $input.filter(':checked').length ? $input.val() : null;
     }
 
     $('.' + styleClass, $form).parents('.form-group').addClass('hidden-xs-up');
@@ -249,6 +259,37 @@ rideApp.form = (function($, undefined) {
       }
     } else {
       $('.' + styleClass + '-' + value, $form).parents('.form-group').removeClass('hidden-xs-up');
+    }
+
+    if (!initialize) {
+      $form.trigger('dependencyToggled');
+    }
+  };
+
+  var _datePicker = function() {
+    var $form = $('form');
+
+    initDatePicker();
+
+    $document.on('collectionAdded', function() {
+      initDatePicker();
+    });
+
+    function initDatePicker() {
+      $form.find('.js-date:not(.date-picked)').each(function() {
+        var $this = $(this);
+
+        $this.datepicker({
+          format: convertDateFormat($this.data('format-php')),
+          todayBtn: "linked",
+          language: $('html').attr('lang'),
+          // calendarWeeks: true,
+          autoclose: true,
+          todayHighlight: true,
+        });
+
+        $this.addClass('date-picked');
+      });
     }
   };
 
@@ -272,9 +313,17 @@ rideApp.form = (function($, undefined) {
     $document.on('collectionAdded', function() {
       initSelectize();
     });
+    $document.on('dependencyToggled', function() {
+      initSelectize();
+    });
 
     function initSelectize() {
-      var $selects = $form.find('.form-selectize select:visible:not(.selectized)');
+      var $selects;
+      if ($form.hasClass('form-selectize')) {
+        $selects = $form.find('select:visible:not(.selectized)');
+      } else {
+        $selects = $form.find('select.form-selectize:visible:not(.selectized)');
+      }
 
       $selects.each(function(i, select){
         var selectizeOptions = $.extend(true, {}, defaultSelectizeOptions);
@@ -284,7 +333,7 @@ rideApp.form = (function($, undefined) {
           selectizeOptions.plugins.push('drag_drop');
         }
 
-        $select.removeClass('custom-select');
+        // $select.removeClass('custom-select');
 
         var maxItems = $select.attr('maxlength');
         if (maxItems) {
@@ -562,7 +611,8 @@ rideApp.form = (function($, undefined) {
     cancelSubmit: cancelSubmit,
     selectize: _selectize,
     autocomplete: _autocomplete,
-    assets: _assets
+    assets: _assets,
+    datePicker: _datePicker
   };
 })(jQuery);
 

@@ -75,7 +75,7 @@
         <ul class="nav nav-tabs m-b-2">
         {foreach $tabs as $tabName => $tab}
             <li class="nav-item">
-                <a class="nav-link{if $tabName == $activeTab} active{/if}" href="#tab{$tabName}" data-toggle="tab">
+                <a class="nav-link{if $tabName == $activeTab} active{/if}" href="#{$tabName}" data-toggle="tab">
                     {translate key=$tab.translation}
                 </a>
             </li>
@@ -84,7 +84,7 @@
 
         <div class="tab-content">
         {foreach $tabs as $tabName => $tab}
-            <div id="tab{$tabName}" class="tab-pane{if $tabName == $activeTab} active{/if}">
+            <div id="{$tabName}" class="tab-pane{if $tabName == $activeTab} active{/if}">
             {foreach $tab.rows as $row}
                 {call formRow form=$form row=$row}
             {/foreach}
@@ -99,12 +99,17 @@
 {/block}
 
 {block name="styles" append}
+    {style src="bootstrap4/css/bootstrap-datepicker.css" media="all"}
     {style src="bootstrap4/css/selectize.css" media="all"}
 {/block}
 
 {block name="scripts" append}
     {script src="bootstrap4/js/jquery-ui.js"}
+    {script src="bootstrap4/js/bootstrap-datepicker.js"}
     {script src="bootstrap4/js/selectize.js"}
     {script src="bootstrap4/js/parsley.js"}
     {script src="bootstrap4/js/form.js"}
+        {if $tabs}
+        {script src="bootstrap4/js/tabs.js"}
+    {/if}
 {/block}

@@ -46,6 +46,7 @@
                 {/block}
                 {block name="content_body"}{/block}
             {/block}
+
             </div>
         {/block}
 

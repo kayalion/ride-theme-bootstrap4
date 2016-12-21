@@ -55,6 +55,7 @@
                 </label>
 
                 {call formCollectionPrototype assign="prototype" form=$form row=$row part='%prototype%'}
+
                 <div class="collection-controls" data-prototype="{$prototype|escape:"html"|trim|replace:"\n":''}">
                     {call formWidgetCollection form=$form row=$row part=$part}
 
@@ -97,6 +98,7 @@
                         &nbsp;<span class="fa fa-language text-muted" title="{translate key="label.field.localized"}"></span>
                     {/if}
                 </label>
+
                 {call formWidget form=$form row=$row part=$part errors=$errors}
 
                 {if $errors}
@@ -544,9 +546,9 @@
         {$value = $widget->getValue()}
         {$options = $widget->getOptions()}
 
-        {if $widget->isMultiple() || $options|@count > 25}
+        {if $options|@count > 25}
             {$attributes.class = "`$attributes.class` form-selectize"}
-        {else}
+        {elseif !$widget->isMultiple()}
             {$attributes.class = "`$attributes.class` custom-select"}
         {/if}
 
@@ -610,7 +612,29 @@
 
     {if $row}
         {if $row->getType() == 'component'}
+            {$component = $row->getComponent()}
+            {$attributes = $row->getWidget()->getAttributes()}
+
+            {if get_class($component) == "ride\\web\\base\\form\\DateTimeComponent"}
+                {if $class}
+                    {$class = "`$class` col-sm-4"}
+                {else}
+                    {$class = "col-sm-4"}
+                {/if}
+
+                {if isset($attributes.class)}
+                    {$attributes.class = "`$attributes.class` row"}
+                {else}
+                    {$attributes.class = 'row'}
+                {/if}
+            {/if}
+        <div
+           {foreach $attributes as $name => $attribute}
+               {$name}="{$attribute|escape}"
+           {/foreach}
+        >
             {call formRows form=$form rows=$row->getRows() rowClass=$class}
+        </div>
         {else}
             <span class="error">No component row provided</span>
         {/if}
@@ -711,8 +735,13 @@
     {else}
         {$attributes.class = 'form-control'}
     {/if}
+
     {if $errors}
         {$attributes.class = "`$attributes.class` form-control-danger"}
+    {/if}
+
+    {if $type == "date"}
+        {$attributes.class = "`$attributes.class` js-date"}
     {/if}
 
     {if $validators}

@@ -163,6 +163,20 @@ rideApp.common = (function($, undefined) {
     });
   };
 
+  var setLoading = function(isLoading, $element) {
+    if ($element === undefined) {
+      $element = $('body');
+    }
+
+    if (isLoading) {
+      $element.addClass('is-loading');
+      $element.find('.btn').prop('disabled', true).addClass('disabled');
+    } else {
+      $element.removeClass('is-loading');
+      $element.find('.btn').prop('disabled', false).removeClass('disabled');
+    }
+  };
+
   return {
     hasLocalStorage: hasLocalStorage,
     getFromLocalStorage: getFromLocalStorage,
@@ -174,6 +188,7 @@ rideApp.common = (function($, undefined) {
     notifySuccess: notifySuccess,
     notifyWarning: notifyWarning,
     notifyError: notifyError,
+    setLoading: setLoading,
     convertToSlug: convertToSlug
   };
 })(jQuery);
