@@ -48,10 +48,10 @@
 
             <div class="form-group row-{$row->getName()|replace:'[':''|replace:']':''}{if $row->isRequired()} required{/if}{if $row->isDisabled()} disabled{/if}{if $row->isReadOnly()} readonly{/if} clearfix{if $errors} has-danger{/if}{if $class} {$class}{/if}"{if $row->getOption('order')} data-order="true"{/if}>
                 <label>
-                    {$row->getLabel()}
                     {if $row->getOption('localized')}
-                        &nbsp;<span class="fa fa-language text-muted" title="{translate key="label.field.localized"}"></span>
+                        <span class="fa fa-language text-muted" title="{translate key="label.field.localized"}"></span>
                     {/if}
+                    {$row->getLabel()}
                 </label>
 
                 {call formCollectionPrototype assign="prototype" form=$form row=$row part='%prototype%'}
@@ -93,10 +93,10 @@
 
             <div class="form-group row-{$rowName|replace:'[':''|replace:']':''}{if $row->isRequired()} required{/if}{if $row->isDisabled()} disabled{/if}{if $row->isReadOnly()} readonly{/if} clearfix{if $errors} has-danger{/if}{if $class} {$class}{/if}">
                 <label class="d-block" for="{$widget->getId()}">
-                    {if $type != 'button'}{$row->getLabel()}{/if}
                     {if $row->getOption('localized')}
-                        &nbsp;<span class="fa fa-language text-muted" title="{translate key="label.field.localized"}"></span>
+                        <span class="fa fa-language text-muted" title="{translate key="label.field.localized"}"></span>
                     {/if}
+                    {if $type != 'button'}{$row->getLabel()}{/if}
                 </label>
 
                 {call formWidget form=$form row=$row part=$part errors=$errors}
@@ -303,6 +303,10 @@
 {/function}
 
 {function name="formWidgetWysiwyg" form=null row=null part=null errors=null}
+    {call "formPrototypeTextarea" form=$form row=$row part=$part errors=$errors}
+{/function}
+
+{function name="formWidgetRichcontent" form=null row=null part=null}
     {call "formPrototypeTextarea" form=$form row=$row part=$part errors=$errors}
 {/function}
 
