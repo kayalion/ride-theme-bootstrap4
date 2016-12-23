@@ -3,8 +3,8 @@
 {block name="head_title" prepend}{translate key="title.login"} | {/block}
 
 {block name="content"}
-    <div class="offset-md-3 col-md-4">
-        <div class="page-header mb-3 mt-2">
+    <div class="offset-md-4 col-md-4">
+        <div class="page-header m-b-2 m-t-2">
             <h1>{translate key="title.login"}</h1>
         </div>
 
