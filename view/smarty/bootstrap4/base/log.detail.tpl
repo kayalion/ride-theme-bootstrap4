@@ -84,7 +84,7 @@
         <dt>{translate key="label.id"}</dt>
         <dd>{$logSession->getId()}</dd>
         <dt>{translate key="label.date"}</dt>
-        <dd>{$logSession->getDate()}</dd>
+        <dd>{$logSession->getDate()|date_format:"%Y-%m-%d %H:%M:%S"}</dd>
         <dt>{translate key="label.duration"}</dt>
         <dd>{$logSession->getMicroTime()}</dd>
         <dt>{translate key="label.client"}</dt>
