@@ -17,7 +17,7 @@
 {/block}
 
 {block name="content_title" append}
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <nav class="breadcrumb">
         {if !$embed}
             <a class="breadcrumb-item" href="{url id="admin"}">
@@ -60,7 +60,7 @@
 
 {block name="content_body" append}
     {include file="helper/form.prototype"}
-    <form id="{$form->getId()}" class="m-b-2" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
+    <form id="{$form->getId()}" class="mb-2" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-{if $asset->getId()}6{else}12{/if}">
             {call formRow form=$form row="asset"}
@@ -68,7 +68,7 @@
         </div>
         {if $asset->getId()}
         <div class="col-md-6">
-            <ul class="nav nav-tabs m-b-2">
+            <ul class="nav nav-tabs mb-2">
                 <li class="nav-item">
                     <a class="nav-link active" href="#original" data-toggle="tab">
                         {translate key="label.original"}

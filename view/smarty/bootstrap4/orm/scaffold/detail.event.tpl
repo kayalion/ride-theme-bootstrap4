@@ -24,7 +24,7 @@
         </a>
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>
             {translate key=$meta->getOption('scaffold.title')}
             <small class="text-muted">
@@ -35,13 +35,13 @@
 {/block}
 
 {block name="content" append}
-    <div class="btn-group m-b-2">
+    <div class="btn-group mb-3">
         <a href="{$editUrl}" class="btn btn-secondary">
             {translate key="button.event.edit"}
         </a>
     </div>
     {if $entry->getImage() || $entry->getDescription()}
-    <div class="media m-b-2">
+    <div class="media mb-3">
         <span class="media-left text-xs-center" " style="min-width: 4em;">
             <img src="{image src=$entry->image transformation="crop" width=250 height=250}" class="img-fluid" />
         </span>
@@ -51,7 +51,7 @@
     </div>
     {/if}
 
-    <h2 class="m-b-2">
+    <h2 class="mb-3">
         {translate key="title.performances"}
     </h2>
 

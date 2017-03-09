@@ -6,7 +6,7 @@
 
 {if $enableSidebar}
     {block name="taskbar_title" prepend}
-        <button type="button" class="nav-link btn btn-secondary btn-sidebar-toggle sidebar-sticky pull-left m-r-1" data-target=".sidebar" data-canvas="container">
+        <button type="button" class="nav-link btn btn-secondary btn-sidebar-toggle sidebar-sticky float-xs-left mr-1" data-target=".sidebar" data-canvas="container">
           <span class="fa fa-bars"></span>
         </button>
     {/block}

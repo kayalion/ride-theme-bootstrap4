@@ -57,7 +57,7 @@
     {/if}
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>
             {$title}
         {if $subtitle}
@@ -72,7 +72,7 @@
 
     <form class="form-selectize" id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
     {if $tabs}
-        <ul class="nav nav-tabs m-b-2">
+        <ul class="nav nav-tabs mb-2">
         {foreach $tabs as $tabName => $tab}
             <li class="nav-item">
                 <a class="nav-link{if $tabName == $activeTab} active{/if}" href="#{$tabName}" data-toggle="tab">

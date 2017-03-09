@@ -18,7 +18,7 @@
         </a>
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-2">
         <h1>{translate key="title.phpinfo"}</h1>
     </div>
 {/block}

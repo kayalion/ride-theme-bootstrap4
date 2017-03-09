@@ -12,7 +12,7 @@
         </a>
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>{translate key="title.profile"}</h1>
     </div>
 {/block}
@@ -21,7 +21,7 @@
     {include file="helper/form.prototype"}
 
     <form id="{$form->getId()}" action="{$app.url.request}" method="POST" enctype="multipart/form-data" role="form">
-        <ul class="nav nav-tabs m-b-2">
+        <ul class="nav nav-tabs mb-2">
         {foreach $hooks as $hookName => $hook}
             <li class="nav-item">
                 <a class="nav-link{if $activeHook == $hookName} active{/if}" href="#{$hookName}" data-toggle="tab">

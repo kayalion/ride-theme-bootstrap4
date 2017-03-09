@@ -9,7 +9,7 @@
 {/block}
 
 {block name="content_title"}
-<div class="page-header{if !$embed} m-b-2{/if}">
+<div class="page-header{if !$embed} mb-3{/if}">
     <nav class="breadcrumb">
     {if !$embed}
         <a class="breadcrumb-item" href="{url id="admin"}">
@@ -45,11 +45,11 @@
     {include file="helper/form.prototype"}
 
     {if $folder->getDescription()}
-        <div class="m-b-2">{$folder->getDescription()}</div>
+        <div class="mb-3">{$folder->getDescription()}</div>
     {/if}
 
     <form action="{url id="assets.asset.add" parameters=["locale" => $locale]}?folder={$folder->id}&view={$view}&embed={$embed}"
-        class="dropzone m-b-1"
+        class="dropzone mb-3"
         id="asset-dropzone"
         data-label-default="{translate key="label.dropzone"}"
         data-label-error-filesize="{translate key="error.filesize"}"
@@ -65,7 +65,7 @@
 
     {$tableMessages = json_encode(["button.delete"|translate => "label.confirm.item.delete"|translate])}
     <form action="{$app.url.request}"
-        class="form-inline form-filter m-b-1"
+        class="form-filter mb-1"
         id="{$form->getId()}"
         method="POST"
         role="form"
@@ -81,7 +81,7 @@
         {call formWidget form=$form row="_submit"}
 
         <div class="row">
-            <div class="col-md-6 m-b-1">
+            <div class="col-md-6">
                 <div class="btn-group">
                     <a class="btn btn-secondary" href="{url id="assets.asset.add" parameters=["locale" => $locale]}?folder={$folder->id}&embed={$embed}&referer={$app.url.request|urlencode}">
                        {translate key="button.add.asset"}
@@ -96,8 +96,8 @@
                     {/if}
                 </div>
             </div>
-            <div class="col-md-6 m-b-1 clearfix">
-                <div class="form-group form-group-search pull-sm-right">
+            <div class="col-md-6">
+                <div class="form-group form-group-search float-right">
                     {$row = $form->getRow('query')}
                     {$widget = $row->getWidget()}
                     {$widget->setAttribute('placeholder', "label.search.query"|translate)}
@@ -114,13 +114,15 @@
             </div>
         </div>
 
-        <div class="row m-b-1">
+        <div class="row mb-3">
             <div class="col-sm-8">
                 <div class="form-group">
-                    {call formWidget form=$form row="type"}
-                </div>
-                <div class="form-group">
-                    <div class="input-group add-on">
+                    {$row = $form->getRow('type')}
+                    {$widget = $row->getWidget()}
+                    {$widget->setAttribute('class', 'w-25 float-left mr-2')}
+
+                    {call formWidget form=$form row=$row}
+                    <div class="input-group add-on w-50 float-left">
                         {call formWidget form=$form row="date"}
                         <div class="input-group-btn add-on">
                             <button name="applyFilter" value="filter" type="submit" class="btn btn-secondary btn-filter">
@@ -130,8 +132,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 m-b-1">
-                <div class="btn-group pull-xs-right">
+            <div class="col-sm-4 mb-1">
+                <div class="btn-group float-right">
                     <a class="btn btn-secondary{if $view == "grid"} active{/if}" href="{url id="assets.folder.overview" parameters=["locale" => $locale, "folder" => $folder->id]}?view=grid&type={$filter.type}&date={$filter.date}&limit={$limit}&embed={$embed}">
                         <span class="fa fa-th"></span>
                     </a>
@@ -148,7 +150,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-md-7">
                 {$paginationClass = null}
                 {if $pagination->getPages() == 1}
@@ -157,8 +159,8 @@
                 {pagination pages=$pagination->getPages() page=$pagination->getPage() href=$pagination->getHref() class=$paginationClass}
             </div>
             <div class="col-md-5">
-                <div class="form-group form-group-pagination pull-xs-right">
-                    <select name="limit" class="form-control col-xs-1 custom-select">
+                <div class="form-group form-group-pagination text-right">
+                    <select name="limit" class="form-control w-25 custom-select">
                         <option value="12"{if $limit == 12} selected="selected"{/if}>12</option>
                         <option value="18"{if $limit == 18} selected="selected"{/if}>18</option>
                         <option value="24"{if $limit == 24} selected="selected"{/if}>24</option>

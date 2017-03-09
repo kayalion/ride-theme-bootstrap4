@@ -15,16 +15,16 @@
         </a>
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>{translate key="title.dependencies"}</h1>
     </div>
 {/block}
 
 {block name="content" append}
-    <div class="row m-b-1">
+    <div class="row mb-1">
         <div class="offset-sm-8 col-sm-4">
             <form class="form-inline" id="form-search" action="{$app.url.request}" role="search" method="GET">
-                <div class="form-group pull-sm-right">
+                <div class="form-group float-sm-right">
                     <div class="input-group add-on">
                         <input type="text" name="query" class="form-control" placeholder="{translate key="label.search.query"}" value="{$query|escape}" />
                         <div class="input-group-btn">
@@ -84,7 +84,17 @@
                         {if $properties}
                                     <ul>
                             {foreach $properties as $key => $value}
-                                        <li>{$key}: {$value}</li>
+                                {if is_array($value)}
+                                    <li>{$key}:
+                                    {if $value}
+                                        [{foreach $value as $k => $v}{$k}: {$v}{if !$v@last}, {/if}{/foreach}]
+                                    {else}
+                                        []
+                                    {/if}
+                                    </li>
+                                {else}
+                                    <li>{$key}: {$value}</li>
+                                {/if}
                             {/foreach}
                                     </ul>
                         {/if}
@@ -112,7 +122,17 @@
                             {if $properties}
                                     <ul>
                                 {foreach $properties as $key => $value}
+                                    {if is_array($value)}
+                                        <li>{$key}:
+                                        {if $value}
+                                            [{foreach $value as $k => $v}{$k}: {$v}{if !$v@last}, {/if}{/foreach}]
+                                        {else}
+                                            []
+                                        {/if}
+                                        </li>
+                                    {else}
                                         <li>{$key}: {$value}</li>
+                                    {/if}
                                 {/foreach}
                                     </ul>
                             {/if}

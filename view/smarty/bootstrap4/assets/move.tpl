@@ -3,7 +3,7 @@
 {block name="head_title" prepend}{translate key="title.assets"} | {/block}
 
 {block name="content_title"}
-<div class="page-header{if !$embed} m-b-2{/if}">
+<div class="page-header{if !$embed} mb-3{/if}">
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="{url id="admin"}">
             {translate key="title.admin.home"}
@@ -41,7 +41,7 @@
         <div class="asset-items-folders">
         {foreach $folders as $item}
             <div class="asset-item">
-                <span class="pull-xs-left m-r-1">&nbsp;</span>
+                <span class="float-left mr-3">&nbsp;</span>
                 <div class="image">
                     <span class="fa fa-folder-open-o fa-6x"></span>
                 </div>
@@ -55,9 +55,9 @@
         <div class="asset-items-assets">
         {foreach $assets as $item}
             <div class="asset-item">
-                <span class="pull-xs-left m-r-1">&nbsp;</span>
+                <span class="float-left mr-3">&nbsp;</span>
                 <div class="image">
-                    <img src="{image src=$item->getThumbnail() default="bootstrap4/img/asset-`$item->getType()`.png" width=120 height=120 transformation="crop"}" class="img-rounded" />
+                    <img src="{image src=$item->getThumbnail() default="bootstrap4/img/asset-`$item->getType()`.png" width=120 height=120 transformation="crop"}" class="rounded" />
                 </div>
                 <div class="name">
                     {$item->getName()|escape|truncate:14}

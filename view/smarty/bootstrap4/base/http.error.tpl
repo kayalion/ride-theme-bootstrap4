@@ -1,7 +1,7 @@
 {extends file="base/index"}
 
 {block name="content_title"}
-    <div class="page-header m-b-2 m-t-2">
+    <div class="page-header mb-3 mt-2">
         <h1>
             {$title}
             <small class="text-muted">{$statusCode}</small>

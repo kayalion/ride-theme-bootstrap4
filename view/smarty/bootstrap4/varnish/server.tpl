@@ -24,7 +24,7 @@
         {/if}
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>
             {translate key="title.varnish"}
             <small class="text-muted">
@@ -47,7 +47,7 @@
     </form>
     {if $server}
 
-    <h2 class="m-b-2">
+    <h2 class="mb-2">
         {translate key="button.delete"}
     </h2>
     <form class="form-horizontal" action="{url id="varnish.server.delete" parameters=["server" => (string) $server]}" method="POST" role="form">

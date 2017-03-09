@@ -3,7 +3,7 @@
 {block name="head_title" prepend}{$title} | {/block}
 
 {block name="content_title"}
-<div class="page-header m-b-2">
+<div class="page-header mb-3">
     <h1>
         {translate key="title.manual"}
         <small class="text-muted">{$title}</small>

@@ -15,7 +15,7 @@
         </a>
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>{translate key="title.varnish"}</h1>
     </div>
 {/block}
@@ -24,7 +24,7 @@
     {include file="helper/form.prototype"}
 
     <form id="{$form->getId()}" class="form-inline" action="{$app.url.request}" method="POST" role="form">
-        <div class="form-group">
+        <div class="form-group mr-3">
             <div class="input-group add-on">
                 {call formWidget form=$form row="url"}
                 <div class="input-group-btn">
@@ -47,7 +47,7 @@
 
     <hr />
 
-    <h2 class="m-b-2">
+    <h2 class="mb-2">
         {translate key="title.servers"}
     </h2>
 
@@ -75,11 +75,11 @@
                 </td>
                 <td>
                     {if $server->isRunning()}
-                        <span class="tag tag-success">{translate key="label.running"}</span>
+                        <span class="badge badge-success">{translate key="label.running"}</span>
                     {elseif $server->isConnected()}
-                        <span class="tag tag-warning">{translate key="label.running.not"}</span>
+                        <span class="badge badge-warning">{translate key="label.running.not"}</span>
                     {else}
-                        <span class="tag tag-danger">{translate key="label.connect.unable"}</span>
+                        <span class="badge badge-danger">{translate key="label.connect.unable"}</span>
                     {/if}
                 </td>
             </tr>

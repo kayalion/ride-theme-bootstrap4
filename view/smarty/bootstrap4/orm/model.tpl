@@ -18,7 +18,7 @@
         </a>
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>
             {translate key="title.orm"}
             <small class="text-muted">{$model->getName()}</small>
@@ -27,7 +27,7 @@
 {/block}
 
 {block name="content_body" append}
-    <div class="btn-group m-b-2">
+    <div class="btn-group mb-3">
         <a class="btn btn-secondary" href="{url id="system.orm.scaffold" parameters=["model" => $model->getName()]}">
             {translate key="button.scaffold"}
         </a>
@@ -44,17 +44,17 @@
         <dd>{if $modelTable->willBlockDeleteWhenUsed()}{"label.yes"|translate}{else}{"label.no"|translate}{/if}</dd>
     </dl>
 
-    <h2 class="m-b-2">
+    <h2 class="mb-3">
         {"label.fields"|translate}
     </h2>
-    <div class="m-b-2">
+    <div class="mb-3">
         {include "helper/table" table=$tableFields tableForm=$tableFieldsForm}
     </div>
 
-    <h2 class="m-b-2">
+    <h2 class="mb-3">
         {"label.formats"|translate}
     </h2>
-    <table class="table table-hover table-striped table-bordered m-b-2">
+    <table class="table table-hover table-striped table-bordered mb-2">
         <thead>
             <tr>
                 <th>{translate key="label.name"}</th>
@@ -72,7 +72,7 @@
         </tbody>
     </table>
 
-    <h2 class="m-b-2">
+    <h2 class="mb-3 mt-3">
         {"label.indexes"|translate}
     </h2>
     {if $modelTable->getIndexes()}
@@ -82,10 +82,10 @@
     {/if}
 
     {$options = $modelTable->getOptions()}
-    <h2 class="m-b-2">
+    <h2 class="mb-3">
         {"label.options"|translate}
     </h2>
-    <table class="table table-hover table-striped table-bordered m-b-2">
+    <table class="table table-hover table-striped table-bordered mb-2">
         <thead>
             <tr>
                 <th>{translate key="label.name"}</th>

@@ -13,6 +13,7 @@
     "system.exception" => "exclamation-triangle",
     "system.locales" => "language",
     "system.log" => "clipboard",
+    "system.mail.templates" => "envelope-o",
     "system.orm" => "database",
     "system.parameters" => "cog",
     "system.preferences" => "wrench",
@@ -26,12 +27,12 @@
 {/if}
 {if $title}
     {$id = \ride\library\StringHelper::safeString($title)}
-    <h2 class="m-b-2">
+    <h2 class="mb-2">
         <a data-toggle="collapse" href="#{$id}" aria-expanded="true" aria-controls="dashboard{$id}">
             {$title}
         </a>
     </h2>
-    <div id="{$id}" class="collapse in">
+    <div id="{$id}" class="collapse show">
 {/if}
 
 {$index = 0}
@@ -56,7 +57,7 @@
         {$id = "orm.`$safeLabel`"}
         {$isOrm = true}
     {/if}
-    <div class="media col-md-4 m-b-2">
+    <div class="media col-md-4 mb-4">
         <a class="media-left text-xs-center" href="{$item->getUrl()}{$referer}" style="min-width: 4em;">
             <span class="fa fa-3x fa-{if isset($icons[$id])}{$icons[$id]}{else}{$defaultIcon}{/if}"></span>
         </a>
@@ -69,7 +70,7 @@
 
             {translate key="dashboard.`$id`.description"}
 
-            <div class="m-t-1">
+            <div class="mt-1">
             {if $isOrm}
                 <a href="{$url}/add{$referer}">
                     {translate key="button.entry.add"}
@@ -85,7 +86,7 @@
                     </a>
                 {elseif $id == 'system.locales'}
                     {translate key="label.translations.manage"}
-                    <ul class="m-t-1" role="navigation">
+                    <ul class="mt-1" role="navigation">
                     {foreach $app.locales as $localeCode => $locale}
                         <li>
                             <a href="{url id="system.translations.locale" parameters=["locale" => $localeCode]}{$referer}">

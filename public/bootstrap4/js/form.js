@@ -417,7 +417,7 @@ rideApp.form = (function($, undefined) {
     activeModal: null,
     initialize: function() {
       $(window).on('resize', function() {
-        rideApp.form.assets.resizeIframe($('.modal.in iframe'));
+        rideApp.form.assets.resizeIframe($('.modal.show iframe'));
       });
 
       $document.on('click', '.form-assets-add', function(e) {
@@ -505,7 +505,7 @@ rideApp.form = (function($, undefined) {
       }
     },
     isLoading: function(flag) {
-      var $container = $('.modal.in .modal-body');
+      var $container = $('.modal.show .modal-body');
       if (flag === undefined) {
         return $container.hasClass('is-loading');
       } else if (flag) {
@@ -568,7 +568,7 @@ rideApp.form = (function($, undefined) {
       }
     },
     addAsset: function(id, name, thumb) {
-      var $openModal = $('.modal.in'),
+      var $openModal = $('.modal.show'),
           $group = $openModal.find('.form-assets'),
           $assets = $group.find('.form-assets-asset'),
           $asset = $group.find('[data-id="' + id + '"]'),
@@ -579,26 +579,26 @@ rideApp.form = (function($, undefined) {
         return false;
       }
 
-      $asset = $('<div class="form-assets-asset" data-id="' + id + '"><img class="img-rounded" src="' + thumb + '" alt="' + name + '" title="' + name + '"><a href="#" class="btn btn-secondary btn-xs form-assets-remove"><span class="fa fa-remove"></span></a></div>');
+      $asset = $('<div class="form-assets-asset" data-id="' + id + '"><img class="rounded" src="' + thumb + '" alt="' + name + '" title="' + name + '"><a href="#" class="btn btn-secondary btn-xs form-assets-remove"><span class="fa fa-remove"></span></a></div>');
       if ($assets.length) {
         $asset.insertAfter($assets.last());
       } else {
         $asset.prependTo($group);
       }
 
-      rideApp.form.assets.updateSelected($('.modal.in iframe'));
+      rideApp.form.assets.updateSelected($('.modal.show iframe'));
 
       return true;
     },
     removeAsset: function(id, $group) {
       if (!$group) {
-        $group = $('.modal.in').find('.form-assets');
+        $group = $('.modal.show').find('.form-assets');
       }
 
       $selectedAsset = $('[data-id="' + id + '"]', $group);
       $selectedAsset.remove();
 
-      rideApp.form.assets.updateSelected($('.modal.in iframe'));
+      rideApp.form.assets.updateSelected($('.modal.show iframe'));
     },
   };
 

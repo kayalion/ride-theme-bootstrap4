@@ -24,7 +24,7 @@
         {/if}
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>
             {translate key="title.users"}
             <small class="text-muted">
@@ -42,7 +42,7 @@
     {include file="helper/form.prototype"}
 
     <form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
-        <ul class="nav nav-tabs m-b-2">
+        <ul class="nav nav-tabs mb-2">
             <li class="nav-item">
                 <a class="nav-link active" href="#credentials" data-toggle="tab">
                     {translate key="title.credentials"}

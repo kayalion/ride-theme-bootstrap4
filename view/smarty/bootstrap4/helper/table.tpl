@@ -4,13 +4,13 @@
     {include file="helper/form.prototype"}
 
     {$tableMessages = json_encode($table->getActionConfirmationMessages())}
-    <form id="{$tableForm->getId()}" action="{if isset($tableAction)}{$tableAction}{else}{$table->getFormUrl()}{/if}" method="POST" class="table form-inline" role="form" data-confirm-messages="{$tableMessages|escape}">
+    <form id="{$tableForm->getId()}" action="{if isset($tableAction)}{$tableAction}{else}{$table->getFormUrl()}{/if}" method="POST" class="table" role="form" data-confirm-messages="{$tableMessages|escape}">
         {call formWidget form=$tableForm row=$tableNameField}
 
         {if $hasTableActions || $table->hasSearch()}
         <div class="row">
             {if $hasTableActions}
-            <div class="col-md-6 m-b-1">
+            <div class="col-md-6">
                 <div class="btn-group">
                 {if $tableActions|count <= 2}
                     {foreach $tableActions as $url => $dataAction}
@@ -37,8 +37,8 @@
             </div>
             {/if}
             {if $table->hasSearch()}
-            <div class="{if !$hasTableActions}offset-md-6 {/if}col-md-6 m-b-1 clearfix">
-                <div class="form-group form-group-search pull-sm-right">
+            <div class="{if !$hasTableActions}offset-md-6 {/if}col-md-6 clearfix">
+                <div class="form-group form-group-search float-right">
                     {$row = $tableForm->getRow($tableSearchQueryField)}
                     {$widget = $row->getWidget()}
                     {$widget->setAttribute('placeholder', "label.search.query"|translate)}
@@ -59,8 +59,8 @@
 
         {if $table->hasOrderMethods()}
         <div class="row">
-            <div class="col-xs-12">
-                <div class="form-group form-group-order m-b-1 pull-xs-right">
+            <div class="col">
+                <div class="form-group form-group-order float-right">
                     <div class="input-group">
                         <span class="input-group-addon hidden-xs-down">
                             {translate key="label.table.order"}
@@ -121,7 +121,7 @@
                                 {/if}
                                 {if $table->hasPaginationOptions()}
                                 <div class="col-sm-6">
-                                    <span class="pull-xs-right p-t-1">
+                                    <span class="float-right pt-1">
                                         {translate key="label.table.rows.total" rows=$table->countRows()}
                                     </span>
                                 </div>
@@ -146,10 +146,10 @@
 
                     {if $table->getPaginationOptions()}
                     <div class="col-md-5">
-                        <div class="form-group form-group-pagination pull-xs-right">
+                        <div class="form-group form-group-pagination text-right">
                             {$row = $tableForm->getRow($tablePageRowsField)}
                             {$widget = $row->getWidget()}
-                            {$widget->setAttribute('class', 'custom-select col-xs-1')}
+                            {$widget->setAttribute('class', 'custom-select w-25')}
 
                             {call formWidget form=$tableForm row=$row}
 

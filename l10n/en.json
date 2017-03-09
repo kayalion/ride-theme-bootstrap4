@@ -1,4 +1,6 @@
 {
+    "button.asset.edit" : "Edit %asset%",
+    "button.asset.into" : "Go into %folder%",
     "button.asset.remove" : "Remove this asset",
     "button.assets.order" : "Order assets",
     "button.browse" : "Browse...",
@@ -50,6 +52,7 @@
     "dashboard.system.exception.description": "Setup the recipient and subject of the error mails.",
     "dashboard.system.locales.description": "View and define the preferred order of the available languages.",
     "dashboard.system.log.description": "View the Ride logs of the last incoming requests.",
+    "dashboard.system.mail.templates.description": "Manage the mails which are sent by the system",
     "dashboard.system.orm.description": "View the details of the models which are available to the ORM. Use scaffolding to manage the data in those models.",
     "dashboard.system.parameters.description": "Tune your Ride instance and modules with the global configuration parameters.",
     "dashboard.system.preferences.description": "Modify the preferences of your system like the name and the theme.",

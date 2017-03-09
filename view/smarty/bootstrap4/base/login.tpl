@@ -4,7 +4,7 @@
 
 {block name="content"}
     <div class="offset-md-3 col-md-4">
-        <div class="page-header m-b-2 m-t-2">
+        <div class="page-header mb-3 mt-2">
             <h1>{translate key="title.login"}</h1>
         </div>
 
@@ -13,22 +13,24 @@
         {include file="helper/form.prototype"}
 
         <form id="{$form->getId()}" action="{url id="login"}{if $referer}?referer={$referer|urlencode}{/if}" method="POST" role="form">
-                {call formRows form=$form}
-                <p>
-                    <a href="{url id="profile.password.request"}?referer={$app.url.request|escape}">
-                        {translate key="button.password.reset"}
-                    </a>
-                </p>
-                {call formActions submit="button.login"}
-            </fieldset>
+            {call formRows form=$form}
+            <p>
+                <a href="{url id="profile.password.request"}?referer={$app.url.request|escape}">
+                    {translate key="button.password.reset"}
+                </a>
+            </p>
+            {call formActions submit="button.login"}
         </form>
 
         {if $urls}
-        <ul>
+        <div class="list-group">
             {foreach $urls as $service => $url}
-            <li><a href="{$url}">{translate key="button.login.`$service`"}</a></li>
+            <a href="{$url}" class="list-group-item list-group-item-action">
+                <span class="fa fa-{$service} mr-2"></span>
+                {translate key="button.login.`$service`"}
+            </a>
             {/foreach}
-        </ul>
+        </div>
         {/if}
     </div>
 {/block}

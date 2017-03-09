@@ -17,7 +17,7 @@
             <p class="text-muted">{$classDoc->getDescription()}</p>
             {$classDoc->getLongDescription()}
 
-            <h3 class="m-b-1">{translate key="title.hierarchy.class"}</h3>
+            <h3 class="mb-1">{translate key="title.hierarchy.class"}</h3>
             <ul class="hierarchy">
     {$margin = 0}
     {foreach $inheritance as $className => $methods}
@@ -52,7 +52,7 @@
     {include file="api/helper/todo" todos=$classDoc->getTodos()}
 
     {if $inheritance}
-            <h3 class="m-b-1">{translate key="title.overview.methods"}</h3>
+            <h3 class="mb-1">{translate key="title.overview.methods"}</h3>
         {if $inheritance.$name}
             <ul class="methods unstyled">
             {foreach $inheritance.$name as $method}
@@ -92,7 +92,7 @@
 
 
     {if $properties}
-            <h3 class="m-b-1">{translate key="title.properties"}</h3>
+            <h3 class="mb-1">{translate key="title.properties"}</h3>
             <ul class="properties">
         {foreach $properties as $property}
             {$doc = $property->getDoc()}
@@ -139,7 +139,7 @@
     {/if}
 
     {if $inheritance.$name}
-            <h3 class="m-b-1">{translate key="title.methods"}</h3>
+            <h3 class="mb-1">{translate key="title.methods"}</h3>
         {foreach $inheritance.$name as $method}
             {assign var="methodDoc" value=$method->getDoc()}
             <a name="method{$method->getName()}"></a>

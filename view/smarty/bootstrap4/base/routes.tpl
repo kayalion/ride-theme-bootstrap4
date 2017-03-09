@@ -15,7 +15,7 @@
         </a>
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>
             {translate key="title.routes"}
         </h1>
@@ -23,10 +23,10 @@
 {/block}
 
 {block name="content" append}
-    <div class="row m-b-1">
+    <div class="row mb-1">
         <div class="offset-sm-8 col-sm-4">
             <form class="form-inline" id="form-search" action="{$app.url.request}" role="search" method="GET">
-                <div class="form-group pull-sm-right">
+                <div class="form-group float-sm-right">
                     <div class="input-group add-on">
                         <input type="text" name="query" class="form-control" placeholder="{translate key="label.search.query"}" value="{$query|escape}" />
                         <div class="input-group-btn">
@@ -72,7 +72,7 @@
                     <br />
                     <small class="text-muted">{$callback[0]}->{$callback[1]}()</small>
 
-                    <dl class="hidden-md-up m-b-0">
+                    <dl class="hidden-md-up mb-0">
                         <dt>{translate key="label.id"}</dt>
                         <dd>{$route->getId()}</dd>
                         <dt>{translate key="label.methods"}</dt>

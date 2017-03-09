@@ -3,11 +3,12 @@
     {foreach $folders as $item}
         <div class="asset-item" data-type="{$item->getType()}" data-id="{$item->getId()}">
             {if !$embed}
-                <input class="pull-xs-left m-r-1" type="checkbox" name="folders[]" value="{$item->getId()}" />
+                <input class="float-left mr-1" type="checkbox" name="folders[]" value="{$item->getId()}" />
             {else}
-                <span class="pull-xs-left m-r-1">&nbsp;</span>
+                <span class="float-left mr-1">&nbsp;</span>
             {/if}
-            <a href="{url id="assets.folder.overview" parameters=["locale" => $locale, "folder" => $item->id]}{$urlSuffix}">
+            <a href="{url id="assets.folder.overview" parameters=["locale" => $locale, "folder" => $item->id]}{$urlSuffix}"
+               title="{translate key="button.asset.into" folder=$item->getName()|escape}">
                 <div class="image">
                     <span class="fa fa-folder-open-o fa-6x"></span>
                 </div>
@@ -16,12 +17,16 @@
             {if !$isFiltered}
                 <span class="order-handle text-muted fa fa-arrows"></span>
             {/if}
-            {if !$embed}
-                <a href="{url id="assets.folder.edit" parameters=["locale" => $locale, "folder" => $item->getId()]}?embed={$embed}&referer={$app.url.request|urlencode}" title="{$item->getName()|escape}">
-                    {$item->getName()|escape|truncate:14}
+                <a href="{url id="assets.folder.overview" parameters=["locale" => $locale, "folder" => $item->id]}{$urlSuffix}"
+                   title="{translate key="button.asset.into" folder=$item->getName()|escape}">
+                    {$item->getName()|escape|truncate:12}
                 </a>
-            {else}
-                {$item->getName()|escape|truncate:14}
+            {if !$embed}
+                <a class="float-right"
+                   href="{url id="assets.folder.edit" parameters=["locale" => $locale, "folder" => $item->getId()]}?embed={$embed}&referer={$app.url.request|urlencode}"
+                   title="{translate key="button.asset.edit" asset=$item->getName()|escape}">
+                    <span class="fa fa-pencil"></span>
+                </a>
             {/if}
             </div>
         </div>
@@ -32,20 +37,21 @@
     {foreach $assets as $item}
         <div class="asset-item{if $embed} is-addable{/if}" data-type="{$item->getType()}" data-id="{$item->getId()}">
             <label>
-                <input class="pull-xs-left m-r-1" type="checkbox" name="assets[]" value="{$item->getId()}" />
+                <input class="float-left mr-1" type="checkbox" name="assets[]" value="{$item->getId()}" />
                 <div class="image">
-                    <img src="{image src=$item->getThumbnail() default="bootstrap4/img/asset-`$item->getType()`.png" width=120 height=120 transformation="crop"}" class="img-rounded" />
+                    <img src="{image src=$item->getThumbnail() default="bootstrap4/img/asset-`$item->getType()`.png" width=120 height=120 transformation="crop"}" class="rounded" />
                 </div>
                 <div class="name">
                 {if !$isFiltered}
                     <span class="order-handle text-muted fa fa-arrows"></span>
                 {/if}
+                    {$item->getName()|escape|truncate:12}
                 {if !$embed}
-                    <a href="{url id="assets.asset.edit" parameters=["locale" => $locale, "asset" => $item->getId()]}?embed={$embed}&referer={$app.url.request|urlencode}" title="{$item->getName()|escape}">
-                        {$item->getName()|escape|truncate:14}
+                    <a class="float-right"
+                       href="{url id="assets.asset.edit" parameters=["locale" => $locale, "asset" => $item->getId()]}?embed={$embed}&referer={$app.url.request|urlencode}"
+                       title="{translate key="button.asset.edit" asset=$item->getName()|escape}">
+                        <span class="fa fa-pencil"></a>
                     </a>
-                {else}
-                    {$item->getName()|escape|truncate:14}
                 {/if}
                 </div>
             </label>
@@ -57,10 +63,10 @@
 {if !$embed}
 <div class="row">
     <div class="col-md-6">
-        <div class="pull-xs-left m-r-1">
+        <div class="float-left mr-1">
             <input type="checkbox" name="all" class="form-select-all" />
         </div>
-        <div class="pull-xs-left">
+        <div class="float-left">
             <div class="input-group add-on">
                 <select name="action" class="form-control form-action custom-select">
                     <option value="">- {translate key="label.actions.bulk"} -</option>
@@ -76,7 +82,7 @@
         </div>
     </div>
      <div class="col-sm-6">
-        <span class="pull-xs-right">
+        <span class="float-right">
             {translate key="label.table.rows.total" rows="<span class=\"total\">`$numItems`</span>"}
         </span>
     </div>

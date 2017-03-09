@@ -15,7 +15,7 @@
         </a>
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>{translate key="title.access-control"}</h1>
     </div>
 {/block}
@@ -24,7 +24,7 @@
     {include file="helper/form.prototype"}
 
     <form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form">
-        <ul class="nav nav-tabs m-b-2" role="tablist">
+        <ul class="nav nav-tabs mb-2" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" href="#paths" data-toggle="tab" role="tab">
                     {translate key="label.paths"}
@@ -41,7 +41,7 @@
             <div id="paths" class="tab-pane active">
                 <p>{$form->getRow('secured-paths')->getDescription()}</p>
                 {call formWidget form=$form row="secured-paths"}
-                <small class="form-text text-muted m-b-2">{translate key="label.path.security.description"}</small>
+                <small class="form-text text-muted mb-2">{translate key="label.path.security.description"}</small>
 
                 {if $form->hasRow('allowed-paths')}
                     <h3>{$form->getRow('allowed-paths')->getLabel()}</h3>

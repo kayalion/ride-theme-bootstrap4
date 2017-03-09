@@ -12,6 +12,11 @@
   }
 }
 
+.asset-items-folders,
+.asset-items-assets {
+    display: inline;
+}
+
 .dropzone {
   min-height: 3em;
   border: 1px dashed #c0c0c0;
@@ -84,7 +89,12 @@
 
 .assets-grid .asset-item .name {
     background-color: #e6e6e6;
-    min-height: 2em;
+    min-height: 1.98em;
     margin: -0.1em -1em 0 -1em;
     padding: 0.2em 1em 0 1em;
+    border-top: 1px solid #ccc;
+}
+
+.assets-grid .asset-item:hover .name {
+    border-color: #adadad;
 }

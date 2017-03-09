@@ -3,7 +3,7 @@
 {block name="head_title" prepend}{translate key="title.reference"} | {/block}
 
 {block name="content_title"}
-<div class="page-header m-b-2">
+<div class="page-header mb-3">
     <h1>
         {translate key="title.manual"}
         <small>{translate key="title.reference"}</small>
@@ -14,8 +14,8 @@
 {block name="content_body" append}
     {foreach $references as $type => $reference}
         {if $reference}
-            <h2 class="m-b-2">{$type}</h2>
-            <dl class="m-b-2">
+            <h2 class="mb-2">{$type}</h2>
+            <dl class="mb-2">
             {foreach $reference as $key => $description}
                 <dt>{$key}</dt>
                 <dd>{$description}</dd>

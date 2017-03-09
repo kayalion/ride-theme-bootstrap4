@@ -54,7 +54,7 @@
             {/if}
             </td>
             <td class="image">
-                <img src="{image src=$item->getThumbnail() default="bootstrap4/img/asset-`$item->getType()`.png" width=50 height=50 transformation="crop"}" class="img-rounded" />
+                <img src="{image src=$item->getThumbnail() default="bootstrap4/img/asset-`$item->getType()`.png" width=50 height=50 transformation="crop"}" class="rounded" />
             </td>
             <td>
                 {if !$embed}
@@ -98,7 +98,7 @@
                         </div>
                     </div>
                      <div class="col-sm-6">
-                        <span class="pull-xs-right p-t-1">
+                        <span class="float-right pt-1">
                             {translate key="label.table.rows.total" rows="<span class=\"total\">`$numItems`</span>"}
                         </span>
                     </div>

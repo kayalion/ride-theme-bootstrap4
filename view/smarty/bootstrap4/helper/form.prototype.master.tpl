@@ -60,7 +60,7 @@
                     {call formWidgetCollection form=$form row=$row part=$part}
 
                     {if $errors}
-                        <ul class="list-unstyled text-danger m-b-0">
+                        <ul class="list-unstyled text-danger mb-0">
                         {foreach $errors as $error => $dummy}
                             <li>{$error}</li>
                         {/foreach}
@@ -102,7 +102,7 @@
                 {call formWidget form=$form row=$row part=$part errors=$errors}
 
                 {if $errors}
-                    <ul class="list-unstyled text-danger m-b-0">
+                    <ul class="list-unstyled text-danger mb-0">
                     {foreach $errors as $error}
                         <li>{$error->getCode()|translate:$error->getParameters()}</li>
                     {/foreach}
@@ -159,7 +159,7 @@
             {/if}
 
             {if $errors}
-                <ul class="list-unstyled text-danger m-b-0">
+                <ul class="list-unstyled text-danger mb-0">
                 {foreach $errors as $error}
                     <li>{$error->getCode()|translate:$error->getParameters()}</li>
                 {/foreach}
@@ -343,7 +343,7 @@
 
     {$widget = $row->getWidget()}
     {if $widget}
-        {call "formFile" widget=$widget part=$part validators=$row->getValidators() errors=$errors preview=$preview}
+        {call "formFile" widget=$widget part=$part validators=$row->getValidators() errors=$errors preview=$preview allowDelete=$row->getOption('allow_delete', true)}
     {/if}
 {/function}
 
@@ -383,7 +383,7 @@
                 {$assets = $widget->getAssets()}
                 {foreach $assets as $asset}
                     <div class="form-assets-asset" data-id="{$asset->getId()}">
-                        <img class="img-rounded" src="{image src=$asset->getThumbnail() default="bootstrap4/img/asset-`$asset->getType()`.png" transformation="crop" width=100 height=100}" alt="{$asset->getName()|escape}" title="{$asset->getName()|escape}">
+                        <img class="rounded" src="{image src=$asset->getThumbnail() default="bootstrap4/img/asset-`$asset->getType()`.png" transformation="crop" width=100 height=100}" alt="{$asset->getName()|escape}" title="{$asset->getName()|escape}">
                         <a href="#" class="btn btn-secondary btn-xs form-assets-remove" title="{translate key="button.asset.remove"}">
                             <span class="fa fa-remove"></span>
                         </a>
@@ -391,7 +391,7 @@
                 {/foreach}
             </div>
             <div class="clearfix">
-                <button class="btn btn-secondary pull-sm-left m-b-1 m-r-2 form-assets-add">
+                <button class="btn btn-secondary float-sm-left mb-1 mr-2 form-assets-add">
                     <i class="fa fa-image"></i>
                     {'button.browse'|translate}
                 </button>
@@ -427,17 +427,18 @@
                         <iframe id="{$attributes.id}-iframe" data-src="{$assetsUrl}?embed=1" frameborder="0" width="100%" height="500"></iframe>
                     </div>
                     <div class="modal-footer">
+                    <div class="container">
                         <div class="row">
                             <div class="col-xs-7 col-md-8">
-                                <div class="form-assets clearfix" data-field="{$attributes.id}" data-max="{$maximum}">
+                                <div class="form-assets" data-field="{$attributes.id}" data-max="{$maximum}">
                                 </div>
                                 {if $maximum != 999}
-                                <small class="text-muted pull-left m-r-2">
+                                <small class="text-muted float-left mr-2">
                                     {translate n=$maximum key="label.assets.maximum"}
                                 </small>
                                 {/if}
                             </div>
-                            <div class="col-xs-5 col-md-4 pull-xs-right">
+                            <div class="col-xs-5 col-md-4 text-right">
                                 <button type="button" class="btn btn-primary form-assets-done">
                                     {translate key="button.select"}
                                 </button>
@@ -446,6 +447,7 @@
                                 </button>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -697,17 +699,17 @@
     {/if}
 
     {if $row}
-    <div class="collection-control clearfix card">
+    <div class="collection-control clearfix card mb-4">
         <div class="card-header">
         <div class="row">
-            <div class="col-xs-6">
+            <div class="col-6">
         {if $row->getOption('order')}
                 <span class="fa fa-arrows-v text-muted order-handle"></span>
         {/if}
             </div>
-            <div class="col-xs-6">
+            <div class="col-6">
             {if !$row->getOption('disable_remove')}
-                <a href="#" title="{translate key="button.remove"}" class="btn btn-secondary btn-sm pull-right prototype-remove{if $row->isDisabled() || $row->isReadOnly()} disabled{/if}">
+                <a href="#" title="{translate key="button.remove"}" class="btn btn-secondary btn-sm float-right prototype-remove{if $row->isDisabled() || $row->isReadOnly()} disabled{/if}">
                     <span class="fa fa-remove"></span>
                 </a>
             {/if}
@@ -804,7 +806,7 @@
     {/if}
 {/function}
 
-{function name="formFile" widget=null part=null validators=null errors=null preview=null}
+{function name="formFile" widget=null part=null validators=null errors=null preview=null allowDelete=null}
     {$attributes = $widget->getAttributes()}
     {if isset($attributes.class)}
         {$attributes.class = "`$attributes.class` form-control"}
@@ -829,16 +831,18 @@
      {* <span class="custom-file-control"></span> *}
 
     {if $value}
-    <div class="form-text text-muted m-t-1">
+    <div class="form-text text-muted mt-1">
         {if $preview == 'image'}
             <img src="{image src=$value transformation="crop" width=100 height=100}" title="{$value}" />
         {else}
             {$value}
         {/if}
+        {if $allowDelete}
         <a href="#" class="btn-file-delete" data-message="{translate key="label.confirm.file.delete"}">
             <span class="fa fa-remove"></span>
             {translate key="button.delete"}
         </a>
+        {/if}
     </div>
     {/if}
 {/function}
@@ -847,8 +851,7 @@
     Renders the form actions, if a referer is passed, a cancel button will be presented
 *}
 {function name="formActions" referer=null submit='button.save'}
-    <div class="form-group form-actions">
-        <hr>
+    <div class="form-group form-actions mb-3">
         <div class="loading">
             <span class="fa fa-spinner fa-pulse fa-2x"></span>
         </div>
@@ -857,6 +860,5 @@
         {if $referer}
             <a href="{$referer}" class="btn">{'button.cancel'|translate}</a>
         {/if}
-        <hr>
     </div>
 {/function}
