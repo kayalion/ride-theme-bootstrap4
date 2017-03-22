@@ -52,6 +52,11 @@
                     {if $row->getOption('localized')}
                         &nbsp;<span class="fa fa-language text-muted" title="{translate key="label.field.localized"}"></span>
                     {/if}
+
+                    {$description = $row->getDescription()}
+                    {if $description}
+                    <small class="form-text text-muted">{$description}</small>
+                    {/if}
                 </label>
 
                 {call formCollectionPrototype assign="prototype" form=$form row=$row part='%prototype%'}
@@ -67,10 +72,6 @@
                         </ul>
                     {/if}
 
-                    {$description = $row->getDescription()}
-                    {if $description}
-                    <span class="form-text text-muted">{$description}</span>
-                    {/if}
                 </div>
             </div>
         {else}
@@ -92,10 +93,21 @@
             {/if}
 
             <div class="form-group row-{$rowName|replace:'[':''|replace:']':''}{if $row->isRequired()} required{/if}{if $row->isDisabled()} disabled{/if}{if $row->isReadOnly()} readonly{/if} clearfix{if $errors} has-danger{/if}{if $class} {$class}{/if}">
+                {if $widget && $type == 'option'}
+                    {$widgetOptions = $widget->getOptions()}
+                {else}
+                    {$widgetOptions = array()}
+                {/if}
+
                 <label class="d-block" for="{$widget->getId()}">
                     {if $type != 'button'}{$row->getLabel()}{/if}
                     {if $row->getOption('localized')}
                         &nbsp;<span class="fa fa-language text-muted" title="{translate key="label.field.localized"}"></span>
+                    {/if}
+
+                    {$description = $row->getDescription()}
+                    {if $description && $type !== 'checkbox' && ($type !== 'option' || ($type === 'option' && $widget && $widgetOptions))}
+                        <small class="form-text text-muted">{$description}</small>
                     {/if}
                 </label>
 
@@ -109,20 +121,7 @@
                     </ul>
                 {/if}
 
-                {if $widget && $type == 'option'}
-                    {$widgetOptions = $widget->getOptions()}
-                {else}
-                    {$widgetOptions = array()}
-                {/if}
-
-                {$description = $row->getDescription()}
-                {if $description && $type !== 'checkbox' && ($type !== 'option' || ($type === 'option' && $widget && $widgetOptions))}
-                    <small class="form-text text-muted">{$description}</small>
-                {/if}
-
-                {if $type == 'date'}
-                    <small class="form-text text-muted">{translate key="label.date.example" example=time()|date_format:$row->getFormat() format=$row->getFormat()}</small>
-                {elseif $type == 'select' && $widget->isMultiple()}
+                {if $type == 'select' && $widget->isMultiple()}
                     <small class="form-text text-muted">{translate key="label.multiselect"}</small>
                 {/if}
             </div>
