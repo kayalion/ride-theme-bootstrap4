@@ -23,7 +23,7 @@
     {include "helper/dashboard.prototype"}
 
     {$settingsMenu = $app.taskbar->getSettingsMenu()}
-    {$item = $settingsMenu->getItem('Documentation')}
+    {$item = $settingsMenu->getItem('title.documentation'|translate)}
     {$referer = "?referer=`$app.url.request|escape`"}
 
     {call "dashboardMenu" items=$item->getItems() referer=$referer}
