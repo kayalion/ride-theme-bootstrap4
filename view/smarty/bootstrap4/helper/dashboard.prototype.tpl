@@ -4,8 +4,11 @@
     "assets.image.styles" => "file-image-o",
     "assets.overview" => "image",
     "manual" => "book",
+    "orm.contact" => "envelope-o",
     "orm.events" => "calendar",
+    "orm.texts" => "file-text-o",
     "taxonomy.vocabulary.list" => "tags",
+    "site" => "globe",
     "system.cache" => "gears",
     "system.calendar" => "calendar-check-o",
     "system.details" => "info-circle",
@@ -26,13 +29,13 @@
     {$icons = $defaultIcons}
 {/if}
 {if $title}
-    {$id = \ride\library\StringHelper::safeString($title)}
+    {$titleId = \ride\library\StringHelper::safeString($title)}
     <h2 class="mb-2">
-        <a data-toggle="collapse" href="#{$id}" aria-expanded="true" aria-controls="dashboard{$id}">
+        <a data-toggle="collapse" href="#{$titleId}" aria-expanded="true" aria-controls="dashboard{$titleId}">
             {$title}
         </a>
     </h2>
-    <div id="{$id}" class="collapse show">
+    <div id="{$titleId}" class="collapse show">
 {/if}
 
 {$index = 0}
@@ -56,7 +59,10 @@
         {$safeLabel = \ride\library\StringHelper::safeString($label)}
         {$id = "orm.`$safeLabel`"}
         {$isOrm = true}
+    {elseif $id == 'cms.site.detail.locale'}
+        {$id = 'site'}
     {/if}
+
     <div class="media col-md-4 mb-4">
         <a class="media-left text-xs-center" href="{$item->getUrl()}{$referer}" style="min-width: 4em;">
             <span class="fa fa-3x fa-{if isset($icons[$id])}{$icons[$id]}{else}{$defaultIcon}{/if}"></span>
@@ -71,7 +77,7 @@
             {translate key="dashboard.`$id`.description"}
 
             <div class="mt-1">
-            {if $isOrm}
+            {if $isOrm && $titleId != "title.submissions"|translate|lower}
                 <a href="{$url}/add{$referer}">
                     {translate key="button.entry.add"}
                 </a>
