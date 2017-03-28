@@ -275,9 +275,13 @@
 
     {$widget = $row->getWidget()}
     {if $widget}
+        {$class = $widget->getAttribute('class')}
+        {$class = "`$class` col-md-3"}
+        {$widget->setAttribute('class', $class)}
         {$widget->setAttribute('data-parsley-type', 'number')}
+        {$widget->setAttribute('step', 'any')}
 
-        {call "formInput" type='text' widget=$widget part=$part validators=$row->getValidators() errors=$errors}
+        {call "formInput" type='number' widget=$widget part=$part validators=$row->getValidators() errors=$errors}
     {/if}
 {/function}
 

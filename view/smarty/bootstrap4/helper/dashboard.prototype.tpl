@@ -28,6 +28,8 @@
 {if $icons === null}
     {$icons = $defaultIcons}
 {/if}
+
+{$titleId = null}
 {if $title}
     {$titleId = \ride\library\StringHelper::safeString($title)}
     <h2 class="mb-2">

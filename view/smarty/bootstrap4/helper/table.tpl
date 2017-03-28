@@ -8,7 +8,7 @@
         {call formWidget form=$tableForm row=$tableNameField}
 
         {if $hasTableActions || $table->hasSearch()}
-        <div class="row">
+        <div class="row mb-3">
             {if $hasTableActions}
             <div class="col-md-6">
                 <div class="btn-group">
@@ -38,7 +38,7 @@
             {/if}
             {if $table->hasSearch()}
             <div class="{if !$hasTableActions}offset-md-6 {/if}col-md-6 clearfix">
-                <div class="form-group form-group-search float-right">
+                <div class="form-group-search float-right">
                     {$row = $tableForm->getRow($tableSearchQueryField)}
                     {$widget = $row->getWidget()}
                     {$widget->setAttribute('placeholder', "label.search.query"|translate)}

@@ -104,12 +104,16 @@
 {/block}
 
 {block name="scripts" append}
+    {$locale = substr($app.locale, 0, 2)}
     {script src="bootstrap4/js/jquery-ui.js"}
     {script src="bootstrap4/js/bootstrap-datepicker.js"}
     {script src="bootstrap4/js/selectize.js"}
     {script src="bootstrap4/js/parsley.js"}
+    {if $locale != 'en'}
+        {script src="bootstrap4/js/locales/parsley-`$locale`.js"}
+    {/if}
     {script src="bootstrap4/js/form.js"}
-        {if $tabs}
+    {if $tabs}
         {script src="bootstrap4/js/tabs.js"}
     {/if}
 {/block}
