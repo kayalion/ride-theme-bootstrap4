@@ -57,6 +57,10 @@
 
 {block name="scripts" append}
     {script src="bootstrap4/js/jquery-ui.js"}
+    {$locale = substr($app.locale, 0, 2)}
     {script src="bootstrap4/js/parsley.js"}
+    {if $locale != 'en'}
+        {script src="bootstrap4/js/locales/parsley-`$locale`.js"}
+    {/if}
     {script src="bootstrap4/js/form.js"}
 {/block}

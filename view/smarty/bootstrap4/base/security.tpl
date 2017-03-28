@@ -139,8 +139,12 @@
 {/block}
 
 {block name="scripts" append}
-    {script src="bootstrap4/js/tabs.js"}
+    {$locale = substr($app.locale, 0, 2)}
     {script src="bootstrap4/js/parsley.js"}
+    {if $locale != 'en'}
+        {script src="bootstrap4/js/locales/parsley-`$locale`.js"}
+    {/if}
+    {script src="bootstrap4/js/tabs.js"}
     {script src="bootstrap4/js/form.js"}
     {script src="bootstrap4/js/modules/security.js"}
 {/block}
