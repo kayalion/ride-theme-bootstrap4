@@ -747,6 +747,7 @@
 
     {if $type == "date"}
         {$attributes.class = "`$attributes.class` js-date"}
+        {$type = "text"}
     {/if}
 
     {if $validators}
