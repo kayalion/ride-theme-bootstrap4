@@ -835,7 +835,7 @@
      {* <span class="custom-file-control"></span> *}
 
     {if $value}
-    <div class="form-text text-muted mt-1">
+    <div class="form-text form-file-preview text-muted mt-1">
         {if $preview == 'image'}
             <img src="{image src=$value transformation="crop" width=100 height=100}" title="{$value}" />
         {else}

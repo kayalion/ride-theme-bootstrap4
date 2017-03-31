@@ -42,5 +42,4 @@
         </td>
         <td>{$item->getDateAdded()|date_format}</td>
     </tr>
-
 {/if}
