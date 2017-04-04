@@ -491,18 +491,7 @@ rideApp.form = (function($, undefined) {
         $modal.modal('hide');
       });
 
-      var $formAssets = $('.form-assets');
-      if ($formAssets.length) {
-        $('.form-assets').sortable({
-          items: '.form-assets-asset'
-        }).on('sortstop', function(event, ui) {
-          var $assets = $(event.target);
-
-          if ($assets.parents('.modal').length == 0) {
-            rideApp.form.assets.updateField($assets);
-          }
-        }).disableSelection();
-      }
+      rideApp.form.assets.initSortable($('.form-assets'));
     },
     isLoading: function(flag) {
       var $container = $('.modal.show .modal-body');
@@ -516,6 +505,19 @@ rideApp.form = (function($, undefined) {
         $container.removeClass('is-loading');
 
         return false;
+      }
+    },
+    initSortable: function($group) {
+      if ($group.length && !$group.data('sortable')) {
+        $group.sortable({
+          items: '.form-assets-asset'
+        }).on('sortstop', function(event, ui) {
+          var $assets = $(event.target);
+
+          if ($assets.parents('.modal').length == 0) {
+            rideApp.form.assets.updateField($assets);
+          }
+        }).disableSelection();
       }
     },
     resizeIframe: function($iframe) {
@@ -543,8 +545,10 @@ rideApp.form = (function($, undefined) {
       return $assets.length >= max;
     },
     updateField: function($group) {
+      rideApp.form.assets.initSortable($group);
+
       var $field = $('#' + $group.data('field'));
-          order = $group.sortable('toArray', {attribute: 'data-id'});
+      var order = $group.sortable('toArray', {attribute: 'data-id'});
 
       $field.val(order.join(','));
       if (hasParsley && $field.parents('.form-group').hasClass('has-danger')) {
@@ -578,6 +582,8 @@ rideApp.form = (function($, undefined) {
       if ($asset.length || $assets.length >= max) {
         return false;
       }
+
+      rideApp.form.assets.initSortable($group);
 
       $asset = $('<div class="form-assets-asset" data-id="' + id + '"><img class="rounded" src="' + thumb + '" alt="' + name + '" title="' + name + '"><a href="#" class="btn btn-secondary btn-xs form-assets-remove"><span class="fa fa-remove"></span></a></div>');
       if ($assets.length) {

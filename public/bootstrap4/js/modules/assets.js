@@ -171,8 +171,8 @@ rideApp.assets = (function($, undefined) {
   };
 
   var updateSelected = function(disableUnselected) {
-      console.log(parent);
-      console.log(disableUnselected);
+      // console.log(parent);
+      // console.log(disableUnselected);
     if (!parent) {
       return;
     }
@@ -180,7 +180,7 @@ rideApp.assets = (function($, undefined) {
     $('.asset-item[data-id] input[type=checkbox]').prop('checked', false);
 
     var selected = parent.rideApp.form.assets.getSelected();
-    console.log(selected);
+    // console.log(selected);
     for (i = 0; i < selected.length; i++) {
       $('.asset-item[data-id="' + selected[i] + '"] input[type=checkbox]').prop('checked', true);
     }
