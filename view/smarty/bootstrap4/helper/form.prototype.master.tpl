@@ -311,7 +311,7 @@
 
 {function name="formWidgetFile" form=null row=null part=null errors=null}
     {call "formPrototypeFile" form=$form row=$row part=$part errors=$errors}
-    {/function}
+{/function}
 
 {function name="formWidgetImage" form=null row=null part=null errors=null}
     {call "formPrototypeFile" form=$form row=$row part=$part errors=$errors preview="image"}
@@ -745,13 +745,13 @@
         {$attributes.class = "`$attributes.class` form-control-danger"}
     {/if}
 
+    {if $validators}
+        {parsleyAttributes attributes=$attributes validators=$validators var="attributes" type=$type}
+    {/if}
+
     {if $type == "date"}
         {$attributes.class = "`$attributes.class` js-date"}
         {$type = "text"}
-    {/if}
-
-    {if $validators}
-        {parsleyAttributes attributes=$attributes validators=$validators var="attributes" type=$type}
     {/if}
 
     {$value = $widget->getValue($part)}
