@@ -34,6 +34,10 @@ form.is-loading button {
     position: relative;
 }
 
+.form-assets[data-max="1"] .form-assets-asset {
+    cursor: default;
+}
+
 .form-assets-asset img {
     border: 1px solid #ccc;
     padding: 3px;

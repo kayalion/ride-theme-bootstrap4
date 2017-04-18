@@ -101,13 +101,16 @@
 {block name="styles" append}
     {style src="bootstrap4/css/bootstrap-datepicker.css" media="all"}
     {style src="bootstrap4/css/selectize.css" media="all"}
+    {style src="bootstrap4/css/sir-trevor.css" media="all"}
 {/block}
 
 {block name="scripts" append}
     {$locale = substr($app.locale, 0, 2)}
     {script src="bootstrap4/js/jquery-ui.js"}
+    {script src="bootstrap4/js/jsonapi.js"}
     {script src="bootstrap4/js/bootstrap-datepicker.js"}
     {script src="bootstrap4/js/selectize.js"}
+    {script src="bootstrap4/js/sir-trevor.js"}
     {script src="bootstrap4/js/parsley.js"}
     {if $locale != 'en'}
         {script src="bootstrap4/js/locales/parsley-`$locale`.js"}

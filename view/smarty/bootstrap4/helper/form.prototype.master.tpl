@@ -309,6 +309,33 @@
     {call "formPrototypeTextarea" form=$form row=$row part=$part errors=$errors}
 {/function}
 
+{function name="formWidgetRichcontent" form=null row=null part=null errors=null}
+    {if is_string($row) && $form}
+        {$row = $form->getRow($row)}
+    {/if}
+
+    {$widget = $row->getWidget()}
+    {if $widget}
+        {$widget->setAttribute('data-locale', $app.locale)}
+        {$widget->setAttribute('data-label-button-browse', "button.browse"|translate)}
+        {$widget->setAttribute('data-label-button-cancel', "button.cancel"|translate)}
+        {$widget->setAttribute('data-label-button-remove', "button.asset.remove"|translate)}
+        {$widget->setAttribute('data-label-button-select', "button.select"|translate)}
+        {$widget->setAttribute('data-label-code', "label.richcontent.code"|translate)}
+        {$widget->setAttribute('data-label-credit', "label.quote.credit"|translate)}
+        {$widget->setAttribute('data-label-embed', "label.embedCode"|translate)}
+        {$widget->setAttribute('data-label-file', "label.file"|translate)}
+        {$widget->setAttribute('data-label-image-center', "label.image.center"|translate)}
+        {$widget->setAttribute('data-label-image-left', "label.image.left"|translate)}
+        {$widget->setAttribute('data-label-image-position', "label.image.position"|translate)}
+        {$widget->setAttribute('data-label-image-right', "label.image.right"|translate)}
+        {$widget->setAttribute('data-label-image-stretch', "label.image.stretch"|translate)}
+        {$widget->setAttribute('data-label-quote', "label.quote.text"|translate)}
+
+        {call "formTextarea" widget=$widget part=$part validators=$row->getValidators() errors=$errors}
+    {/if}
+{/function}
+
 {function name="formWidgetFile" form=null row=null part=null errors=null}
     {call "formPrototypeFile" form=$form row=$row part=$part errors=$errors}
 {/function}
@@ -860,9 +887,9 @@
             <span class="fa fa-spinner fa-pulse fa-2x"></span>
         </div>
 
-        <button type="submit" class="btn btn-primary">{$submit|translate}</button>
+        <button type="submit" class="btn btn-primary btn-submit">{$submit|translate}</button>
         {if $referer}
-            <a href="{$referer}" class="btn">{'button.cancel'|translate}</a>
+            <a href="{$referer}" class="btn btn-cancel">{'button.cancel'|translate}</a>
         {/if}
     </div>
 {/function}
