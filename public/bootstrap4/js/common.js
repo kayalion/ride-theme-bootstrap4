@@ -177,6 +177,10 @@ rideApp.common = (function($, undefined) {
     }
   };
 
+  var replaceAll = function(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
+  };
+
   return {
     hasLocalStorage: hasLocalStorage,
     getFromLocalStorage: getFromLocalStorage,
@@ -185,6 +189,7 @@ rideApp.common = (function($, undefined) {
     escapeHtml: escapeHtml,
     escapeId: escapeId,
     unescapeHtml: unescapeHtml,
+    replaceAll: replaceAll,
     notifySuccess: notifySuccess,
     notifyWarning: notifyWarning,
     notifyError: notifyError,
