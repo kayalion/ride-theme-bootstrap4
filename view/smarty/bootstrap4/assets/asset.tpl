@@ -88,7 +88,7 @@
                 {if $style->isExposed()}
                 <li class="nav-item">
                     <a class="nav-link" href="#{$style->getSlug()}" data-toggle="tab">
-                        {$style->getName()}
+                        {$style->getFriendlyName()}
                     </a>
                 </li>
                 {/if}
