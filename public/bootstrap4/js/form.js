@@ -429,7 +429,7 @@ rideApp.form = (function($, undefined) {
           return;
         }
 
-        var $formGroup = $button.parents('.form-group');
+        var $formGroup = $button.parents('.form-group').first();
         var $formAssets = $formGroup.find('.form-assets').first();
         var $modal = $formGroup.find('.modal');
         var $iframe = $modal.find('iframe');
