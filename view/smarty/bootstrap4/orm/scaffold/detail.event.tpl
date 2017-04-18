@@ -26,9 +26,9 @@
 
     <div class="page-header mb-3">
         <h1>
-            {translate key=$meta->getOption('scaffold.title')}
+            {$title}
             <small class="text-muted">
-                {$title}
+                {$subtitle}
             </small>
         </h1>
     </div>
