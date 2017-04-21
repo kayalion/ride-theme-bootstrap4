@@ -12,10 +12,10 @@
   }
 }
 
-.asset-items-folders,
+/*.asset-items-folders,
 .asset-items-assets {
     display: inline;
-}
+}*/
 
 .dropzone {
   min-height: 3em;

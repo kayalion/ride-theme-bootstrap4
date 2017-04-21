@@ -39,13 +39,13 @@
             <label>
                 <input class="float-left mr-1" type="checkbox" name="assets[]" value="{$item->getId()}" />
                 <div class="image">
-                    <img src="{image src=$item->getThumbnail() default="bootstrap4/img/asset-`$item->getType()`.png" width=120 height=120 transformation="crop"}" class="rounded" />
+                    <img src="{image src=$item->getThumbnail() default="bootstrap4/img/asset-`$item->getType()`.png" width=120 height=120 transformation="crop"}" class="rounded" title="{$item->getName()|escape}" />
                 </div>
                 <div class="name">
                 {if !$isFiltered}
                     <span class="order-handle text-muted fa fa-arrows"></span>
                 {/if}
-                    {$item->getName()|escape|truncate:12}
+                    {$item->getName()|escape|truncate:11}
                 {if !$embed}
                     <a class="float-right"
                        href="{url id="assets.asset.edit" parameters=["locale" => $locale, "asset" => $item->getId()]}?embed={$embed}&referer={$app.url.request|urlencode}"

@@ -12,7 +12,6 @@
     {foreach $folders as $item}
         {$type = $item->getType()}
         <tr class="asset-item" data-type="{$type}" data-id="{$item->getId()}">
-        <label>
             <td class="option">
             {if !$embed}
                 <input type="checkbox" name="folders[]" value="{$item->getId()}" />
@@ -39,7 +38,6 @@
                 </div>
             </td>
             <td>{$item->getDateAdded()|date_format}</td>
-        </label>
         </tr>
     {/foreach}
     </tbody>
