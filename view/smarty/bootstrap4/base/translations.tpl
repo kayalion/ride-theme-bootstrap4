@@ -27,7 +27,7 @@
         </a>
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>
             {translate key="title.translations"}
             <small class="text-muted">{translate key="language.`$locale`"}</small>
@@ -38,15 +38,15 @@
 {block name="content" append}
     {include file="helper/form.prototype"}
 
-    <div class="row m-b-1">
-        <div class="col-sm-4">
+    <div class="row mb-1">
+        <div class="col-6">
             <a href="#" class="btn btn-secondary btn-add">
                 {translate key="button.translation.add"}
             </a>
         </div>
-        <div class="offset-sm-4 col-sm-4">
-            <form class="form-inline" id="form-search" action="{$app.url.request}" role="search" method="GET">
-                <div class="form-group pull-sm-right">
+        <div class="col-6">
+            <form class="form" id="form-search" action="{$app.url.request}" role="search" method="GET">
+                <div class="form-group float-right">
                     <div class="input-group add-on">
                         <input type="text" name="query" class="form-control" placeholder="{translate key="label.search.query"}" value="{$query|escape}" />
                         <div class="input-group-btn">
@@ -116,7 +116,11 @@
 {/block}
 
 {block name="scripts" append}
+    {$locale = substr($app.locale, 0, 2)}
     {script src="bootstrap4/js/parsley.js"}
+    {if $locale != 'en'}
+        {script src="bootstrap4/js/locales/parsley-`$locale`.js"}
+    {/if}
     {script src="bootstrap4/js/form.js"}
     {script src="bootstrap4/js/jquery-bootstrap-growl.js"}
     {script src="bootstrap4/js/modules/system-translations.js"}

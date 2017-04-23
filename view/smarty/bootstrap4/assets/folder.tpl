@@ -13,7 +13,7 @@
 {/block}
 
 {block name="content_title" append}
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <nav class="breadcrumb">
         {if !$embed}
             <a class="breadcrumb-item" href="{url id="admin"}">
@@ -62,6 +62,10 @@
 {/block}
 
 {block name="scripts" append}
+    {$locale = substr($app.locale, 0, 2)}
     {script src="bootstrap4/js/parsley.js"}
+    {if $locale != 'en'}
+        {script src="bootstrap4/js/locales/parsley-`$locale`.js"}
+    {/if}
     {script src="bootstrap4/js/form.js"}
 {/block}

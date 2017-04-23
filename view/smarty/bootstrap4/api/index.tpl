@@ -7,7 +7,7 @@
 {block name="head_title" prepend}{translate key="title.api"} | {/block}
 
 {block name="sidebar"}
-    <div class="row m-b-2">
+    <div class="row mb-2">
         <div class="col-md-12">
             <form class="form-inline" id="form-search" action="{url id="api.search"}" role="search" method="GET">
                 <div class="input-group add-on">
@@ -24,8 +24,8 @@
 
     {if $classes}
         <h3>{translate key="title.classes"}</h3>
-        <nav class="m-b-2">
-            <ul class="nav nav-pills nav-stacked nav-documentation">
+        <nav class="mb-2">
+            <ul class="nav nav-pills flex-column nav-documentation">
         {foreach $classes as $c}
                 <li class="nav-item">
                     <a class="nav-link{if $shortName == $c} active{/if}" href="{$urlClass}/{$namespace}/{$c}">
@@ -38,8 +38,8 @@
     {/if}
     {if $namespaces}
         <h3>{translate key="title.namespaces"}</h3>
-        <nav class="m-b-2">
-            <ul class="nav nav-pills nav-stacked nav-documentation">
+        <nav class="mb-2">
+            <ul class="nav nav-pills flex-column nav-documentation">
         {foreach $namespaces as $ns}
                 <li class="nav-item">
                     <a class="nav-link" href="{$urlNamespace}/{$ns}">
@@ -65,7 +65,7 @@
     {/foreach}
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         {block name="title"}<h1>{translate key="title.api"}</h1>{/block}
     </div>
 {/block}

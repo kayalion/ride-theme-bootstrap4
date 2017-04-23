@@ -15,7 +15,7 @@
         </a>
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-2">
         <h1>{translate key="title.locales"}</h1>
     </div>
 {/block}
@@ -23,13 +23,16 @@
 {block name="content" append}
     <p>{translate key="label.locales.information"}</p>
 
-    <div class="locales m-b-2" data-url-order="{url id="system.locales.order"}">
+    <div class="locales mb-2" data-url-order="{url id="system.locales.order"}">
     {foreach $locales as $locale}
         {$code = $locale->getCode()}
         {$properties = $locale->getProperties()}
 
-        <div class="locale locale-{$code} m-b-2" id="locales-{$code}">
-            <h3>{translate key="language.`$code`"}</h3>
+        <div class="locale locale-{$code} mb-3" id="locales-{$code}">
+            <h3>
+                <small><span class="fa fa-arrows-v text-muted order-handle"></span></small>
+                {translate key="language.`$code`"}
+            </h3>
             <dl>
                 <dt>{translate key="label.name.native"}</dt>
                 <dd>{$locale->getName()}</dd>
@@ -48,7 +51,7 @@
             </div>
 
             {if $properties}
-            <div class="properties m-t-2">
+            <div class="properties mt-2">
                 <h4>{translate key="title.properties"}</h4>
                 <table class="table table-bordered table-hover table-striped">
                     <thead>

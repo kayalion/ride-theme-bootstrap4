@@ -5,7 +5,7 @@
 {block name="messages"}{/block}
 
 {block name="content_title"}
-    <div class="page-header m-b-2 m-t-2">
+    <div class="page-header mb-3 mt-2">
         <h1>
             {translate key="title.forbidden"}
             <small class="text-muted">403</small>

@@ -24,7 +24,7 @@
         {/if}
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>
             {translate key="title.users"}
             <small class="text-muted">
@@ -42,7 +42,7 @@
     {include file="helper/form.prototype"}
 
     <form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
-        <ul class="nav nav-tabs m-b-2">
+        <ul class="nav nav-tabs mb-2">
             <li class="nav-item">
                 <a class="nav-link active" href="#credentials" data-toggle="tab">
                     {translate key="title.credentials"}
@@ -79,7 +79,11 @@
 {/block}
 
 {block name="scripts" append}
-    {script src="bootstrap4/js/tabs.js"}
+    {$locale = substr($app.locale, 0, 2)}
     {script src="bootstrap4/js/parsley.js"}
+    {if $locale != 'en'}
+        {script src="bootstrap4/js/locales/parsley-`$locale`.js"}
+    {/if}
+    {script src="bootstrap4/js/tabs.js"}
     {script src="bootstrap4/js/form.js"}
 {/block}

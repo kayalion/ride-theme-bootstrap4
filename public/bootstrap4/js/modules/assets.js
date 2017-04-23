@@ -158,7 +158,7 @@ rideApp.assets = (function($, undefined) {
 
       if (isSelected) {
         var name = $.trim($asset.find('.name').text()),
-            thumb = $asset.find('.img-rounded').attr('src'),
+            thumb = $asset.find('.rounded').attr('src'),
             isAdded = parent.rideApp.form.assets.addAsset(id, name, thumb);
 
         if (!isAdded) {
@@ -171,6 +171,8 @@ rideApp.assets = (function($, undefined) {
   };
 
   var updateSelected = function(disableUnselected) {
+      // console.log(parent);
+      // console.log(disableUnselected);
     if (!parent) {
       return;
     }
@@ -178,6 +180,7 @@ rideApp.assets = (function($, undefined) {
     $('.asset-item[data-id] input[type=checkbox]').prop('checked', false);
 
     var selected = parent.rideApp.form.assets.getSelected();
+    // console.log(selected);
     for (i = 0; i < selected.length; i++) {
       $('.asset-item[data-id="' + selected[i] + '"] input[type=checkbox]').prop('checked', true);
     }

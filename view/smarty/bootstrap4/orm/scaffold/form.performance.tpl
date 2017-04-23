@@ -16,16 +16,30 @@
         <a class="breadcrumb-item" href="{url id="content"}">
             {translate key="title.content"}
         </a>
-        <a class="breadcrumb-item" href="{url id="system.orm.scaffold.index" parameters=["model" => $meta->getName(), "locale" => $locale]}">
-            {translate key=$meta->getOption('scaffold.title')}
+        <a class="breadcrumb-item" href="{url id="system.orm.scaffold.index" parameters=["model" => 'Event', "locale" => $locale]}">
+            {translate key="title.events"}
         </a>
         <a class="breadcrumb-item" href="{url id="calendar.event.detail" parameters=["locale" => $locale, "id" => $entry->getId()]}">
             {$entry->getName()}
         </a>
+        {if $performance->getId()}
+            <a class="breadcrumb-item" href="{url id="calendar.performance.edit" parameters=["locale" => $locale, "event" => $entry->getId(), 'id' => $performance->getid()]}">
+                {$performance->getDateString()}
+            </a>
+        {else}
+            <a class="breadcrumb-item" href="{url id="calendar.performance.add" parameters=["locale" => $locale, "event" => $entry->getId()]}">
+                {translate key="button.performance.add"}
+            </a>
+        {/if}
     </nav>
 
-    <div class="page-header m-b-2">
-        <h1>{$title}</h1>
+    <div class="page-header mb-3">
+        <h1>
+            {$title}
+            <small class="text-muted">
+                {$subtitle}
+            </small>
+        </h1>
     </div>
 {/block}
 
@@ -137,8 +151,12 @@
 {/block}
 
 {block name="scripts" append}
+    {$locale = substr($app.locale, 0, 2)}
     {script src="bootstrap4/js/bootstrap-datepicker.js"}
     {script src="bootstrap4/js/parsley.js"}
+    {if $locale != 'en'}
+        {script src="bootstrap4/js/locales/parsley-`$locale`.js"}
+    {/if}
     {script src="bootstrap4/js/form.js"}
     {script src="bootstrap4/js/modules/calendar.js"}
 {/block}

@@ -37,7 +37,7 @@
     {/if}
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>
             {translate key="title.taxonomy"}
             <small class="text-muted">{translate key="title.terms"}</small>
@@ -55,6 +55,10 @@
 {/block}
 
 {block name="scripts" append}
+    {$locale = substr($app.locale, 0, 2)}
     {script src="bootstrap4/js/parsley.js"}
+    {if $locale != 'en'}
+        {script src="bootstrap4/js/locales/parsley-`$locale`.js"}
+    {/if}
     {script src="bootstrap4/js/form.js"}
 {/block}

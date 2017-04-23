@@ -4,8 +4,11 @@
     "assets.image.styles" => "file-image-o",
     "assets.overview" => "image",
     "manual" => "book",
+    "orm.contact" => "envelope-o",
     "orm.events" => "calendar",
+    "orm.texts" => "file-text-o",
     "taxonomy.vocabulary.list" => "tags",
+    "site" => "globe",
     "system.cache" => "gears",
     "system.calendar" => "calendar-check-o",
     "system.details" => "info-circle",
@@ -13,6 +16,7 @@
     "system.exception" => "exclamation-triangle",
     "system.locales" => "language",
     "system.log" => "clipboard",
+    "system.mail.templates" => "envelope-o",
     "system.orm" => "database",
     "system.parameters" => "cog",
     "system.preferences" => "wrench",
@@ -24,14 +28,16 @@
 {if $icons === null}
     {$icons = $defaultIcons}
 {/if}
+
+{$titleId = null}
 {if $title}
-    {$id = \ride\library\StringHelper::safeString($title)}
-    <h2 class="m-b-2">
-        <a data-toggle="collapse" href="#{$id}" aria-expanded="true" aria-controls="dashboard{$id}">
+    {$titleId = \ride\library\StringHelper::safeString($title)}
+    <h2 class="mb-2">
+        <a data-toggle="collapse" href="#{$titleId}" aria-expanded="true" aria-controls="dashboard{$titleId}">
             {$title}
         </a>
     </h2>
-    <div id="{$id}" class="collapse in">
+    <div id="{$titleId}" class="collapse show">
 {/if}
 
 {$index = 0}
@@ -55,8 +61,11 @@
         {$safeLabel = \ride\library\StringHelper::safeString($label)}
         {$id = "orm.`$safeLabel`"}
         {$isOrm = true}
+    {elseif $id == 'cms.site.detail.locale'}
+        {$id = 'site'}
     {/if}
-    <div class="media col-md-4 m-b-2">
+
+    <div class="media col-md-4 mb-4">
         <a class="media-left text-xs-center" href="{$item->getUrl()}{$referer}" style="min-width: 4em;">
             <span class="fa fa-3x fa-{if isset($icons[$id])}{$icons[$id]}{else}{$defaultIcon}{/if}"></span>
         </a>
@@ -69,8 +78,8 @@
 
             {translate key="dashboard.`$id`.description"}
 
-            <div class="m-t-1">
-            {if $isOrm}
+            <div class="mt-1">
+            {if $isOrm && $titleId != "title.submissions"|translate|lower}
                 <a href="{$url}/add{$referer}">
                     {translate key="button.entry.add"}
                 </a>
@@ -85,7 +94,7 @@
                     </a>
                 {elseif $id == 'system.locales'}
                     {translate key="label.translations.manage"}
-                    <ul class="m-t-1" role="navigation">
+                    <ul class="mt-1" role="navigation">
                     {foreach $app.locales as $localeCode => $locale}
                         <li>
                             <a href="{url id="system.translations.locale" parameters=["locale" => $localeCode]}{$referer}">

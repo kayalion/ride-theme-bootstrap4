@@ -12,6 +12,14 @@ a:hover,
   outline: none;
 }
 
+.d-none {
+    display: none;
+}
+
+.form-image-style-preview img {
+    max-width: 100px;
+}
+
 .btn-xs, .btn-group-xs > .btn {
   padding: 0.1rem 0.2rem;
   font-size: 0.65rem;
@@ -26,6 +34,11 @@ a:hover,
   margin: 0 0 0.5em -1em;
   background-color: transparent;
   font-size: 0.8em;
+}
+
+.redactor-editor, .redactor-box {
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 0.25rem;
 }
 
 /* taskbar */
@@ -57,7 +70,6 @@ body.taskbar {
 }
 
 /* sidebar */
-
 .sidebar {
     position: relative;
     padding: 2em;
@@ -99,6 +111,10 @@ body.taskbar {
 
 .loading {
   display: none;
+}
+
+.selectize-control.loading {
+    display: block;
 }
 
 .is-loading .loading {

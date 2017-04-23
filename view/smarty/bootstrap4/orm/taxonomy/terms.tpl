@@ -8,7 +8,7 @@
 {/block}
 
 {block name="content_title"}
-<div class="page-header m-b-2">
+<div class="page-header mb-3">
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="{url id="admin"}">
             {translate key="title.admin.home"}

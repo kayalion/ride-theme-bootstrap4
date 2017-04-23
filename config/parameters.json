@@ -2,5 +2,36 @@
     "template.theme": "bootstrap4",
     "minifier.disable.css": false,
     "minifier.disable.js": false,
+    "redactor": {
+        "buttons": [
+            "format",
+            "bold",
+            "italic",
+            "lists",
+            "link",
+            null,
+            null,
+            null
+        ],
+        "cleanOnPaste": true,
+        "cleanStyleOnEnter": true,
+        "dragImageUpload": false,
+        "formatting": ["p", "h2", "h3", "h4", "h5"],
+        "minHeight": 100,
+        "plugins": [],
+        "removeComments": true,
+        "removeDataAttr": true,
+        "toolbarFixed": false
+    },
+    "rich-content": {
+        "trevorSettings": {
+            "blockTypes": [
+                "Wysiwyg",
+                "Asset",
+                "Quote",
+                "Embed"
+            ]
+        }
+    },
     "template.smarty.plugin.bootstrap4": "%path%/src/ride/theme/bootstrap/smarty/plugin"
 }

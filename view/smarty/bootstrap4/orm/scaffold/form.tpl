@@ -57,7 +57,7 @@
     {/if}
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>
             {$title}
         {if $subtitle}
@@ -72,7 +72,7 @@
 
     <form class="form-selectize" id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
     {if $tabs}
-        <ul class="nav nav-tabs m-b-2">
+        <ul class="nav nav-tabs mb-2">
         {foreach $tabs as $tabName => $tab}
             <li class="nav-item">
                 <a class="nav-link{if $tabName == $activeTab} active{/if}" href="#{$tabName}" data-toggle="tab">
@@ -101,15 +101,22 @@
 {block name="styles" append}
     {style src="bootstrap4/css/bootstrap-datepicker.css" media="all"}
     {style src="bootstrap4/css/selectize.css" media="all"}
+    {style src="bootstrap4/css/sir-trevor.css" media="all"}
 {/block}
 
 {block name="scripts" append}
+    {$locale = substr($app.locale, 0, 2)}
     {script src="bootstrap4/js/jquery-ui.js"}
+    {script src="bootstrap4/js/jsonapi.js"}
     {script src="bootstrap4/js/bootstrap-datepicker.js"}
     {script src="bootstrap4/js/selectize.js"}
+    {script src="bootstrap4/js/sir-trevor.js"}
     {script src="bootstrap4/js/parsley.js"}
+    {if $locale != 'en'}
+        {script src="bootstrap4/js/locales/parsley-`$locale`.js"}
+    {/if}
     {script src="bootstrap4/js/form.js"}
-        {if $tabs}
+    {if $tabs}
         {script src="bootstrap4/js/tabs.js"}
     {/if}
 {/block}

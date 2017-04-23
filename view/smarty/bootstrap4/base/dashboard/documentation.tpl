@@ -12,7 +12,7 @@
         </a>
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>
             {translate key="title.documentation"}
         </h1>
@@ -23,7 +23,7 @@
     {include "helper/dashboard.prototype"}
 
     {$settingsMenu = $app.taskbar->getSettingsMenu()}
-    {$item = $settingsMenu->getItem('Documentation')}
+    {$item = $settingsMenu->getItem('title.documentation'|translate)}
     {$referer = "?referer=`$app.url.request|escape`"}
 
     {call "dashboardMenu" items=$item->getItems() referer=$referer}

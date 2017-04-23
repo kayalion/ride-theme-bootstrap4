@@ -3,7 +3,7 @@
 {block name="head_title" prepend}{translate key="title.password.reset"} | {/block}
 
 {block name="content_title"}
-    <div class="page-header m-b-2 m-t-2">
+    <div class="page-header mb-2 mt-2">
         <h1>{translate key="title.password.reset"}</h1>
     </div>
 {/block}
@@ -18,6 +18,10 @@
 {/block}
 
 {block name="scripts" append}
+    {$locale = substr($app.locale, 0, 2)}
     {script src="bootstrap4/js/parsley.js"}
+    {if $locale != 'en'}
+        {script src="bootstrap4/js/locales/parsley-`$locale`.js"}
+    {/if}
     {script src="bootstrap4/js/form.js"}
 {/block}

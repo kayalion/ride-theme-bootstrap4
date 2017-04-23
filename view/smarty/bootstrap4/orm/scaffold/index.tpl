@@ -48,7 +48,7 @@
     {/if}
     </nav>
 
-    <div class="page-header m-b-1">
+    <div class="page-header mb-3">
         <h1>{$title}</h1>
     </div>
 {/block}

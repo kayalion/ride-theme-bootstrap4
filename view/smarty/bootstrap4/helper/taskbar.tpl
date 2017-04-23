@@ -44,25 +44,26 @@
     </li>
 {/function}
 
-<nav class="navbar navbar-fixed-top navbar-full navbar-dark navbar-taskbar bg-inverse">
-<div class="container">
-    <button class="navbar-toggler nav hidden-sm-up pull-xs-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-controls="collapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        &#9776;
+{* <nav class="navbar navbar-fixed-top navbar-full navbar-dark navbar-taskbar bg-inverse"> *}
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top navbar-taskbar">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-controls="collapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
+<div class="container">
 {block name="taskbar_title"}
     <a class="navbar-brand" href="{$app.url.base}">
         {$title}
     </a>
 {/block}
-    <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
-        <ul class="nav navbar-nav">
+    <div class="collapse navbar-collapse" id="collapsingNavbar">
+        <ul class="navbar-nav mr-auto">
     {block name="taskbar_applications"}
         {if $applicationsMenu->hasItems()}
             {call taskbarMenuItems items=$applicationsMenu->getItems() itemClass="nav-item" anchorClass="nav-link"}
         {/if}
     {/block}
         </ul>
-        <ul class="nav navbar-nav pull-xs-right">
+        <ul class="navbar-nav float-xs-right">
             {block name="taskbar_panels"}{/block}
             {block name="taskbar_menu"}
             <li class="nav-item btn-group">

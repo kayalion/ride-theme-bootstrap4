@@ -20,7 +20,7 @@
     {/if}
     </nav>
 
-    <div class="page-header m-b-2">
+    <div class="page-header mb-3">
         <h1>
             {translate key="title.cache"}
         {if $action != "enable"}
@@ -32,7 +32,7 @@
 
 {block name="content" append}
     {if $action == "enable"}
-    <div class="btn-group m-b-2">
+    <div class="btn-group mb-3">
         <a href="{url id="system.cache.clear"}" class="btn btn-secondary">{translate key="button.cache.clear"}</a>
     </div>
     {/if}

@@ -84,14 +84,14 @@
         <dt>{translate key="label.id"}</dt>
         <dd>{$logSession->getId()}</dd>
         <dt>{translate key="label.date"}</dt>
-        <dd>{$logSession->getDate()}</dd>
+        <dd>{$logSession->getDate()|date_format:"%Y-%m-%d %H:%M:%S"}</dd>
         <dt>{translate key="label.duration"}</dt>
         <dd>{$logSession->getMicroTime()}</dd>
         <dt>{translate key="label.client"}</dt>
         <dd>{$logSession->getClient()}</dd>
     </dl>
 
-    <ul class="nav nav-tabs m-b-2" role="tablist">
+    <ul class="nav nav-tabs mb-2" role="tablist">
         <li class="nav-item">
             <a class="nav-link{if !$response && !$request && !$session} active{/if}" href="#all" data-toggle="tab" role="tab">
                 {translate key="title.all"}
@@ -160,7 +160,7 @@
             <h4>
                 {translate key="title.response"}
                 <small>
-                    <span class="tag tag-{if $response.status < 300}success{elseif $response.status < 400}warning{else}danger{/if}">
+                    <span class="badge badge-{if $response.status < 300}success{elseif $response.status < 400}warning{else}danger{/if}">
                         {$response.status} {$response.statusPhrase}
                     </span>
                 </small>
