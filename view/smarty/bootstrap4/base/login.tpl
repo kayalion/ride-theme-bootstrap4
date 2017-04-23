@@ -3,7 +3,7 @@
 {block name="head_title" prepend}{translate key="title.login"} | {/block}
 
 {block name="content"}
-    <div class="offset-md-4 col-md-4">
+    <div class="offset-md-3 col-md-4">
         <div class="page-header m-b-2 m-t-2">
             <h1>{translate key="title.login"}</h1>
         </div>
@@ -24,11 +24,11 @@
         </form>
 
         {if $urls}
-        <div class="list-group">
+        <ul>
             {foreach $urls as $service => $url}
-            <a href="{$url}" class="list-group-item list-group-item-action">{translate key="button.login.`$service`"}</a>
+            <li><a href="{$url}">{translate key="button.login.`$service`"}</a></li>
             {/foreach}
-        </div>
+        </ul>
         {/if}
     </div>
 {/block}
