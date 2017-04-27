@@ -645,7 +645,7 @@
     {if $row}
         {if $row->getType() == 'component'}
             {if $part}
-                {call formRow form=$form rows=$row->getRow($part) rowClass=$class}
+                {call formRow form=$form row=$row->getRow($part) rowClass=$class}
             {else}
                 {$component = $row->getComponent()}
                 {$attributes = $row->getWidget()->getAttributes()}
