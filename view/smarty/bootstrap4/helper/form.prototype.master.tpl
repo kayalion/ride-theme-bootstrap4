@@ -42,7 +42,7 @@
             </div>
             {/if}
         {elseif $type == 'component' && $row->getOption('embed')}
-            {call formWidgetComponent form=$form row=$row}
+            {call formWidgetComponent form=$form row=$row part=$part class=$class}
         {elseif $type == 'collection'}
             {$errors = $form->getValidationErrors($row->getName())}
 
@@ -637,36 +637,40 @@
 {*
     Renders a component control of the form
 *}
-{function name="formWidgetComponent" form=null row=null class=null}
+{function name="formWidgetComponent" form=null row=null part=null class=null}
     {if is_string($row) && $form}
         {$row = $form->getRow($row)}
     {/if}
 
     {if $row}
         {if $row->getType() == 'component'}
-            {$component = $row->getComponent()}
-            {$attributes = $row->getWidget()->getAttributes()}
+            {if $part}
+                {call formRow form=$form row=$row->getRow($part) rowClass=$class}
+            {else}
+                {$component = $row->getComponent()}
+                {$attributes = $row->getWidget()->getAttributes()}
 
-            {if get_class($component) == "ride\\web\\base\\form\\DateTimeComponent"}
-                {if $class}
-                    {$class = "`$class` col-sm-4"}
-                {else}
-                    {$class = "col-sm-4"}
-                {/if}
+                {if get_class($component) == "ride\\web\\base\\form\\DateTimeComponent"}
+                    {if $class}
+                        {$class = "`$class` col-sm-4"}
+                    {else}
+                        {$class = "col-sm-4"}
+                    {/if}
 
-                {if isset($attributes.class)}
-                    {$attributes.class = "`$attributes.class` row"}
-                {else}
-                    {$attributes.class = 'row'}
+                    {if isset($attributes.class)}
+                        {$attributes.class = "`$attributes.class` row"}
+                    {else}
+                        {$attributes.class = 'row'}
+                    {/if}
                 {/if}
+                <div
+                    {foreach $attributes as $name => $attribute}
+                        {$name}="{$attribute|escape}"
+                    {/foreach}
+                >
+                {call formRows form=$form rows=$row->getRows() rowClass=$class}
+                </div>
             {/if}
-        <div
-           {foreach $attributes as $name => $attribute}
-               {$name}="{$attribute|escape}"
-           {/foreach}
-        >
-            {call formRows form=$form rows=$row->getRows() rowClass=$class}
-        </div>
         {else}
             <span class="error">No component row provided</span>
         {/if}
