@@ -32,7 +32,7 @@
 {$titleId = null}
 {if $title}
     {$titleId = \ride\library\StringHelper::safeString($title)}
-    <h2 class="mb-2">
+    <h2 class="mb-4">
         <a data-toggle="collapse" href="#{$titleId}" aria-expanded="true" aria-controls="dashboard{$titleId}">
             {$title}
         </a>

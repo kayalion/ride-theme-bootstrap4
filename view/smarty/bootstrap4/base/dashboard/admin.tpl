@@ -28,6 +28,7 @@
     {if $item instanceof \ride\web\base\menu\Menu}
         {call "dashboardMenu" items=$item->getItems() title=$item->getLabel() referer=$referer}
     {/if}
+    <hr>
     {/foreach}
 
     {$settingsMenu = $app.taskbar->getSettingsMenu()}
@@ -41,5 +42,6 @@
 
         {call "dashboardMenu" items=$item->getItems() title=$item->getLabel() referer=$referer}
     {/if}
+    <hr>
     {/foreach}
 {/block}
