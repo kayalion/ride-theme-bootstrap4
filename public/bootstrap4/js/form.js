@@ -102,7 +102,7 @@ rideApp.form = (function($, undefined) {
   var onCollectionAdd = function($anchor, e) {
     e.preventDefault();
 
-    var $parent = $anchor.parents('.collection-controls');
+    var $parent = $anchor.parents('.collection-controls').first;
 
     var index = $parent.attr('data-index');
     if (!index) {
@@ -110,7 +110,10 @@ rideApp.form = (function($, undefined) {
     }
 
     var prototype = $parent.attr('data-prototype');
-    prototype = prototype.replace(/%prototype%/g, 'prototype-' + index);
+    var prototypeIndex = $parent.attr('data-prototype-index');
+    var prototypeRegex = new RegExp(prototypeIndex, 'g');
+
+    prototype = prototype.replace(prototypeRegex, 'prototype-' + index);
 
     var $group = $('.collection-control-group', $parent).first();
 
@@ -166,7 +169,7 @@ rideApp.form = (function($, undefined) {
       return false;
     }
 
-    if (hasParsley && !$form.parsley().isValid()) {
+    if (hasParsley && !$form.parsley().isValid() && !$anchor.attr('formnovalidate')) {
       $form.parsley().validate();
 
       return false;

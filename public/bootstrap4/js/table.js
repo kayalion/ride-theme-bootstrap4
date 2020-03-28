@@ -20,7 +20,7 @@ rideApp.table = (function($, undefined) {
 
         return onApply($element, e);
       });
-      $form.on('change', 'select:not([name=action])', function(e) {
+      $form.on('change', 'select:not(.js-action)', function(e) {
           onApply($(this), e);
       });
       $table.on('click', 'button[name=applyAction]', function(e) {
@@ -37,7 +37,7 @@ rideApp.table = (function($, undefined) {
     var messages = $form.data('confirm-messages');
     var action = $select.children(':selected').text();
 
-    if (action == '---' || $select.val() == '') {
+    if (action == '---' || $select.val() == '' || action == $form.data('bulk')) {
       return false;
     }
 

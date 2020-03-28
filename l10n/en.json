@@ -125,6 +125,7 @@
     "title.image.crop": "Crop your image",
     "title.password.reset": "Request a new password",
     "title.permission.add": "Add a new permission",
+    "title.recipients.available": "Available recipients",
     "title.roles": "Roles",
     "title.role.add": "Add a new role",
     "title.security": "Security",
@@ -132,6 +133,7 @@
     "title.system.details": "System details",
     "title.terms.vocabulary": "Terms of '%vocabulary%'",
     "title.user.add": "Add a new user",
+    "title.variables.available": "Available variables",
 
     "theme.bootstrap": "Bootstrap v4 alpha"
 }

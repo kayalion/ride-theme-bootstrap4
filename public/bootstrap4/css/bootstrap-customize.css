@@ -16,6 +16,10 @@ a:hover,
     display: none;
 }
 
+.pt-10 {
+    padding-top: 10rem;
+}
+
 .form-image-style-preview img {
     max-width: 100px;
 }

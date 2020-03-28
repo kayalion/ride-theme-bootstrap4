@@ -4,9 +4,6 @@
 
 {block name="taskbar_panels" append}
     {url id="system.mail.templates.locale" parameters=["locale" => "%locale%"] var="url"}
-    {if $query}
-        {$url = "`$url`?query=`$query|escape`"}
-    {/if}
     {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
 {/block}
 
@@ -18,7 +15,10 @@
         <a class="breadcrumb-item" href="{url id="system"}">
             {translate key="title.system"}
         </a>
-        <a class="breadcrumb-item" href="{url id="system.mail.templates.locale" parameters=["locale" => $locale]}">
+        <a class="breadcrumb-item" href="{url id="system.preferences"}">
+            {translate key="title.preferences"}
+        </a>
+        <a class="breadcrumb-item" href="{url id="system.preferences.mail.templates.locale" parameters=["locale" => $locale]}">
             {translate key="title.mail.templates"}
         </a>
     </nav>
@@ -30,11 +30,21 @@
     </div>
 {/block}
 
-{block name="content_body" append}
-    {include file="helper/table" table=$table tableForm=$form tableActions=$actions}
+{block name="content" append}
+    {include file="helper/form.prototype"}
+
+    <form class="form-selectize" id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
+        {call formRows form=$form}
+        {call formActions submit="button.save"}
+    </form>
 {/block}
 
 {block name="scripts" append}
+    {$locale = substr($app.locale, 0, 2)}
+    {script src="bootstrap4/js/jquery-ui.js"}
+    {script src="bootstrap4/js/parsley.js"}
+    {if $locale != 'en'}
+        {script src="bootstrap4/js/locales/parsley-`$locale`.js"}
+    {/if}
     {script src="bootstrap4/js/form.js"}
-    {script src="bootstrap4/js/table.js"}
 {/block}

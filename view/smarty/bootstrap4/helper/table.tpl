@@ -4,7 +4,10 @@
     {include file="helper/form.prototype"}
 
     {$tableMessages = json_encode($table->getActionConfirmationMessages())}
-    <form id="{$tableForm->getId()}" action="{if isset($tableAction)}{$tableAction}{else}{$table->getFormUrl()}{/if}" method="POST" class="table" role="form" data-confirm-messages="{$tableMessages|escape}">
+    {$bulk = "label.actions.bulk"|translate}
+    {$bulk = "- `$bulk` -"}
+
+    <form id="{$tableForm->getId()}" action="{if isset($tableAction)}{$tableAction}{else}{$table->getFormUrl()}{/if}" method="POST" class="table" role="form" data-confirm-messages="{$tableMessages|escape}" data-bulk="{$bulk}">
         {call formWidget form=$tableForm row=$tableNameField}
 
         {if $hasTableActions || $table->hasSearch()}
@@ -104,10 +107,10 @@
                                     <div class="input-group add-on">
                                         {$row = $tableForm->getRow($tableActionField)}
                                         {$widget = $row->getWidget()}
-                                        {$widget->setAttribute('class', 'col-xs-3')}
+                                        {$widget->setAttribute('class', 'col-xs-3 js-action')}
                                         {$bulk = "label.actions.bulk"|translate}
                                         {$options = $widget->getOptions()}
-                                        {$options[0] = "- `$bulk` -"}
+                                        {$options[0] = $bulk}
                                         {$widget->setOptions($options)}
 
                                         {call formWidget form=$tableForm row=$row}

@@ -32,6 +32,9 @@
 
     {if $row}
         {$type = $row->getType()}
+
+
+
         {if $type == 'hidden'}
             {call formWidget form=$form row=$row part=$part}
 
@@ -49,6 +52,9 @@
             <div class="form-group row-{$row->getName()|replace:'[':''|replace:']':''}{if $row->isRequired()} required{/if}{if $row->isDisabled()} disabled{/if}{if $row->isReadOnly()} readonly{/if} clearfix{if $errors} has-danger{/if}{if $class} {$class}{/if}"{if $row->getOption('order')} data-order="true"{/if}>
                 <label>
                     {$row->getLabel()}
+                    {if $row->getOption('optional')}
+                        &nbsp;<small class="text-muted">{translate key="label.optional"}</small>
+                    {/if}
                     {if $row->getOption('localized')}
                         &nbsp;<span class="fa fa-language text-muted" title="{translate key="label.field.localized"}"></span>
                     {/if}
@@ -101,6 +107,9 @@
 
                 <label class="d-block" for="{$widget->getId()}">
                     {if $type != 'button'}{$row->getLabel()}{/if}
+                    {if $row->getOption('optional')}
+                        &nbsp;<small class="text-muted">{translate key="label.optional"}</small>
+                    {/if}
                     {if $row->getOption('localized')}
                         &nbsp;<span class="fa fa-language text-muted" title="{translate key="label.field.localized"}"></span>
                     {/if}
@@ -275,9 +284,9 @@
 
     {$widget = $row->getWidget()}
     {if $widget}
-        {$class = $widget->getAttribute('class')}
-        {$class = "`$class` col-md-3"}
-        {$widget->setAttribute('class', $class)}
+        {* {$class = $widget->getAttribute('class')} *}
+        {* {$class = "`$class` col-md-3"} *}
+        {* {$widget->setAttribute('class', $class)} *}
         {$widget->setAttribute('data-parsley-type', 'number')}
         {$widget->setAttribute('step', 'any')}
 
