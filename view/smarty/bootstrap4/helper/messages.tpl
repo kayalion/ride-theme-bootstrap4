@@ -3,7 +3,7 @@
     "warning" => "warning",
     "success" => "success",
     "info" => "info",
-    "information" => "info",
+    "information" => "info"
 ]}
 {foreach $messageTypes as $messageType => $messageClass}
     {$typeMessages = $messages->getByType($messageType)}
